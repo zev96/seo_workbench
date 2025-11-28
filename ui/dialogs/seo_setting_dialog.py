@@ -24,7 +24,7 @@ class SEOSettingDialog(QDialog):
         
     def _init_ui(self):
         """初始化界面"""
-        self.setWindowTitle("SEO 核心词监控")
+        self.setWindowTitle("关键词设置")
         self.setMinimumSize(600, 500)
         
         layout = QVBoxLayout(self)
@@ -32,7 +32,7 @@ class SEOSettingDialog(QDialog):
         layout.setSpacing(20)
         
         # === 标题区 ===
-        title = StrongBodyLabel("🔍 SEO 核心词监控")
+        title = StrongBodyLabel("🔍 关键词设置")
         title.setStyleSheet("font-size: 20px; font-weight: bold; color: #1F1F1F;")
         layout.addWidget(title)
         

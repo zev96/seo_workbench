@@ -35,22 +35,22 @@
     },
     {
       "col_index": 58,
-      "type": "H2",
+      "type": "Body",
       "name": "列59"
     },
     {
       "col_index": 36,
-      "type": "H4",
+      "type": "Body",
       "name": "列37"
     },
     {
       "col_index": 37,
-      "type": "H1",
+      "type": "Body",
       "name": "列38"
     },
     {
       "col_index": 6,
-      "type": "Body",
+      "type": "H1",
       "name": "列7"
     },
     {
@@ -87,6 +87,11 @@
       "col_index": 19,
       "type": "H2",
       "name": "列20"
+    },
+    {
+      "col_index": 21,
+      "type": "H1",
+      "name": "列22"
     }
   ],
   "image_paths": {
@@ -160,7 +165,7 @@
         62
       ],
       "group_size": 2,
-      "keep_count": 5,
+      "keep_count": 4,
       "shuffle_order": true
     }
   ],

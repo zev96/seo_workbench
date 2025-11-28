@@ -328,8 +328,9 @@ class MainWindow(MSFluentWindow):
             for idx, row_data in enumerate(grid_data):
                 doc = Document()
                 
-                # === 智能序号处理：按写入顺序编号 ===
-                global_list_counter = 1
+                # === 智能序号处理：按格式分类计数 ===
+                # 为每种序号格式维护独立的计数器
+                style_counters = {}
                 
                 # 根据列类型设置样式
                 for col_idx, content in enumerate(row_data):
@@ -353,26 +354,29 @@ class MainWindow(MSFluentWindow):
                         processed_content = para_text
                         
                         # === 对所有类型应用智能序号处理 ===
-                        if col_type == 'List':
-                            # List 类型：检测、清洗并重新编号（按写入顺序）
-                            current_number = global_list_counter
-                            processed_content = SmartNumbering.process_text(
-                                para_text, 
-                                current_number,
-                                should_renumber=True
-                            )
-                            logger.info(f"[List] 重编号: {current_number}, 原文='{para_text[:40]}', 结果='{processed_content[:40]}'")
-                            global_list_counter += 1
-                        elif col_type in ['H1', 'H2', 'H3', 'H4', 'Body']:
-                            # 其他类型：检测、清洗并重新编号（按写入顺序）
-                            current_number = global_list_counter
+                        # 先检测是否有序号
+                        cleaned_text, detected_style = SmartNumbering.detect_and_clean(para_text)
+                        
+                        if detected_style:
+                            # 检测到序号：清洗并重新编号
+                            # 为该格式初始化计数器（如果还没有）
+                            if detected_style not in style_counters:
+                                style_counters[detected_style] = 1
+                            
+                            current_number = style_counters[detected_style]
                             processed_content = SmartNumbering.process_text(
                                 para_text,
                                 current_number,
                                 should_renumber=True
                             )
-                            logger.info(f"[{col_type}] 重编号: {current_number}, 原文='{para_text[:40]}', 结果='{processed_content[:40]}'")
-                            global_list_counter += 1
+                            logger.info(f"[{col_type}] 重编号: {current_number}, 样式={detected_style}, 原文='{para_text[:40]}', 结果='{processed_content[:40]}'")
+                            
+                            # 递增该格式的计数器
+                            style_counters[detected_style] += 1
+                        else:
+                            # 没有检测到序号：保持原样
+                            processed_content = para_text
+                            logger.debug(f"[{col_type}] 无序号，保持原样: '{para_text[:40]}'")
                         
                         # 根据类型添加段落
                         if col_type == 'H1':
@@ -463,8 +467,8 @@ class MainWindow(MSFluentWindow):
                     logger.info(f"文档 {i+1}: 使用 AI 标题 '{ai_title}' (格式: {self.ai_title_format})")
                 
                 # === 智能序号处理：在混排策略之后，写入Word之前 ===
-                # 使用全局计数器，按写入顺序编号（不按列索引）
-                global_list_counter = 1
+                # 为每种序号格式维护独立的计数器
+                style_counters = {}
                 
                 # 处理每一列的内容
                 for col_idx, content in enumerate(processed_row):
@@ -488,26 +492,29 @@ class MainWindow(MSFluentWindow):
                         processed_content = para_text
                         
                         # === 对所有类型应用智能序号处理 ===
-                        if col_type == 'List':
-                            # List 类型：检测、清洗并重新编号（按写入顺序）
-                            current_number = global_list_counter
-                            processed_content = SmartNumbering.process_text(
-                                para_text, 
-                                current_number,  # 使用全局计数器
-                                should_renumber=True
-                            )
-                            logger.info(f"[List] 重编号: {current_number}, 原文='{para_text[:40]}', 结果='{processed_content[:40]}'")
-                            global_list_counter += 1  # 每处理一个List段落，全局计数器递增
-                        elif col_type in ['H1', 'H2', 'H3', 'H4', 'Body']:
-                            # 其他类型：检测、清洗并重新编号（按写入顺序）
-                            current_number = global_list_counter
+                        # 先检测是否有序号
+                        cleaned_text, detected_style = SmartNumbering.detect_and_clean(para_text)
+                        
+                        if detected_style:
+                            # 检测到序号：清洗并重新编号
+                            # 为该格式初始化计数器（如果还没有）
+                            if detected_style not in style_counters:
+                                style_counters[detected_style] = 1
+                            
+                            current_number = style_counters[detected_style]
                             processed_content = SmartNumbering.process_text(
                                 para_text,
                                 current_number,
                                 should_renumber=True
                             )
-                            logger.info(f"[{col_type}] 重编号: {current_number}, 原文='{para_text[:40]}', 结果='{processed_content[:40]}'")
-                            global_list_counter += 1
+                            logger.info(f"[{col_type}] 重编号: {current_number}, 样式={detected_style}, 原文='{para_text[:40]}', 结果='{processed_content[:40]}'")
+                            
+                            # 递增该格式的计数器
+                            style_counters[detected_style] += 1
+                        else:
+                            # 没有检测到序号：保持原样
+                            processed_content = para_text
+                            logger.debug(f"[{col_type}] 无序号，保持原样: '{para_text[:40]}'")
                         
                         # 根据类型添加段落
                         if col_type == 'H1':

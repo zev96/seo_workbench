@@ -29,7 +29,7 @@ class StrategyConfigDialog(QDialog):
         
     def _init_ui(self):
         """初始化界面"""
-        self.setWindowTitle("混排策略配置")
+        self.setWindowTitle("随机组设置")
         self.setMinimumSize(900, 600)
         
         layout = QVBoxLayout(self)
@@ -59,7 +59,7 @@ class StrategyConfigDialog(QDialog):
         left_layout.setSpacing(12)
         
         # 标题标签
-        list_label = BodyLabel("已保存的策略")
+        list_label = BodyLabel("已保存的组合")
         list_label.setStyleSheet("font-weight: 500; color: #666666; font-size: 12px;")
         left_layout.addWidget(list_label)
         
@@ -150,7 +150,7 @@ class StrategyConfigDialog(QDialog):
         right_layout.setSpacing(15)
         
         # 详情标题
-        detail_title = StrongBodyLabel("策略详情")
+        detail_title = StrongBodyLabel("组合配置")
         detail_title.setStyleSheet("font-size: 15px; font-weight: bold; color: #1F1F1F;")
         right_layout.addWidget(detail_title)
         
@@ -170,12 +170,14 @@ class StrategyConfigDialog(QDialog):
         # 1. 名称
         name_layout = QVBoxLayout()
         name_layout.setSpacing(6)
-        name_label = BodyLabel("策略名称")
+        name_label = BodyLabel("组合名称")
         name_label.setStyleSheet("font-weight: 500; color: #666666; font-size: 13px;")
         name_layout.addWidget(name_label)
         
         self.name_input = LineEdit()
         self.name_input.setPlaceholderText("例如：品牌组")
+        self.name_input.setMinimumWidth(400)
+        self.name_input.setMinimumHeight(40)
         self.name_input.setStyleSheet("""
             LineEdit {
                 background-color: #FFFFFF;
@@ -194,12 +196,14 @@ class StrategyConfigDialog(QDialog):
         # 2. 列
         columns_layout = QVBoxLayout()
         columns_layout.setSpacing(6)
-        columns_label = BodyLabel("涉及列（支持范围）")
+        columns_label = BodyLabel("列范围")
         columns_label.setStyleSheet("font-weight: 500; color: #666666; font-size: 13px;")
         columns_layout.addWidget(columns_label)
         
         self.columns_input = LineEdit()
         self.columns_input.setPlaceholderText("例如：2,3,5-8")
+        self.columns_input.setMinimumWidth(400)
+        self.columns_input.setMinimumHeight(30)
         self.columns_input.setStyleSheet("""
             LineEdit {
                 background-color: #FFFFFF;
@@ -222,7 +226,7 @@ class StrategyConfigDialog(QDialog):
         # 组大小
         size_layout = QVBoxLayout()
         size_layout.setSpacing(6)
-        size_label = BodyLabel("组大小")
+        size_label = BodyLabel("每组列数")
         size_label.setStyleSheet("font-weight: 500; color: #666666; font-size: 13px;")
         size_layout.addWidget(size_label)
         
@@ -243,7 +247,7 @@ class StrategyConfigDialog(QDialog):
         # 保留数
         keep_layout = QVBoxLayout()
         keep_layout.setSpacing(6)
-        keep_label = BodyLabel("保留数")
+        keep_label = BodyLabel("保留组数")
         keep_label.setStyleSheet("font-weight: 500; color: #666666; font-size: 13px;")
         keep_layout.addWidget(keep_label)
         
@@ -281,7 +285,7 @@ class StrategyConfigDialog(QDialog):
         # 保存策略按钮
         save_strategy_layout = QHBoxLayout()
         save_strategy_layout.addStretch()
-        self.save_strategy_btn = PrimaryPushButton("保存策略")
+        self.save_strategy_btn = PrimaryPushButton("保存组合")
         self.save_strategy_btn.clicked.connect(self._on_save_strategy)
         self.save_strategy_btn.setFixedHeight(38)
         self.save_strategy_btn.setStyleSheet("""
@@ -291,6 +295,7 @@ class StrategyConfigDialog(QDialog):
                 border-radius: 8px;
                 padding: 0px 24px;
                 font-size: 13px;
+                font-color: #FFFFFF;
                 font-weight: 500;
             }
             PrimaryPushButton:hover {

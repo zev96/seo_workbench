@@ -252,12 +252,12 @@ class StrategyPanel(QWidget):
         layout.addWidget(self.bold_tool_btn)
         
         # 5. SEO关键词设置
-        self.seo_config_btn = CardButton(FIF.TAG, "SEO关键词设置")
+        self.seo_config_btn = CardButton(FIF.TAG, "关键词设置")
         self.seo_config_btn.clicked.connect(self.seo_config_clicked)
         layout.addWidget(self.seo_config_btn)
         
         # 6. 随机组合设置
-        self.config_strategy_btn = CardButton(FIF.LAYOUT, "随机组合设置")
+        self.config_strategy_btn = CardButton(FIF.LAYOUT, "随机组设置")
         self.config_strategy_btn.clicked.connect(self.strategy_config_clicked)
         layout.addWidget(self.config_strategy_btn)
         
