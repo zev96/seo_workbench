@@ -1,0 +1,28 @@
+{
+  "api_config": {
+    "base_url": "https://api.deepseek.com",
+    "api_key": "",
+    "model": "deepseek-chat",
+    "timeout": 30,
+    "max_retries": 3
+  },
+  "template_path": null,
+  "column_settings": [
+    {
+      "col_index": 0,
+      "type": "H1",
+      "name": "文章标题"
+    }
+  ],
+  "image_paths": {},
+  "bold_keywords": [
+    "吸力",
+    "续航",
+    "除螨",
+    "智能"
+  ],
+  "shuffling_strategies": [],
+  "strict_unique": true,
+  "output_directory": "output"
+}
+

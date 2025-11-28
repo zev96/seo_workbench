@@ -1,0 +1,365 @@
+2025-11-26 15:04:38 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 15:04:38 | INFO     | seo_workbench.database.init_db:init_database:26 - 数据库文件不存在，将创建新数据库: assets.db
+2025-11-26 15:04:38 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 15:04:38 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 15:04:38 | INFO     | seo_workbench.database.init_db:_add_sample_data:55 - 正在添加示例数据...
+2025-11-26 15:04:38 | INFO     | seo_workbench.database.db_manager:add_material:100 - 添加素材成功: ID=1, 分类=通用-开头
+2025-11-26 15:04:38 | INFO     | seo_workbench.database.db_manager:add_material:100 - 添加素材成功: ID=2, 分类=通用-开头
+2025-11-26 15:04:38 | INFO     | seo_workbench.database.db_manager:add_material:100 - 添加素材成功: ID=3, 分类=通用-结尾
+2025-11-26 15:04:38 | INFO     | seo_workbench.database.db_manager:add_material:100 - 添加素材成功: ID=4, 分类=洗地机-痛点
+2025-11-26 15:04:38 | INFO     | seo_workbench.database.db_manager:add_material:100 - 添加素材成功: ID=5, 分类=洗地机-卖点
+2025-11-26 15:04:38 | INFO     | seo_workbench.database.init_db:_add_sample_data:92 - 示例数据添加完成，共 5 条
+2025-11-26 15:04:38 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 15:04:40 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 15:05:15 | INFO     | seo_workbench.ui.widgets.smart_grid:add_row:398 - 新增行: 当前总行数 21
+2025-11-26 15:05:17 | INFO     | seo_workbench.ui.widgets.smart_grid:add_column:420 - 新增列: 当前总列数 11
+2025-11-26 15:05:18 | INFO     | seo_workbench.ui.widgets.smart_grid:add_row:398 - 新增行: 当前总行数 22
+2025-11-26 15:05:24 | INFO     | seo_workbench.ui.widgets.smart_grid:clear_all:382 - 工作区已清空
+2025-11-26 15:06:01 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: D:/工作文件/家电组运营/模块化生产/吸尘器/模板/吸尘器导购文模板0605.xlsx, 行数: 16, 列数: 63
+2025-11-26 15:06:01 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:219 - 从 Excel 导入: 16 行, 63 列
+2025-11-26 15:06:05 | INFO     | seo_workbench.ui.widgets.smart_grid:clear_all:382 - 工作区已清空
+2025-11-26 15:08:09 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: D:/工作文件/家电组运营/模块化生产/吸尘器/模板/吸尘器对比文模板.xlsx, 行数: 17, 列数: 19
+2025-11-26 15:08:09 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:219 - 从 Excel 导入: 17 行, 19 列
+2025-11-26 15:08:13 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 15:08:13 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:117 - 列 0 类型设置为: H1
+2025-11-26 15:08:18 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 15:08:18 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:117 - 列 1 类型设置为: H1
+2025-11-26 15:08:20 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 15:08:20 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:117 - 列 2 类型设置为: H2
+2025-11-26 15:08:23 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 15:08:23 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:117 - 列 3 类型设置为: H3
+2025-11-26 15:08:26 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 15:08:26 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:117 - 列 4 类型设置为: Body
+2025-11-26 15:08:29 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 15:08:29 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:117 - 列 3 类型设置为: Body
+2025-11-26 15:08:32 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 15:08:32 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:117 - 列 2 类型设置为: Body
+2025-11-26 15:08:36 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 15:08:36 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:117 - 列 1 类型设置为: Body
+2025-11-26 15:08:51 | INFO     | seo_workbench.ui.widgets.smart_grid:add_row:398 - 新增行: 当前总行数 18
+2025-11-26 15:10:17 | INFO     | seo_workbench.ai.api_client:__init__:33 - AI 客户端初始化完成: https://api.deepseek.com, 模型: deepseek-chat
+2025-11-26 15:10:17 | INFO     | seo_workbench.ai.api_client:test_connection:263 - 测试 API 连接...
+2025-11-26 15:10:21 | INFO     | seo_workbench.ai.api_client:test_connection:269 - API 连接测试成功
+2025-11-26 15:10:23 | INFO     | seo_workbench.ui.dialogs.api_settings:accept:131 - API 配置已更新
+2025-11-26 15:10:23 | INFO     | seo_workbench.ui.main_window:_on_api_settings:157 - API 设置已更新
+2025-11-26 15:10:32 | INFO     | seo_workbench.ui.main_window:_on_ai_title:223 - AI 生成标题: 吸尘器
+2025-11-26 15:15:02 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 15:15:02 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_save_strategy:285 - 保存策略: 1123, 列: [2, 3, 4, 5, 6, 7, 8, 9, 10]
+2025-11-26 15:20:25 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 15:20:25 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 15:20:25 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 15:20:25 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 15:20:25 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 15:20:25 | INFO     | seo_workbench.config.settings:load_from_file:173 - 配置已加载: profile.json
+2025-11-26 15:20:25 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 15:20:27 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 15:20:35 | INFO     | seo_workbench.ui.widgets.smart_grid:add_row:441 - 新增行: 当前总行数 21
+2025-11-26 15:20:36 | INFO     | seo_workbench.ui.widgets.smart_grid:add_column:471 - 新增列: 当前总列数 11
+2025-11-26 15:21:05 | INFO     | seo_workbench.ui.widgets.smart_grid:clear_all:416 - 工作区已清空
+2025-11-26 15:21:10 | INFO     | seo_workbench.ui.widgets.smart_grid:add_row:441 - 新增行: 当前总行数 22
+2025-11-26 15:21:11 | INFO     | seo_workbench.ui.widgets.smart_grid:add_column:471 - 新增列: 当前总列数 12
+2025-11-26 15:21:16 | INFO     | seo_workbench.ui.widgets.smart_grid:add_column:471 - 新增列: 当前总列数 13
+2025-11-26 15:21:25 | INFO     | seo_workbench.ui.widgets.smart_grid:delete_row:499 - 删除行: 0
+2025-11-26 15:21:28 | INFO     | seo_workbench.ui.widgets.smart_grid:add_row:441 - 新增行: 当前总行数 22
+2025-11-26 15:21:28 | INFO     | seo_workbench.ui.widgets.smart_grid:add_row:441 - 新增行: 当前总行数 23
+2025-11-26 15:22:03 | INFO     | seo_workbench.ui.widgets.smart_grid:clear_all:416 - 工作区已清空
+2025-11-26 15:22:24 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: D:/工作文件/家电组运营/模块化生产/吸尘器/模板/吸尘器导购文模板.xlsx, 行数: 11, 列数: 19
+2025-11-26 15:22:24 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:253 - 从 Excel 导入: 11 行, 19 列
+2025-11-26 15:23:13 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 15:23:13 | INFO     | seo_workbench.ui.widgets.smart_grid:_bind_image_folder:176 - 列 0 绑定图片文件夹: E:/家电组共享/素材/图片/推广素材/希喂/报道和检测报告
+2025-11-26 15:26:21 | INFO     | seo_workbench.ui.main_window:_on_ai_title:225 - AI 生成标题: 吸尘器
+2025-11-26 15:26:21 | INFO     | seo_workbench.ui.main_window:_on_ai_title:279 - AI 标题已导入工作区: 20 个
+2025-11-26 15:26:56 | INFO     | seo_workbench.ui.widgets.smart_grid:delete_row:499 - 删除行: 19
+2025-11-26 15:26:57 | INFO     | seo_workbench.ui.widgets.smart_grid:delete_row:499 - 删除行: 18
+2025-11-26 15:26:57 | INFO     | seo_workbench.ui.widgets.smart_grid:delete_row:499 - 删除行: 17
+2025-11-26 15:26:57 | INFO     | seo_workbench.ui.widgets.smart_grid:delete_row:499 - 删除行: 16
+2025-11-26 15:26:58 | INFO     | seo_workbench.ui.widgets.smart_grid:delete_row:499 - 删除行: 15
+2025-11-26 15:26:58 | INFO     | seo_workbench.ui.widgets.smart_grid:delete_row:499 - 删除行: 14
+2025-11-26 15:26:58 | INFO     | seo_workbench.ui.widgets.smart_grid:delete_row:499 - 删除行: 13
+2025-11-26 15:26:58 | INFO     | seo_workbench.ui.widgets.smart_grid:delete_row:499 - 删除行: 12
+2025-11-26 15:26:59 | INFO     | seo_workbench.ui.widgets.smart_grid:delete_row:499 - 删除行: 11
+2025-11-26 15:28:45 | INFO     | seo_workbench.ui.widgets.smart_grid:clear_all:416 - 工作区已清空
+2025-11-26 15:41:37 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 15:41:37 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 15:41:37 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 15:41:37 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 15:41:37 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 15:41:37 | INFO     | seo_workbench.config.settings:load_from_file:173 - 配置已加载: profile.json
+2025-11-26 15:41:37 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 15:41:39 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 15:43:57 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: D:/工作文件/家电组运营/模块化生产/吸尘器/模板/吸尘器导购文模板0605.xlsx, 行数: 16, 列数: 63
+2025-11-26 15:43:57 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:247 - 从 Excel 导入: 16 行, 63 列
+2025-11-26 15:46:04 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 15:46:04 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:137 - 列 4 类型设置为: H4
+2025-11-26 15:46:08 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 15:46:08 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:137 - 列 4 类型设置为: H1
+2025-11-26 15:46:10 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 15:46:10 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:137 - 列 4 类型设置为: H2
+2025-11-26 15:46:12 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 15:46:12 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:137 - 列 4 类型设置为: H1
+2025-11-26 15:52:00 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 15:52:00 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 15:52:00 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 15:52:00 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 15:52:00 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 15:52:00 | INFO     | seo_workbench.config.settings:load_from_file:173 - 配置已加载: profile.json
+2025-11-26 15:52:00 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 15:52:01 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 15:53:15 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: D:/工作文件/家电组运营/模块化生产/宠物/宠物空气净化器导购文模板（第4次修订版）.xlsx, 行数: 18, 列数: 3
+2025-11-26 15:53:15 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:290 - 从 Excel 导入: 18 行, 3 列
+2025-11-26 15:53:21 | INFO     | seo_workbench.ui.widgets.smart_grid:clear_all:455 - 工作区已清空
+2025-11-26 15:53:27 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: D:/工作文件/家电组运营/模块化生产/吸尘器/模板/吸尘器导购文模板.xlsx, 行数: 11, 列数: 19
+2025-11-26 15:53:27 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:290 - 从 Excel 导入: 11 行, 19 列
+2025-11-26 15:57:31 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 15:57:31 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 15:57:31 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 15:57:31 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 15:57:31 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 15:57:31 | INFO     | seo_workbench.config.settings:load_from_file:173 - 配置已加载: profile.json
+2025-11-26 15:57:31 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 15:57:33 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 15:57:59 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: D:/工作文件/家电组运营/模块化生产/吸尘器/模板/吸尘器导购文模板.xlsx, 行数: 11, 列数: 19
+2025-11-26 15:57:59 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:301 - 从 Excel 导入: 11 行, 19 列
+2025-11-26 16:05:03 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 16:05:03 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 16:05:03 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 16:05:03 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 16:05:03 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 16:05:03 | INFO     | seo_workbench.config.settings:load_from_file:173 - 配置已加载: profile.json
+2025-11-26 16:05:03 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 16:05:04 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 16:05:27 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: D:/工作文件/家电组运营/模块化生产/吸尘器/模板/吸尘器导购文模板0605.xlsx, 行数: 16, 列数: 63
+2025-11-26 16:05:27 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:332 - 从 Excel 导入: 16 行, 63 列
+2025-11-26 16:05:33 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 16:05:33 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:213 - 列 1 类型设置为: H3
+2025-11-26 16:05:34 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 16:05:34 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:213 - 列 1 类型设置为: H1
+2025-11-26 16:08:51 | INFO     | seo_workbench.ui.widgets.smart_grid:clear_all:497 - 工作区已清空
+2025-11-26 16:18:02 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 16:18:02 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 16:18:02 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 16:18:02 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 16:18:02 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 16:18:02 | INFO     | seo_workbench.config.settings:load_from_file:173 - 配置已加载: profile.json
+2025-11-26 16:18:02 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 16:18:03 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 16:18:27 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: D:/工作文件/家电组运营/模块化生产/吸尘器/模板/吸尘器导购文模板0605.xlsx, 行数: 16, 列数: 63
+2025-11-26 16:18:27 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:297 - 从 Excel 导入: 16 行, 63 列
+2025-11-26 16:18:29 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 16:18:29 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:180 - 列 1 类型设置为: H2
+2025-11-26 16:18:31 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 16:18:31 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:180 - 列 1 类型设置为: H1
+2025-11-26 16:18:47 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 16:18:47 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:180 - 列 59 类型设置为: H2
+2025-11-26 16:18:55 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 16:18:55 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:180 - 列 1 类型设置为: Body
+2025-11-26 16:19:35 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 16:19:35 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:180 - 列 37 类型设置为: H3
+2025-11-26 16:19:37 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 16:19:37 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:180 - 列 37 类型设置为: H1
+2025-11-26 16:19:38 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 16:19:38 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:180 - 列 38 类型设置为: H1
+2025-11-26 16:19:39 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 16:19:39 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:180 - 列 37 类型设置为: H3
+2025-11-26 16:19:41 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 16:19:41 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:180 - 列 37 类型设置为: H4
+2025-11-26 16:20:30 | INFO     | seo_workbench.config.settings:save_to_file:139 - 配置已保存到: profile.json
+2025-11-26 16:20:30 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_save_strategy:285 - 保存策略: 品牌策略, 列: [36, 37, 38, 39, 40, 41, 42, 43]
+2025-11-26 16:35:17 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 16:35:17 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 16:35:17 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 16:35:17 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 16:35:17 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 16:35:17 | ERROR    | seo_workbench.config.settings:load_from_file:162 - 加载配置失败: 1 validation error for ProfileConfig
+column_settings.6.type
+  Value error, 列类型必须是以下之一: H1, H2, H3, Body, List, Ignore [type=value_error, input_value='H4', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/value_error，使用默认配置
+2025-11-26 16:35:17 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 16:35:19 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 16:36:18 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 16:36:18 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 16:36:18 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 16:36:18 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 16:36:18 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 16:36:18 | INFO     | seo_workbench.config.settings:load_from_file:158 - 配置已加载: profile.json
+2025-11-26 16:36:18 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 16:36:19 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 16:47:46 | ERROR    | seo_workbench.utils.file_handler:read_excel:39 - 读取 Excel 失败: File contains no valid workbook part
+2025-11-26 16:47:53 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: D:/工作文件/家电组运营/模块化生产/吸尘器/模板/吸尘器导购文模板.xlsx, 行数: 11, 列数: 19
+2025-11-26 16:47:53 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:297 - 从 Excel 导入: 11 行, 19 列
+2025-11-26 16:48:23 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 16:48:23 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_save_strategy:283 - 保存策略: 科普内容随机, 列: [4, 5, 6, 7, 8, 9, 10]
+2025-11-26 16:48:32 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 16:48:32 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_save_strategy:283 - 保存策略: 品牌策略, 列: [35, 36, 37, 38, 39, 40, 41, 42]
+2025-11-26 16:48:55 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 16:48:55 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_save_strategy:283 - 保存策略: 竞品随机, 列: [14, 15, 16, 17, 18]
+2025-11-26 16:49:05 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 16:49:05 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_remove_strategy:186 - 删除策略: 品牌策略
+2025-11-26 16:49:10 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 16:49:10 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_remove_strategy:186 - 删除策略: 竞品随机
+2025-11-26 16:49:20 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 16:49:20 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_save_strategy:283 - 保存策略: 科普随机, 列: [5, 6, 7, 8]
+2025-11-26 16:49:36 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 16:49:36 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_save_strategy:283 - 保存策略: 竞品随机, 列: [10, 11, 12, 13, 14, 15, 16, 17, 18]
+2025-11-26 16:50:03 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 16:50:03 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_save_strategy:283 - 保存策略: 竞品随机, 列: [10, 11, 12, 13, 14, 15, 16, 17, 18]
+2025-11-26 17:01:26 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 17:01:26 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 17:01:26 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 17:01:26 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 17:01:26 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 17:01:26 | INFO     | seo_workbench.config.settings:load_from_file:158 - 配置已加载: profile.json
+2025-11-26 17:01:26 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 17:01:27 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 17:04:51 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: D:/工作文件/家电组运营/模块化生产/吸尘器/模板/吸尘器导购文模板.xlsx, 行数: 11, 列数: 19
+2025-11-26 17:04:51 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:297 - 从 Excel 导入: 11 行, 19 列
+2025-11-26 17:05:08 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 17:05:08 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_save_strategy:305 - 保存策略: 科普随机, 列: [6, 7, 8, 9, 10, 11, 12]
+2025-11-26 17:13:24 | INFO     | seo_workbench.ui.widgets.smart_grid:clear_all:471 - 工作区已清空
+2025-11-26 17:16:09 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: C:/Users/EDY/Desktop/test.xlsx, 行数: 14, 列数: 63
+2025-11-26 17:16:09 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:297 - 从 Excel 导入: 14 行, 63 列
+2025-11-26 17:16:35 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 17:16:35 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_remove_strategy:195 - 删除策略: 科普随机
+2025-11-26 17:16:37 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 17:16:37 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_remove_strategy:195 - 删除策略: 竞品随机
+2025-11-26 17:17:06 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 17:17:06 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_save_strategy:305 - 保存策略: 科普随机, 列: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+2025-11-26 17:17:49 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 17:17:49 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_save_strategy:305 - 保存策略: 竞品随机, 列: [27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62]
+2025-11-26 17:18:45 | INFO     | seo_workbench.ui.main_window:_on_generate:199 - 开始生成文档: 模式=shuffle
+2025-11-26 17:29:06 | INFO     | seo_workbench.ui.widgets.smart_grid:clear_all:471 - 工作区已清空
+2025-11-26 17:42:29 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 17:42:29 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 17:42:29 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 17:42:29 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 17:42:29 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 17:42:29 | INFO     | seo_workbench.config.settings:load_from_file:158 - 配置已加载: profile.json
+2025-11-26 17:42:29 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 17:42:30 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 17:47:08 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 17:47:08 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 17:47:08 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 17:47:08 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 17:47:08 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 17:47:08 | INFO     | seo_workbench.config.settings:load_from_file:158 - 配置已加载: profile.json
+2025-11-26 17:47:08 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 17:47:10 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 17:56:28 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 17:56:28 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 17:56:28 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 17:56:28 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 17:56:28 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 17:56:28 | INFO     | seo_workbench.config.settings:load_from_file:158 - 配置已加载: profile.json
+2025-11-26 17:56:28 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 17:56:29 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 18:05:04 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 18:05:04 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 18:05:04 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 18:05:04 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 18:05:04 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 18:05:04 | INFO     | seo_workbench.config.settings:load_from_file:158 - 配置已加载: profile.json
+2025-11-26 18:05:04 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 18:05:05 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 18:06:01 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: C:/Users/EDY/Desktop/test.xlsx, 行数: 14, 列数: 63
+2025-11-26 18:06:01 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:334 - 从 Excel 导入: 14 行, 63 列
+2025-11-26 18:06:28 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 18:06:43 | INFO     | seo_workbench.ui.main_window:_on_generate:203 - 开始生成文档: 模式=shuffle
+2025-11-26 18:10:11 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 18:10:11 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 18:10:11 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 18:10:11 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 18:10:11 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 18:10:11 | INFO     | seo_workbench.config.settings:load_from_file:158 - 配置已加载: profile.json
+2025-11-26 18:10:11 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 18:10:12 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 18:10:46 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: C:/Users/EDY/Desktop/test.xlsx, 行数: 14, 列数: 63
+2025-11-26 18:10:46 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:334 - 从 Excel 导入: 14 行, 63 列
+2025-11-26 18:11:00 | INFO     | seo_workbench.ui.main_window:_on_generate:203 - 开始生成文档: 模式=shuffle
+2025-11-26 18:11:02 | INFO     | seo_workbench.ui.main_window:_generate_documents:366 - 已生成文档 1/15: 混排文档_0001.docx
+2025-11-26 18:11:02 | INFO     | seo_workbench.ui.main_window:_generate_documents:366 - 已生成文档 2/15: 混排文档_0002.docx
+2025-11-26 18:11:02 | INFO     | seo_workbench.ui.main_window:_generate_documents:366 - 已生成文档 3/15: 混排文档_0003.docx
+2025-11-26 18:11:02 | INFO     | seo_workbench.ui.main_window:_generate_documents:366 - 已生成文档 4/15: 混排文档_0004.docx
+2025-11-26 18:11:02 | INFO     | seo_workbench.ui.main_window:_generate_documents:366 - 已生成文档 5/15: 混排文档_0005.docx
+2025-11-26 18:11:02 | INFO     | seo_workbench.ui.main_window:_generate_documents:366 - 已生成文档 6/15: 混排文档_0006.docx
+2025-11-26 18:11:02 | INFO     | seo_workbench.ui.main_window:_generate_documents:366 - 已生成文档 7/15: 混排文档_0007.docx
+2025-11-26 18:11:02 | INFO     | seo_workbench.ui.main_window:_generate_documents:366 - 已生成文档 8/15: 混排文档_0008.docx
+2025-11-26 18:11:02 | INFO     | seo_workbench.ui.main_window:_generate_documents:366 - 已生成文档 9/15: 混排文档_0009.docx
+2025-11-26 18:11:02 | INFO     | seo_workbench.ui.main_window:_generate_documents:366 - 已生成文档 10/15: 混排文档_0010.docx
+2025-11-26 18:11:02 | INFO     | seo_workbench.ui.main_window:_generate_documents:366 - 已生成文档 11/15: 混排文档_0011.docx
+2025-11-26 18:11:02 | INFO     | seo_workbench.ui.main_window:_generate_documents:366 - 已生成文档 12/15: 混排文档_0012.docx
+2025-11-26 18:11:02 | INFO     | seo_workbench.ui.main_window:_generate_documents:366 - 已生成文档 13/15: 混排文档_0013.docx
+2025-11-26 18:11:02 | INFO     | seo_workbench.ui.main_window:_generate_documents:366 - 已生成文档 14/15: 混排文档_0014.docx
+2025-11-26 18:11:02 | INFO     | seo_workbench.ui.main_window:_generate_documents:366 - 已生成文档 15/15: 混排文档_0015.docx
+2025-11-26 18:13:40 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 18:13:40 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 18:13:40 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 18:13:40 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 18:13:40 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 18:13:40 | INFO     | seo_workbench.config.settings:load_from_file:158 - 配置已加载: profile.json
+2025-11-26 18:13:40 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 18:13:41 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 18:48:59 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: C:/Users/EDY/Desktop/test.xlsx, 行数: 14, 列数: 63
+2025-11-26 18:48:59 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:334 - 从 Excel 导入: 14 行, 63 列
+2025-11-26 18:49:04 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 18:49:04 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_save_strategy:329 - 保存策略: 科普随机, 列: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+2025-11-26 18:49:07 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 18:49:07 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_save_strategy:329 - 保存策略: 竞品随机, 列: [27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62]
+2025-11-26 18:49:25 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 18:49:25 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_save_strategy:329 - 保存策略: 竞品随机, 列: [27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62]
+2025-11-26 18:49:30 | INFO     | seo_workbench.config.settings:save_to_file:124 - 配置已保存到: profile.json
+2025-11-26 18:49:30 | INFO     | seo_workbench.ui.widgets.strategy_panel:_on_save_strategy:329 - 保存策略: 科普随机, 列: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+2025-11-26 18:49:43 | INFO     | seo_workbench.ui.main_window:_on_generate:203 - 开始生成文档: 模式=shuffle
+2025-11-26 18:49:52 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 1/30: 混排文档_0001.docx
+2025-11-26 18:49:52 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 2/30: 混排文档_0002.docx
+2025-11-26 18:49:52 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 3/30: 混排文档_0003.docx
+2025-11-26 18:49:52 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 4/30: 混排文档_0004.docx
+2025-11-26 18:49:52 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 5/30: 混排文档_0005.docx
+2025-11-26 18:49:52 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 6/30: 混排文档_0006.docx
+2025-11-26 18:49:52 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 7/30: 混排文档_0007.docx
+2025-11-26 18:49:52 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 8/30: 混排文档_0008.docx
+2025-11-26 18:49:52 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 9/30: 混排文档_0009.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 10/30: 混排文档_0010.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 11/30: 混排文档_0011.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 12/30: 混排文档_0012.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 13/30: 混排文档_0013.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 14/30: 混排文档_0014.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 15/30: 混排文档_0015.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 16/30: 混排文档_0016.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 17/30: 混排文档_0017.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 18/30: 混排文档_0018.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 19/30: 混排文档_0019.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 20/30: 混排文档_0020.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 21/30: 混排文档_0021.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 22/30: 混排文档_0022.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 23/30: 混排文档_0023.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 24/30: 混排文档_0024.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 25/30: 混排文档_0025.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 26/30: 混排文档_0026.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 27/30: 混排文档_0027.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 28/30: 混排文档_0028.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 29/30: 混排文档_0029.docx
+2025-11-26 18:49:53 | INFO     | seo_workbench.ui.main_window:_generate_documents:369 - 已生成文档 30/30: 混排文档_0030.docx
+2025-11-26 18:59:19 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 18:59:19 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 18:59:19 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 18:59:19 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 18:59:19 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 18:59:19 | INFO     | seo_workbench.config.settings:load_from_file:158 - 配置已加载: profile.json
+2025-11-26 18:59:19 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 18:59:21 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 19:27:49 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 19:27:49 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 19:27:49 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 19:27:49 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 19:27:49 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 19:27:49 | INFO     | seo_workbench.config.settings:load_from_file:158 - 配置已加载: profile.json
+2025-11-26 19:27:49 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 19:27:51 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
+2025-11-26 19:31:26 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-26 19:31:26 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-26 19:31:26 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-26 19:31:26 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-26 19:31:26 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-26 19:31:26 | INFO     | seo_workbench.config.settings:load_from_file:158 - 配置已加载: profile.json
+2025-11-26 19:31:26 | INFO     | __main__:load_config:39 - 配置已加载: profile.json
+2025-11-26 19:31:27 | INFO     | seo_workbench.ui.main_window:__init__:38 - Fluent 主窗口初始化完成
