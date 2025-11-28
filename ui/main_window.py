@@ -642,7 +642,8 @@ class MainWindow(MSFluentWindow):
             
             # 设置图片的 Alt Text（替代文本）
             # 这是 SEO 的关键部分
-            inline = picture.inline
+            # 修正：使用 ._inline 而不是 .inline
+            inline = picture._inline 
             docPr = inline.docPr
             docPr.set('descr', alt_text)  # 设置描述（Alt Text）
             docPr.set('title', alt_text)  # 同时设置标题

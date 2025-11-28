@@ -98,3 +98,9 @@ AttributeError: 'MessageBox' object has no attribute 'setIcon'
     ^^^^^^^^^
 AttributeError: 'MessageBox' object has no attribute 'setIcon'
 
+2025-11-28 16:42:52 | CRITICAL | __main__:main:79 - 程序启动失败: CardButton.__init__() missing 2 required positional arguments: 'icon' and 'text'
+2025-11-28 16:48:48 | CRITICAL | __main__:main:79 - 程序启动失败: CardButton.__init__() missing 2 required positional arguments: 'icon' and 'text'
+2025-11-28 16:50:19 | CRITICAL | __main__:main:79 - 程序启动失败: CardButton.__init__() missing 2 required positional arguments: 'icon' and 'text'
+2025-11-28 17:02:25 | CRITICAL | __main__:main:79 - 程序启动失败: name 'setup_button' is not defined
+2025-11-28 17:05:50 | CRITICAL | __main__:main:79 - 程序启动失败: CardButton.__init__() missing 2 required positional arguments: 'icon' and 'text'
+2025-11-28 17:06:11 | CRITICAL | __main__:main:79 - 程序启动失败: CardButton.__init__() missing 2 required positional arguments: 'icon' and 'text'

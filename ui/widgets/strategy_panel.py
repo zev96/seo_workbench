@@ -3,16 +3,205 @@
 采用 Fluent Design 风格
 """
 
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel
-from PyQt6.QtCore import Qt, pyqtSignal, QSize
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QGraphicsDropShadowEffect
+from PyQt6.QtCore import Qt, pyqtSignal, QSize, QEvent, QPropertyAnimation, QEasingCurve, QPoint, QRectF, pyqtProperty
+from PyQt6.QtGui import QColor, QIcon, QMouseEvent, QCursor, QPainter, QPainterPath, QBrush, QPen
 from qfluentwidgets import (
     CardWidget, StrongBodyLabel, BodyLabel, LineEdit, SpinBox, 
     SwitchButton, PrimaryPushButton, PushButton, ListWidget, TransparentToolButton,
-    FluentIcon as FIF, InfoBar, MessageBox, PlainTextEdit, InfoBarPosition
+    FluentIcon as FIF, InfoBar, MessageBox, PlainTextEdit, InfoBarPosition, IconWidget
 )
 from loguru import logger
 
 from ...config.settings import ProfileConfig, ShufflingStrategy
+
+
+class CardButton(QWidget):
+    """自定义卡片按钮 - 图标和文字固定布局，使用组合模式，支持缓动动画"""
+    
+    clicked = pyqtSignal()
+    
+    def __init__(self, icon, text: str, parent=None):
+        super().__init__(parent)
+        self._icon = icon
+        self._text = text
+        self._is_pressed = False
+        self._is_hovered = False
+        
+        # 动画属性
+        self._bg_color = QColor("#F7F9FC")
+        self._scale_factor = 1.0
+        self._icon_base_size = 15 # 基础图标大小
+        
+        self._setup_ui()
+        
+        # 启用鼠标追踪
+        self.setMouseTracking(True)
+        self.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        
+        # 初始化动画
+        self._init_animations()
+    
+    def _setup_ui(self):
+        """设置内部布局"""
+        # 创建水平布局
+        self.layout = QHBoxLayout(self)
+        self.layout.setContentsMargins(16, 0, 16, 0)
+        self.layout.setSpacing(12)
+        self.layout.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
+        
+        # 添加图标
+        self.icon_widget = IconWidget(self._icon, self)
+        self.icon_widget.setFixedSize(self._icon_base_size, self._icon_base_size)
+        self.layout.addWidget(self.icon_widget, 0, Qt.AlignmentFlag.AlignLeft)
+        
+        # 添加文字标签
+        self.text_label = QLabel(self._text, self)
+        self.text_label.setStyleSheet("""
+            QLabel {
+                background: transparent;
+                border: none;
+                color: #1F1F1F;
+                font-size: 14px;
+                font-weight: 500;
+            }
+        """)
+        self.layout.addWidget(self.text_label, 0, Qt.AlignmentFlag.AlignLeft)
+        
+        # 添加弹簧
+        self.layout.addStretch(1)
+        
+        # 添加阴影效果
+        self.shadow_effect = QGraphicsDropShadowEffect()
+        self.shadow_effect.setBlurRadius(8)
+        self.shadow_effect.setXOffset(0)
+        self.shadow_effect.setYOffset(2)
+        self.shadow_effect.setColor(QColor(0, 0, 0, 20))
+        self.setGraphicsEffect(self.shadow_effect)
+        
+        # 设置固定高度
+        self.setFixedHeight(48)
+
+    def _init_animations(self):
+        """初始化动画"""
+        # 缩放动画（弹弹效果）
+        self.scale_anim = QPropertyAnimation(self, b"scale_factor")
+        self.scale_anim.setDuration(400)  # 400ms
+        self.scale_anim.setEasingCurve(QEasingCurve.Type.OutBack)  # 回弹曲线
+        
+        # 背景色过渡动画
+        self.bg_anim = QPropertyAnimation(self, b"bg_color")
+        self.bg_anim.setDuration(200)
+        
+    # --- 属性定义 ---
+    def get_scale_factor(self):
+        return self._scale_factor
+        
+    def set_scale_factor(self, value):
+        self._scale_factor = value
+        # 对图标应用缩放
+        scale = int(self._icon_base_size * value)
+        self.icon_widget.setFixedSize(scale, scale)
+        # 保持图标居中
+        # self.icon_widget.move(16 - (scale - 15)//2, (48 - scale)//2)
+        self.update()
+        
+    scale_factor = pyqtProperty(float, get_scale_factor, set_scale_factor)
+    
+    def get_bg_color(self):
+        return self._bg_color
+        
+    def set_bg_color(self, color):
+        self._bg_color = color
+        self.update()
+        
+    bg_color = pyqtProperty(QColor, get_bg_color, set_bg_color)
+
+    def paintEvent(self, event):
+        """自定义绘制背景"""
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        
+        # 绘制背景
+        path = QPainterPath()
+        path.addRoundedRect(QRectF(self.rect()).adjusted(1, 1, -1, -1), 12, 12)
+        
+        painter.fillPath(path, self._bg_color)
+        
+        # 绘制边框
+        border_color = QColor("rgba(229, 228, 227, 0.8)") if self._is_hovered else QColor("rgba(229, 228, 227, 0.2)")
+        if self._is_hovered:
+            border_color = QColor("#4784d1") # 悬浮时变蓝
+            
+        pen = QPen(border_color)
+        pen.setWidth(1)
+        painter.setPen(pen)
+        painter.drawPath(path)
+
+    def enterEvent(self, event: QEvent):
+        """鼠标进入：启动弹弹动画"""
+        self._is_hovered = True
+        
+        # 启动缩放动画
+        self.scale_anim.stop()
+        self.scale_anim.setStartValue(1.0)
+        self.scale_anim.setEndValue(1.2) # 放大1.2倍
+        self.scale_anim.start()
+        
+        # 启动背景变白动画
+        self.bg_anim.stop()
+        self.bg_anim.setStartValue(self._bg_color)
+        self.bg_anim.setEndValue(QColor("white"))
+        self.bg_anim.start()
+        
+        # 阴影加深
+        self.shadow_effect.setBlurRadius(18)
+        self.shadow_effect.setYOffset(4)
+        self.shadow_effect.setColor(QColor(0, 0, 0, 40))
+        
+        super().enterEvent(event)
+    
+    def leaveEvent(self, event: QEvent):
+        """鼠标离开：恢复原状"""
+        self._is_hovered = False
+        self._is_pressed = False
+        
+        # 恢复缩放
+        self.scale_anim.stop()
+        self.scale_anim.setStartValue(self._scale_factor)
+        self.scale_anim.setEndValue(1.0)
+        self.scale_anim.start()
+        
+        # 恢复背景色
+        self.bg_anim.stop()
+        self.bg_anim.setStartValue(self._bg_color)
+        self.bg_anim.setEndValue(QColor("#F7F9FC"))
+        self.bg_anim.start()
+        
+        # 恢复阴影
+        self.shadow_effect.setBlurRadius(8)
+        self.shadow_effect.setYOffset(2)
+        self.shadow_effect.setColor(QColor(0, 0, 0, 20))
+        
+        super().leaveEvent(event)
+
+    def mousePressEvent(self, event: QMouseEvent):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self._is_pressed = True
+            self._bg_color = QColor("rgba(248, 248, 250, 1)")
+            self.shadow_effect.setBlurRadius(4)
+            self.shadow_effect.setYOffset(1)
+            self.update()
+        super().mousePressEvent(event)
+    
+    def mouseReleaseEvent(self, event: QMouseEvent):
+        if event.button() == Qt.MouseButton.LeftButton:
+            if self._is_pressed and self.rect().contains(event.pos()):
+                self.clicked.emit()
+            self._is_pressed = False
+            if self._is_hovered:
+                self.enterEvent(event) # 恢复悬浮状态
+        super().mouseReleaseEvent(event)
 
 
 class StrategyPanel(QWidget):
@@ -40,86 +229,36 @@ class StrategyPanel(QWidget):
     def _init_ui(self):
         layout = QVBoxLayout(self)
         layout.setContentsMargins(15, 15, 15, 15)
-        layout.setSpacing(10)
-        
-        # 统一按钮样式
-        button_style = """
-            PushButton {
-                background-color: rgba(248, 248, 250, 0.85);
-                border-radius: 5px;
-                padding: 10px 12px;
-                font-size: 13px;
-                font-weight: 500;
-                text-align: center;
-            }
-            PushButton:hover {
-                background-color: #f8f8f8;       /* 悬停背景变亮 */
-                border-bottom: 1px solid #e5e4e3; /* 加厚底部边框，模拟立体阴影 */
-                margin-bottom: 1px;              /* 微调位置，产生按压感 */
-                font-weight: bold;
-            }
-        """
-        
-        ai_button_style = """
-            PrimaryPushButton {
-                background-color: rgba(248, 248, 250, 0.85);
-                border-radius: 5px;
-                padding: 10px 12px;
-                font-size: 13px;
-                font-weight: 500;
-                text-align: center;
-            }
-            PrimaryPushButton:hover {
-                background-color: #f8f8f8;       /* 悬停背景变亮 */
-                border-bottom: 1px solid #e5e4e3; /* 【核心】加厚底部边框，模拟立体阴影 */
-                margin-bottom: 1px;              /* 微调位置，产生按压感 */
-                font-weight: bold;
-            }
-            PrimaryPushButton:pressed {
-                background-color: #f8f8f8;
-            }
-        """
+        layout.setSpacing(12)
         
         # 1. 导入Excel
-        self.import_excel_btn = PushButton("导入Excel")
+        self.import_excel_btn = CardButton(FIF.DOCUMENT, "导入Excel")
         self.import_excel_btn.clicked.connect(self.import_excel_clicked)
-        self.import_excel_btn.setFixedHeight(42)
-        self.import_excel_btn.setStyleSheet(button_style)
         layout.addWidget(self.import_excel_btn)
         
         # 2. 清空工作区
-        self.clear_grid_btn = PushButton("清空工作区")
+        self.clear_grid_btn = CardButton(FIF.DELETE, "清空工作区")
         self.clear_grid_btn.clicked.connect(self.clear_grid_clicked)
-        self.clear_grid_btn.setFixedHeight(42)
-        self.clear_grid_btn.setStyleSheet(button_style)
         layout.addWidget(self.clear_grid_btn)
         
         # 3. AI 标题生成
-        self.ai_title_btn = PrimaryPushButton("AI 标题生成")
+        self.ai_title_btn = CardButton(FIF.ROBOT, "AI 标题生成")
         self.ai_title_btn.clicked.connect(self.ai_title_clicked)
-        self.ai_title_btn.setFixedHeight(42)
-        self.ai_title_btn.setStyleSheet(ai_button_style)
         layout.addWidget(self.ai_title_btn)
         
         # 4. 批量加粗
-        self.bold_tool_btn = PushButton("批量加粗")
+        self.bold_tool_btn = CardButton(FIF.FONT, "批量加粗")
         self.bold_tool_btn.clicked.connect(self.bold_tool_clicked)
-        self.bold_tool_btn.setFixedHeight(42)
-        self.bold_tool_btn.setStyleSheet(button_style)
         layout.addWidget(self.bold_tool_btn)
         
-        # 5. 配置 SEO 核心词
-        self.seo_config_btn = PushButton("SEO关键词设置")
+        # 5. SEO关键词设置
+        self.seo_config_btn = CardButton(FIF.TAG, "SEO关键词设置")
         self.seo_config_btn.clicked.connect(self.seo_config_clicked)
-        self.seo_config_btn.setFixedHeight(42)
-        self.seo_config_btn.setStyleSheet(button_style)
         layout.addWidget(self.seo_config_btn)
         
-        # 6. 配置高级混排策略
-        self.config_strategy_btn = PushButton("随机组合设置")
+        # 6. 随机组合设置
+        self.config_strategy_btn = CardButton(FIF.LAYOUT, "随机组合设置")
         self.config_strategy_btn.clicked.connect(self.strategy_config_clicked)
-        self.config_strategy_btn.setFixedHeight(42)
-        self.config_strategy_btn.setStyleSheet(button_style)
         layout.addWidget(self.config_strategy_btn)
         
         # 弹性空间

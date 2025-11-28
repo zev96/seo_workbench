@@ -55,8 +55,38 @@
     },
     {
       "col_index": 7,
-      "type": "Body",
+      "type": "H2",
       "name": "列8"
+    },
+    {
+      "col_index": 9,
+      "type": "H2",
+      "name": "列10"
+    },
+    {
+      "col_index": 11,
+      "type": "H2",
+      "name": "列12"
+    },
+    {
+      "col_index": 13,
+      "type": "H2",
+      "name": "列14"
+    },
+    {
+      "col_index": 15,
+      "type": "H2",
+      "name": "列16"
+    },
+    {
+      "col_index": 17,
+      "type": "H2",
+      "name": "列18"
+    },
+    {
+      "col_index": 19,
+      "type": "H2",
+      "name": "列20"
     }
   ],
   "image_paths": {
