@@ -130,6 +130,39 @@ class AIClient:
             logger.error(f"改写内容失败: {e}")
             return None
     
+    def generate_text(self, prompt: str, temperature: float = 0.7, max_tokens: int = 1500) -> Optional[str]:
+        """
+        通用文本生成方法
+        
+        Args:
+            prompt: 完整的 Prompt
+            temperature: 温度参数（0-1，越高越随机）
+            max_tokens: 最大 Token 数
+            
+        Returns:
+            生成的文本内容，失败返回 None
+        """
+        try:
+            logger.debug(f"正在生成文本: prompt 长度={len(prompt)}, temperature={temperature}")
+            
+            response = self.client.chat.completions.create(
+                model=self.config.model,
+                messages=[
+                    {"role": "system", "content": "你是一个专业的内容创作专家。"},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=temperature,
+                max_tokens=max_tokens
+            )
+            
+            result = response.choices[0].message.content.strip()
+            logger.debug(f"文本生成完成: 输出长度={len(result)}")
+            return result
+            
+        except Exception as e:
+            logger.error(f"生成文本失败: {e}")
+            return None
+    
     def estimate_tokens(self, text: str) -> int:
         """
         估算文本的 Token 数量（粗略估计）

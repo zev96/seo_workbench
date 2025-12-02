@@ -14,7 +14,7 @@ from loguru import logger
 
 from .spintax_parser import SpintaxParser
 from .image_processor import ImageProcessor
-from .shuffle_engine import ShuffleEngine
+from .shuffle_engine import ShuffleEngine, SmartShuffle
 from ..config.settings import ProfileConfig
 from ..utils.file_handler import FileHandler
 
@@ -84,15 +84,17 @@ class DocumentGenerator:
         self,
         grid_data: List[List[str]],
         count: int,
-        output_dir: str = "output"
+        output_dir: str = "output",
+        columns_data: Optional[List[List[str]]] = None
     ) -> List[str]:
         """
         随机混排模式：随机组合生成指定数量的文档
         
         Args:
-            grid_data: 网格数据（二维列表）
+            grid_data: 网格数据（二维列表，按行组织）
             count: 生成数量
             output_dir: 输出目录
+            columns_data: 可选，直接传入按列组织的数据（优先使用）
             
         Returns:
             生成的文件路径列表
@@ -100,21 +102,44 @@ class DocumentGenerator:
         FileHandler.ensure_directory(output_dir)
         generated_files = []
         
-        # 转置数据（按列组织）
-        columns_data = self._transpose_grid(grid_data)
+        # 如果直接提供了列数据，使用它；否则转置行数据
+        if columns_data is not None:
+            logger.info("使用直接提供的列数据（避免转置）")
+        else:
+            logger.info("转置行数据为列数据")
+            columns_data = self._transpose_grid(grid_data)
+        
         total_columns = len(columns_data)
+        
+        # 为每列创建智能轮播器（只包含非空内容）
+        column_shufflers = []
+        for col_data in columns_data:
+            # 过滤空值，只保留有效内容
+            valid_items = [item for item in col_data if item and item.strip()]
+            if valid_items:
+                shuffler = SmartShuffle(len(valid_items))
+                column_shufflers.append((valid_items, shuffler))
+            else:
+                column_shufflers.append(([], None))
+        
+        logger.info(f"初始化混排器：共 {total_columns} 列")
+        for i, (items, shuffler) in enumerate(column_shufflers):
+            logger.debug(f"列 {i+1}: {len(items)} 个有效内容")
         
         for doc_idx in range(count):
             try:
                 # 创建文档
                 doc = self._create_document()
                 
-                # 随机选择每列的一行
+                # 使用智能轮播器随机选择每列的一行
                 selected_row = []
-                for col_data in columns_data:
-                    if col_data:
-                        selected_row.append(col_data[doc_idx % len(col_data)])
+                for valid_items, shuffler in column_shufflers:
+                    if shuffler and valid_items:
+                        # 使用轮播器获取下一个索引（避免重复，用完后自动重置）
+                        index = shuffler.get_next_index()
+                        selected_row.append(valid_items[index])
                     else:
+                        # 该列没有有效内容，使用空字符串
                         selected_row.append("")
                 
                 # 应用混排策略

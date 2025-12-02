@@ -212,6 +212,7 @@ class StrategyPanel(QWidget):
     clear_grid_clicked = pyqtSignal()    # 清空工作区
     bold_tool_clicked = pyqtSignal()     # 批量加粗设置
     ai_title_clicked = pyqtSignal()      # AI 标题生成
+    ai_rewrite_clicked = pyqtSignal()    # AI 内容改写
     strategy_config_clicked = pyqtSignal()  # 混排策略配置
     seo_config_clicked = pyqtSignal()    # SEO 核心词配置
     
@@ -246,17 +247,22 @@ class StrategyPanel(QWidget):
         self.ai_title_btn.clicked.connect(self.ai_title_clicked)
         layout.addWidget(self.ai_title_btn)
         
-        # 4. 批量加粗
+        # 4. AI 内容改写
+        self.ai_rewrite_btn = CardButton(FIF.EDIT, "AI 内容改写")
+        self.ai_rewrite_btn.clicked.connect(self.ai_rewrite_clicked)
+        layout.addWidget(self.ai_rewrite_btn)
+        
+        # 5. 批量加粗
         self.bold_tool_btn = CardButton(FIF.FONT, "批量加粗")
         self.bold_tool_btn.clicked.connect(self.bold_tool_clicked)
         layout.addWidget(self.bold_tool_btn)
         
-        # 5. SEO关键词设置
+        # 6. SEO关键词设置
         self.seo_config_btn = CardButton(FIF.TAG, "关键词设置")
         self.seo_config_btn.clicked.connect(self.seo_config_clicked)
         layout.addWidget(self.seo_config_btn)
         
-        # 6. 随机组合设置
+        # 7. 随机组合设置
         self.config_strategy_btn = CardButton(FIF.LAYOUT, "随机组设置")
         self.config_strategy_btn.clicked.connect(self.strategy_config_clicked)
         layout.addWidget(self.config_strategy_btn)

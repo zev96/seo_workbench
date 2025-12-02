@@ -488,7 +488,7 @@ class SmartGrid(QWidget):
             )
     
     def get_grid_data(self) -> list:
-        """获取网格数据"""
+        """获取网格数据（按行）"""
         data = []
         for row in range(self.table.rowCount()):
             row_data = []
@@ -499,6 +499,26 @@ class SmartGrid(QWidget):
             if any(cell.strip() for cell in row_data):
                 data.append(row_data)
         return data
+    
+    def get_column_data(self) -> list:
+        """
+        按列获取数据（直接返回列数据，避免转置）
+        
+        Returns:
+            列数据列表，每个元素是一列的所有有效内容
+            [[col1_data...], [col2_data...], ...]
+        """
+        columns_data = []
+        
+        for col in range(self.table.columnCount()):
+            column = []
+            for row in range(self.table.rowCount()):
+                item = self.table.item(row, col)
+                if item and item.text().strip():
+                    column.append(item.text().strip())
+            columns_data.append(column)
+        
+        return columns_data
     
     def set_grid_data(self, data: list):
         """设置网格数据"""

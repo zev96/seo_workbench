@@ -1,0 +1,1 @@
+2025-12-02 16:32:26 | ERROR    | seo_workbench.ui.dialogs.ai_rewrite_dialog:run:122 - AI 改写失败: 'AIClient' object has no attribute 'generate_text'

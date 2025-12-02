@@ -19,6 +19,7 @@ from .widgets.toolbar import Toolbar
 from .widgets.log_panel import LogPanel
 from .dialogs.api_settings import APISettingsDialog
 from .dialogs.ai_title_dialog import AITitleDialog
+from .dialogs.ai_rewrite_dialog import AIRewriteDialog
 from .dialogs.strategy_config_dialog import StrategyConfigDialog
 from .dialogs.seo_setting_dialog import SEOSettingDialog
 from ..config.settings import ProfileConfig
@@ -156,6 +157,7 @@ class MainWindow(MSFluentWindow):
         self.strategy_panel.clear_grid_clicked.connect(self.smart_grid.clear_all)
         self.strategy_panel.bold_tool_clicked.connect(self._on_bold_tool)
         self.strategy_panel.ai_title_clicked.connect(self._on_ai_title_dialog)
+        self.strategy_panel.ai_rewrite_clicked.connect(self._on_ai_rewrite_dialog)
         self.strategy_panel.strategy_config_clicked.connect(self._on_strategy_config)
         self.strategy_panel.seo_config_clicked.connect(self._on_seo_config)
         
@@ -525,6 +527,12 @@ class MainWindow(MSFluentWindow):
             # 检查是否启用了标题驱动模式
             use_ai_titles = len(self.ai_title_queue) > 0
             
+            # 获取列数据（直接从表格按列获取，避免转置问题）
+            columns_data = self.smart_grid.get_column_data()
+            logger.info(f"获取列数据：共 {len(columns_data)} 列")
+            for idx, col_data in enumerate(columns_data):
+                logger.debug(f"列 {idx + 1}: {len(col_data)} 个有效内容")
+            
             for i in range(count):
                 # 更新进度
                 if progress_callback:
@@ -536,11 +544,20 @@ class MainWindow(MSFluentWindow):
                 
                 doc = Document()
                 
-                # 随机选择一行作为基础
-                base_row_idx = random.randint(0, len(grid_data) - 1)
+                # 从每列独立随机选择内容（修复不等长列问题）
+                processed_row = []
+                for col_data in columns_data:
+                    if col_data:
+                        # 该列有内容，随机选择一个
+                        content = random.choice(col_data)
+                        processed_row.append(content)
+                    else:
+                        # 该列为空
+                        processed_row.append("")
                 
-                # 应用混排策略生成新行
-                processed_row = self._apply_shuffling_strategies(grid_data, base_row_idx)
+                # 应用混排策略（删除某些列）
+                if self.config.shuffling_strategies:
+                    processed_row = self._apply_column_shuffling_strategies(processed_row)
                 
                 # 标题驱动逻辑：如果有 AI 标题队列，替换第一列内容
                 if use_ai_titles and i < len(self.ai_title_queue):
@@ -814,8 +831,84 @@ class MainWindow(MSFluentWindow):
             # 强制设置中文字体（核心修复）
             run._element.rPr.rFonts.set(qn('w:eastAsia'), 'Microsoft YaHei')
     
+    def _apply_column_shuffling_strategies(self, row_data: list) -> list:
+        """
+        应用混排策略（只保留/删除指定列，不改变内容）
+        
+        Args:
+            row_data: 行数据
+            
+        Returns:
+            应用策略后的行数据
+        """
+        import random
+        import copy
+        
+        result_row = copy.deepcopy(row_data)
+        
+        # 应用每个策略
+        for strategy in self.config.shuffling_strategies:
+            # 将列索引转换为0-based（策略中存储的是1-based，即用户看到的"第1列"、"第2列"）
+            columns = [col - 1 for col in strategy.columns if col > 0]
+            
+            logger.info(f"应用策略 '{strategy.name}': 原始列号 {strategy.columns} -> 0-based索引 {columns}, 分组大小={strategy.group_size}, 保留组数={strategy.keep_count}")
+            
+            # 验证列索引范围
+            valid_columns = [col for col in columns if 0 <= col < len(result_row)]
+            if len(valid_columns) != len(columns):
+                logger.warning(f"策略 '{strategy.name}' 部分列索引超出范围，过滤后: {valid_columns}")
+            
+            if not valid_columns:
+                logger.warning(f"策略 '{strategy.name}' 没有有效的列索引，跳过")
+                continue
+            
+            # 分组
+            groups = []
+            for i in range(0, len(valid_columns), strategy.group_size):
+                group = valid_columns[i:i + strategy.group_size]
+                # 只保留完整的组
+                if len(group) == strategy.group_size:
+                    groups.append(group)
+                else:
+                    logger.debug(f"跳过不完整的组: {group}")
+            
+            if not groups:
+                logger.warning(f"策略 '{strategy.name}' 无法形成完整分组，跳过")
+                continue
+            
+            logger.debug(f"策略 '{strategy.name}' 共分为 {len(groups)} 组: {groups}")
+            
+            # 随机选择保留的组
+            keep_count = min(strategy.keep_count, len(groups))
+            kept_groups = random.sample(groups, keep_count)
+            
+            logger.debug(f"随机保留 {keep_count} 组: {kept_groups}")
+            
+            # 如果需要打乱顺序
+            if strategy.shuffle_order:
+                random.shuffle(kept_groups)
+                logger.debug(f"打乱顺序后: {kept_groups}")
+            
+            # 展开为列索引集合
+            kept_columns = set()
+            for group in kept_groups:
+                kept_columns.update(group)
+            
+            # 删除未保留的列（设为空）
+            deleted_columns = []
+            for col in valid_columns:
+                if col not in kept_columns:
+                    result_row[col] = ""
+                    deleted_columns.append(col)
+            
+            logger.info(f"策略 '{strategy.name}': 保留列 {sorted(kept_columns)}, 删除列 {sorted(deleted_columns)}")
+        
+        return result_row
+    
     def _apply_shuffling_strategies(self, grid_data: list, base_row_idx: int) -> list:
-        """应用混排策略，生成新的行数据"""
+        """
+        应用混排策略，生成新的行数据（旧方法，保留用于按行生成模式）
+        """
         import random
         import copy
         
@@ -1013,6 +1106,107 @@ class MainWindow(MSFluentWindow):
             )
             
             logger.info(f"AI 标题队列已设置: {len(titles)} 个标题，格式: {title_format}")
+    
+    def _on_ai_rewrite_dialog(self):
+        """打开 AI 内容改写对话框（支持多列）"""
+        # 获取当前网格数据
+        grid_data = self.smart_grid.get_grid_data()
+        
+        if not grid_data:
+            from qfluentwidgets import InfoBar, InfoBarPosition
+            InfoBar.warning(
+                title='无数据',
+                content='工作区没有数据，请先导入或添加内容',
+                orient=Qt.Orientation.Horizontal,
+                isClosable=True,
+                position=InfoBarPosition.BOTTOM_RIGHT,
+                duration=3000,
+                parent=self
+            )
+            return
+        
+        # 打开对话框
+        dialog = AIRewriteDialog(self.config, grid_data, self)
+        if dialog.exec():
+            # 用户点击了"确认追加"
+            rewritten_results = dialog.get_rewritten_results()
+            
+            if not rewritten_results:
+                return
+            
+            # 批量追加内容到多个列
+            total_count = 0
+            for column_index, contents in rewritten_results.items():
+                if contents:
+                    self._append_contents_to_column(column_index, contents)
+                    total_count += len(contents)
+            
+            from qfluentwidgets import InfoBar, InfoBarPosition
+            InfoBar.success(
+                title='追加成功',
+                content=f'已向 {len(rewritten_results)} 列追加共 {total_count} 个新内容',
+                orient=Qt.Orientation.Horizontal,
+                isClosable=False,
+                position=InfoBarPosition.BOTTOM_RIGHT,
+                duration=3000,
+                parent=self
+            )
+            
+            logger.info(f"AI 改写内容已追加: {len(rewritten_results)} 列，共 {total_count} 个新内容")
+    
+    def _find_last_row_in_column(self, column_index: int) -> int:
+        """
+        找到指定列的最后一个非空单元格的行号
+        
+        Args:
+            column_index: 列索引
+            
+        Returns:
+            最后一个非空单元格的行号，如果列为空则返回 -1
+        """
+        table = self.smart_grid.table
+        last_row = -1
+        
+        # 从上往下扫描该列
+        for row in range(table.rowCount()):
+            item = table.item(row, column_index)
+            if item and item.text().strip():
+                last_row = row
+        
+        return last_row
+    
+    def _append_contents_to_column(self, column_index: int, contents: list):
+        """
+        将内容追加到指定列的底部（紧接该列最后一行）
+        
+        Args:
+            column_index: 列索引
+            contents: 要追加的内容列表
+        """
+        from PyQt6.QtWidgets import QTableWidgetItem
+        
+        table = self.smart_grid.table
+        
+        # 找到该列最后一个非空单元格的行号
+        last_row_in_column = self._find_last_row_in_column(column_index)
+        
+        # 计算起始行（该列最后一行的下一行）
+        start_row = last_row_in_column + 1
+        
+        # 计算需要的总行数
+        needed_rows = start_row + len(contents)
+        
+        # 如果需要的行数超过当前表格行数，扩展表格
+        if needed_rows > table.rowCount():
+            table.setRowCount(needed_rows)
+        
+        # 追加内容（只填充指定列，其他列保持空白）
+        for i, content in enumerate(contents):
+            row_index = start_row + i
+            item = QTableWidgetItem(content)
+            table.setItem(row_index, column_index, item)
+        
+        logger.debug(f"已向列 {column_index + 1} 追加 {len(contents)} 行内容（从第 {start_row + 1} 行开始）")
     
     def _on_strategy_config(self):
         """打开混排策略配置对话框"""
