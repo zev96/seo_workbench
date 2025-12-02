@@ -7852,3 +7852,27 @@ AttributeError: 'MessageBox' object has no attribute 'setIcon'
 2025-11-28 18:29:08 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
 2025-11-28 18:29:09 | INFO     | seo_workbench.ui.main_window:_init_window:66 - Mica 毛玻璃效果已启用
 2025-11-28 18:29:09 | INFO     | seo_workbench.ui.main_window:__init__:45 - Fluent 主窗口初始化完成
+2025-11-28 19:12:43 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: C:/Users/EDY/Desktop/test.xlsx, 行数: 14, 列数: 63
+2025-11-28 19:12:43 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:397 - 从 Excel 导入: 14 行, 63 列
+2025-11-28 19:22:31 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-28 19:22:31 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-11-28 19:22:31 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-11-28 19:22:31 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-28 19:22:31 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-28 19:22:31 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-28 19:22:31 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-28 19:22:31 | INFO     | seo_workbench.config.settings:load_from_file:171 - 配置已加载: profile.json
+2025-11-28 19:22:31 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-11-28 19:22:32 | INFO     | seo_workbench.ui.main_window:_init_window:66 - Mica 毛玻璃效果已启用
+2025-11-28 19:22:32 | INFO     | seo_workbench.ui.main_window:__init__:45 - Fluent 主窗口初始化完成
+2025-11-28 19:30:07 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-11-28 19:30:07 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-11-28 19:30:07 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-11-28 19:30:07 | INFO     | seo_workbench.database.init_db:init_database:28 - 数据库文件已存在: assets.db
+2025-11-28 19:30:07 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-11-28 19:30:07 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-11-28 19:30:07 | INFO     | seo_workbench.database.init_db:init_database:43 - 数据库初始化完成 - 素材数: 5, 分类数: 4
+2025-11-28 19:30:07 | INFO     | seo_workbench.config.settings:load_from_file:171 - 配置已加载: profile.json
+2025-11-28 19:30:07 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-11-28 19:30:08 | INFO     | seo_workbench.ui.main_window:_init_window:66 - Mica 毛玻璃效果已启用
+2025-11-28 19:30:08 | INFO     | seo_workbench.ui.main_window:__init__:45 - Fluent 主窗口初始化完成

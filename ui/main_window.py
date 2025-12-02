@@ -207,9 +207,9 @@ class MainWindow(MSFluentWindow):
         from qfluentwidgets import MessageBox
         w = MessageBox(
             "关于 SEO 工作台",
-            "SEO 智能内容工作台 v1.0\n\n"
+            "SEO 智能内容工作台 v5.0\n\n"
             "一个专为 SEO 团队设计的内容生产工具\n\n"
-            "基于 PyQt-Fluent-Widgets 构建",
+            "By CEWEY",
             self
         )
         w.yesButton.setText("确定")
@@ -220,7 +220,9 @@ class MainWindow(MSFluentWindow):
         """生成文档"""
         logger.info(f"开始生成文档: 模式={mode}")
         from qfluentwidgets import InfoBar, InfoBarPosition
-        from PyQt6.QtWidgets import QApplication, QFileDialog
+        from PyQt6.QtWidgets import QFileDialog
+        from ..core.generation_worker import GenerationWorker
+        from .dialogs.progress_dialog import ProgressDialog
         
         # 获取工作区数据
         grid_data = self.smart_grid.get_grid_data()
@@ -250,50 +252,121 @@ class MainWindow(MSFluentWindow):
         # 获取生成数量
         count = self.toolbar.count_spin.value() if mode == "shuffle" else len(grid_data)
         
-        # 显示加载状态
-        QApplication.setOverrideCursor(Qt.CursorShape.WaitCursor)
-        
-        InfoBar.info(
-            title='开始生成',
-            content=f"正在生成 {count} 个文档（{mode}模式）...",
-            orient=Qt.Orientation.Horizontal,
-            isClosable=False,
-            position=InfoBarPosition.BOTTOM_RIGHT,
-            duration=3000,
+        # 创建进度对话框
+        progress_dialog = ProgressDialog(
+            title="正在生成文档",
+            total=count,
             parent=self
         )
         
-        try:
-            # 调用生成逻辑
-            generated_count = self._generate_documents(grid_data, save_dir, mode, count)
-            
-            QApplication.restoreOverrideCursor()
-            
+        # 创建工作线程
+        self.generation_worker = GenerationWorker(
+            grid_data=grid_data,
+            save_dir=save_dir,
+            mode=mode,
+            count=count,
+            config=self.config,
+            generate_func=self._generate_documents_with_progress,
+            parent=self
+        )
+        
+        # 连接信号
+        self.generation_worker.progress_updated.connect(
+            lambda current, total, detail: (
+                progress_dialog.set_progress(current, total),
+                progress_dialog.set_detail(detail)
+            )
+        )
+        self.generation_worker.status_changed.connect(progress_dialog.set_status)
+        self.generation_worker.generation_complete.connect(
+            lambda success, msg, count: self._on_generation_complete(
+                progress_dialog, success, msg, count, save_dir
+            )
+        )
+        self.generation_worker.error_occurred.connect(
+            lambda error: logger.error(f"生成错误: {error}")
+        )
+        
+        # 连接取消信号
+        progress_dialog.cancelled.connect(self.generation_worker.cancel)
+        
+        # 启动线程
+        self.generation_worker.start()
+        
+        # 显示进度对话框
+        progress_dialog.exec()
+    
+    def _on_generation_complete(self, dialog, success: bool, message: str, count: int, save_dir: str):
+        """
+        生成完成回调
+        
+        Args:
+            dialog: 进度对话框
+            success: 是否成功
+            message: 消息
+            count: 生成数量
+            save_dir: 保存目录
+        """
+        from qfluentwidgets import InfoBar, InfoBarPosition
+        
+        # 更新对话框
+        dialog.complete(success, message)
+        
+        # 显示通知
+        if success:
             InfoBar.success(
                 title='生成完成',
-                content=f'已生成 {generated_count} 个文档到 {save_dir}',
-                orient=Qt.Orientation.Horizontal,
-                isClosable=False,
-                position=InfoBarPosition.BOTTOM_RIGHT,
-                duration=3000,
-                parent=self
-            )
-            
-        except Exception as e:
-            QApplication.restoreOverrideCursor()
-            logger.error(f"生成文档失败: {e}", exc_info=True)
-            
-            InfoBar.error(
-                title='生成失败',
-                content=f'错误: {str(e)}',
+                content=f'已生成 {count} 个文档到 {save_dir}',
                 orient=Qt.Orientation.Horizontal,
                 isClosable=True,
                 position=InfoBarPosition.BOTTOM_RIGHT,
                 duration=5000,
                 parent=self
             )
+        else:
+            InfoBar.error(
+                title='生成失败',
+                content=message,
+                orient=Qt.Orientation.Horizontal,
+                isClosable=True,
+                position=InfoBarPosition.BOTTOM_RIGHT,
+                duration=5000,
+                parent=self
+            )
+        
+        logger.info(f"生成完成: success={success}, count={count}")
     
-    def _generate_documents(self, grid_data: list, save_dir: str, mode: str, count: int) -> int:
+    def _generate_documents_with_progress(
+        self,
+        grid_data: list,
+        save_dir: str,
+        mode: str,
+        count: int,
+        progress_callback=None
+    ) -> int:
+        """
+        生成文档（支持进度回调）
+        
+        Args:
+            grid_data: 网格数据
+            save_dir: 保存目录
+            mode: 生成模式
+            count: 生成数量
+            progress_callback: 进度回调函数 (current, total, detail)
+        
+        Returns:
+            生成的文档数量
+        """
+        # 调用原有的生成方法，但添加进度回调
+        return self._generate_documents(
+            grid_data=grid_data,
+            save_dir=save_dir,
+            mode=mode,
+            count=count,
+            progress_callback=progress_callback
+        )
+    
+    def _generate_documents(self, grid_data: list, save_dir: str, mode: str, count: int, progress_callback=None) -> int:
         """实际生成文档的逻辑"""
         import random
         from pathlib import Path
@@ -326,6 +399,14 @@ class MainWindow(MSFluentWindow):
         if mode == "row":
             # 按行生成模式：每行生成一个文档
             for idx, row_data in enumerate(grid_data):
+                # 更新进度
+                if progress_callback:
+                    progress_callback(
+                        idx + 1,
+                        len(grid_data),
+                        f"正在生成第 {idx + 1} 个文档..."
+                    )
+                
                 doc = Document()
                 
                 # === 智能序号处理：按格式分类计数 ===
@@ -445,6 +526,14 @@ class MainWindow(MSFluentWindow):
             use_ai_titles = len(self.ai_title_queue) > 0
             
             for i in range(count):
+                # 更新进度
+                if progress_callback:
+                    progress_callback(
+                        i + 1,
+                        count,
+                        f"正在生成第 {i + 1} 个文档（{'AI标题' if use_ai_titles else '混排'}模式）..."
+                    )
+                
                 doc = Document()
                 
                 # 随机选择一行作为基础
