@@ -53,7 +53,7 @@ def main():
     setup_high_dpi()
     
     app = QApplication(sys.argv)
-    app.setApplicationName("SEO 智能内容工作台")
+    app.setApplicationName("SEO智能内容工作台")
     
     # 应用 Fluent Design 样式
     FluentStyle.apply_to_app(app)

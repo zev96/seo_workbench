@@ -200,7 +200,19 @@ class CardButton(QWidget):
                 self.clicked.emit()
             self._is_pressed = False
             if self._is_hovered:
-                self.enterEvent(event) # 恢复悬浮状态
+                # 恢复悬浮状态（不传递事件，直接调用悬浮逻辑）
+                self._is_hovered = True
+                self.scale_anim.stop()
+                self.scale_anim.setStartValue(1.0)
+                self.scale_anim.setEndValue(1.2)
+                self.scale_anim.start()
+                self.bg_anim.stop()
+                self.bg_anim.setStartValue(self._bg_color)
+                self.bg_anim.setEndValue(QColor("white"))
+                self.bg_anim.start()
+                self.shadow_effect.setBlurRadius(18)
+                self.shadow_effect.setYOffset(4)
+                self.shadow_effect.setColor(QColor(0, 0, 0, 40))
         super().mouseReleaseEvent(event)
 
 
@@ -279,3 +291,23 @@ class StrategyPanel(QWidget):
         """更新 SEO 关键词状态（极简模式无需显示）"""
         keyword_count = len(self.config.target_keywords)
         logger.debug(f"SEO 关键词数量更新: {keyword_count}")
+    
+    def update_button_states(self, has_data: bool):
+        """
+        根据是否有数据更新按钮状态
+        
+        Args:
+            has_data: 工作区是否有数据
+        """
+        # 需要数据的按钮
+        self.ai_title_btn.setEnabled(has_data)
+        self.ai_rewrite_btn.setEnabled(has_data)
+        self.bold_tool_btn.setEnabled(has_data)
+        self.seo_config_btn.setEnabled(has_data)
+        self.config_strategy_btn.setEnabled(has_data)
+        
+        # 不需要数据的按钮（始终可用）
+        # self.import_excel_btn - 始终可用
+        # self.clear_grid_btn - 始终可用
+        
+        logger.debug(f"按钮状态已更新: has_data={has_data}")

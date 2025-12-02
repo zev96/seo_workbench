@@ -590,6 +590,9 @@ class SmartGrid(QWidget):
             self.table.hide()
             logger.info("工作区已清空")
             
+            # 发出数据变化信号
+            self.data_changed.emit()
+            
             InfoBar.success(
                 title='清空成功',
                 content='工作区内容已清空',

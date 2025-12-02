@@ -166,6 +166,9 @@ class MainWindow(MSFluentWindow):
         
         # 网格信号
         self.smart_grid.data_changed.connect(self._on_grid_data_changed)
+        
+        # 初始化按钮状态（初始无数据，禁用相关按钮）
+        self._update_button_states()
     
     def _validate_strategy_columns(self, columns: list[int]) -> tuple[bool, str]:
         """验证策略列号是否合法"""
@@ -191,6 +194,8 @@ class MainWindow(MSFluentWindow):
     def _on_import_excel(self):
         """导入 Excel"""
         self.smart_grid.import_from_excel()
+        # 更新按钮状态（导入后有数据了）
+        self._update_button_states()
     
     def _on_api_settings(self):
         """API 设置"""
@@ -1360,4 +1365,20 @@ class MainWindow(MSFluentWindow):
     
     def _on_grid_data_changed(self):
         """网格数据变化"""
-        pass
+        logger.debug("网格数据已变化")
+        # 更新按钮状态
+        self._update_button_states()
+    
+    def _update_button_states(self):
+        """
+        更新右侧功能面板按钮状态
+        根据工作区是否有数据来启用/禁用相关按钮
+        """
+        # 检查工作区是否有数据
+        grid_data = self.smart_grid.get_grid_data()
+        has_data = len(grid_data) > 0
+        
+        # 更新策略面板的按钮状态
+        self.strategy_panel.update_button_states(has_data)
+        
+        logger.debug(f"按钮状态已更新: has_data={has_data}, 数据行数={len(grid_data) if grid_data else 0}")
