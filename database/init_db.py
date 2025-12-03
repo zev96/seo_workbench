@@ -6,7 +6,12 @@
 import os
 from loguru import logger
 from .db_manager import DatabaseManager
-from .models import Material, ComparisonCategory, ComparisonBrand, ComparisonParameter, ComparisonValue, ComparisonConfig, ComparisonTask, TaskParameterSelection
+from .models import (
+    Material, ComparisonCategory, ComparisonBrand, ComparisonParameter, 
+    ComparisonValue, ComparisonConfig, ComparisonTask, TaskParameterSelection,
+    ContentFingerprint, ZhihuBrand, ZhihuMonitorTask, ZhihuMonitorHistory,
+    ZhihuMonitorConfig
+)
 
 
 def init_database(db_path: str = "assets.db") -> DatabaseManager:

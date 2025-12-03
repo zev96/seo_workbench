@@ -33,5 +33,9 @@ urllib3==2.1.0
 # 日志系统
 loguru==0.7.2
 
+# 浏览器自动化（知乎监测）
+selenium==4.15.2
+webdriver-manager==4.0.1
+
 # 打包工具（开发依赖）
 pyinstaller==6.3.0

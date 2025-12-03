@@ -311,3 +311,211 @@ class TaskParameterSelection(Base):
         Index('idx_task_param', 'task_id', 'parameter_id'),
     )
 
+
+class ContentFingerprint(Base):
+    """内容指纹表（全局历史查重）"""
+    
+    __tablename__ = 'content_fingerprints'
+    
+    id = Column(Integer, primary_key=True, autoincrement=True, comment='自增主键')
+    fingerprint = Column(String(20), nullable=False, index=True, comment='SimHash 指纹（64-bit整数转字符串）')
+    content_preview = Column(String(200), comment='内容预览（前100字）')
+    full_content_hash = Column(String(32), comment='全文MD5哈希（用于精确匹配）')
+    source_project = Column(String(100), comment='来源项目/类目')
+    document_path = Column(String(500), comment='文档路径（相对路径）')
+    word_count = Column(Integer, default=0, comment='字数统计')
+    created_at = Column(DateTime, default=datetime.now, comment='创建时间')
+    
+    # 索引定义
+    __table_args__ = (
+        Index('idx_fingerprint', 'fingerprint'),
+        Index('idx_source_project', 'source_project'),
+        Index('idx_created_at', 'created_at'),
+        Index('idx_project_fingerprint', 'source_project', 'fingerprint'),  # 复合索引
+    )
+    
+    def to_dict(self):
+        """转换为字典"""
+        return {
+            'id': self.id,
+            'fingerprint': self.fingerprint,
+            'content_preview': self.content_preview,
+            'full_content_hash': self.full_content_hash,
+            'source_project': self.source_project,
+            'document_path': self.document_path,
+            'word_count': self.word_count,
+            'created_at': self.created_at.isoformat() if self.created_at else None
+        }
+
+
+class ZhihuBrand(Base):
+    """知乎监测品牌词库表"""
+    
+    __tablename__ = 'zhihu_brands'
+    
+    id = Column(Integer, primary_key=True, autoincrement=True, comment='自增主键')
+    name = Column(String(100), nullable=False, unique=True, comment='品牌名称')
+    brand_type = Column(String(20), default='competitor', comment='品牌类型: own=我方, competitor=竞品')
+    regex_pattern = Column(String(200), comment='正则表达式匹配模式（可选）')
+    created_at = Column(DateTime, default=datetime.now, comment='创建时间')
+    
+    __table_args__ = (
+        Index('idx_brand_type', 'brand_type'),
+    )
+    
+    def to_dict(self):
+        """转换为字典"""
+        return {
+            'id': self.id,
+            'name': self.name,
+            'brand_type': self.brand_type,
+            'regex_pattern': self.regex_pattern,
+            'created_at': self.created_at.isoformat() if self.created_at else None
+        }
+
+
+class ZhihuMonitorTask(Base):
+    """知乎监测任务表"""
+    
+    __tablename__ = 'zhihu_monitor_tasks'
+    
+    id = Column(Integer, primary_key=True, autoincrement=True, comment='自增主键')
+    question_url = Column(String(500), nullable=False, comment='知乎问题URL')
+    question_title = Column(String(200), comment='问题标题')
+    target_brand = Column(String(100), nullable=False, comment='目标品牌词（我方）')
+    check_range = Column(Integer, default=20, comment='检测范围（Top N）')
+    
+    # 当前状态
+    status = Column(String(20), default='pending', comment='状态: pending/success/failed')
+    last_result = Column(Text, comment='最后结果（JSON: 排名数组）')
+    top10_snapshot = Column(Text, comment='Top10详细快照（JSON）')
+    total_views = Column(Integer, default=0, comment='浏览量')
+    total_followers = Column(Integer, default=0, comment='关注者数')
+    
+    # 时间戳
+    created_at = Column(DateTime, default=datetime.now, comment='创建时间')
+    updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now, comment='最后更新时间')
+    last_check_at = Column(DateTime, comment='最后检测时间')
+    
+    # 定时任务配置
+    schedule_enabled = Column(Integer, default=0, comment='是否启用定时: 0=否 1=是')
+    schedule_time = Column(String(10), comment='定时时间（HH:MM格式）')
+    
+    # 关联关系
+    histories = relationship("ZhihuMonitorHistory", back_populates="task", cascade="all, delete-orphan")
+    
+    __table_args__ = (
+        Index('idx_question_url', 'question_url'),
+        Index('idx_status', 'status'),
+        Index('idx_schedule', 'schedule_enabled', 'schedule_time'),
+    )
+    
+    def get_result_list(self):
+        """获取结果排名列表"""
+        try:
+            return json.loads(self.last_result) if self.last_result else []
+        except:
+            return []
+    
+    def set_result_list(self, result_list):
+        """设置结果排名列表"""
+        self.last_result = json.dumps(result_list, ensure_ascii=False)
+    
+    def get_snapshot(self):
+        """获取Top10快照"""
+        try:
+            return json.loads(self.top10_snapshot) if self.top10_snapshot else {}
+        except:
+            return {}
+    
+    def set_snapshot(self, snapshot_dict):
+        """设置Top10快照"""
+        self.top10_snapshot = json.dumps(snapshot_dict, ensure_ascii=False, indent=2)
+    
+    def to_dict(self):
+        """转换为字典"""
+        return {
+            'id': self.id,
+            'question_url': self.question_url,
+            'question_title': self.question_title,
+            'target_brand': self.target_brand,
+            'check_range': self.check_range,
+            'status': self.status,
+            'last_result': self.get_result_list(),
+            'total_views': self.total_views,
+            'total_followers': self.total_followers,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None,
+            'last_check_at': self.last_check_at.isoformat() if self.last_check_at else None,
+            'schedule_enabled': self.schedule_enabled,
+            'schedule_time': self.schedule_time
+        }
+
+
+class ZhihuMonitorHistory(Base):
+    """知乎监测历史记录表"""
+    
+    __tablename__ = 'zhihu_monitor_histories'
+    
+    id = Column(Integer, primary_key=True, autoincrement=True, comment='自增主键')
+    task_id = Column(Integer, ForeignKey('zhihu_monitor_tasks.id'), nullable=False, comment='任务ID')
+    check_result = Column(Text, comment='检测结果（JSON: 排名数组）')
+    total_views = Column(Integer, default=0, comment='浏览量快照')
+    total_followers = Column(Integer, default=0, comment='关注者快照')
+    snapshot_data = Column(Text, comment='Top10快照数据（JSON）')
+    check_at = Column(DateTime, default=datetime.now, comment='检测时间')
+    
+    # 关联关系
+    task = relationship("ZhihuMonitorTask", back_populates="histories")
+    
+    __table_args__ = (
+        Index('idx_task_check', 'task_id', 'check_at'),
+    )
+    
+    def get_result_list(self):
+        """获取结果排名列表"""
+        try:
+            return json.loads(self.check_result) if self.check_result else []
+        except:
+            return []
+    
+    def to_dict(self):
+        """转换为字典"""
+        return {
+            'id': self.id,
+            'task_id': self.task_id,
+            'check_result': self.get_result_list(),
+            'total_views': self.total_views,
+            'total_followers': self.total_followers,
+            'check_at': self.check_at.isoformat() if self.check_at else None
+        }
+
+
+class ZhihuMonitorConfig(Base):
+    """知乎监测配置表（单例）"""
+    
+    __tablename__ = 'zhihu_monitor_configs'
+    
+    id = Column(Integer, primary_key=True, autoincrement=True, comment='自增主键')
+    cookie = Column(Text, comment='知乎Cookie')
+    user_agent = Column(String(500), comment='User-Agent（可选）')
+    request_delay_min = Column(Integer, default=2, comment='请求最小间隔（秒）')
+    request_delay_max = Column(Integer, default=6, comment='请求最大间隔（秒）')
+    retry_count = Column(Integer, default=3, comment='失败重试次数')
+    retry_delay = Column(Integer, default=600, comment='重试间隔（秒）')
+    gentle_mode = Column(Integer, default=0, comment='温和模式: 0=否 1=是')
+    updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now, comment='更新时间')
+    
+    def to_dict(self):
+        """转换为字典"""
+        return {
+            'id': self.id,
+            'cookie': self.cookie,
+            'user_agent': self.user_agent,
+            'request_delay_min': self.request_delay_min,
+            'request_delay_max': self.request_delay_max,
+            'retry_count': self.retry_count,
+            'retry_delay': self.retry_delay,
+            'gentle_mode': self.gentle_mode,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None
+        }

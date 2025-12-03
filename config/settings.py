@@ -107,6 +107,14 @@ class ProfileConfig(BaseModel):
     seo_density_max: float = Field(default=0.03, ge=0.0, le=1.0, description="关键词密度最大值（默认 3%）")
     seo_check_enabled: bool = Field(default=True, description="启用 SEO 密度检查")
     
+    # 全局历史查重设置
+    dedup_enabled: bool = Field(default=False, description="启用历史查重")
+    dedup_similarity_threshold: float = Field(default=0.90, ge=0.0, le=1.0, description="相似度阈值（默认 90%）")
+    dedup_max_retries: int = Field(default=10, ge=1, le=100, description="查重失败最大重试次数")
+    dedup_retention_days: int = Field(default=180, ge=1, le=3650, description="指纹保留天数（默认 180 天）")
+    dedup_cross_project: bool = Field(default=False, description="跨项目查重（False=仅当前项目）")
+    dedup_current_project: str = Field(default="default", description="当前项目名称")
+    
     @field_validator('template_path')
     @classmethod
     def validate_template_path(cls, v):
@@ -210,6 +218,39 @@ class ProfileConfig(BaseModel):
         self.column_settings.append(
             ColumnSetting(col_index=col_index, type=col_type, name=col_name)
         )
+    
+    def get_dedup_max_distance(self) -> int:
+        """
+        获取查重的最大海明距离
+        
+        相似度阈值到海明距离的映射：
+        - 98%+ → 距离 ≤ 1
+        - 95%+ → 距离 ≤ 3
+        - 90%+ → 距离 ≤ 6
+        - 85%+ → 距离 ≤ 10
+        
+        Returns:
+            海明距离阈值
+        """
+        similarity = self.dedup_similarity_threshold
+        hash_bits = 64
+        
+        # 相似度转海明距离
+        max_distance = int((1.0 - similarity) * hash_bits)
+        
+        return max_distance
+    
+    def get_dedup_project_name(self) -> str:
+        """
+        获取查重项目名称
+        
+        Returns:
+            项目名称（如果跨项目查重则返回 None）
+        """
+        if self.dedup_cross_project:
+            return None
+        else:
+            return self.dedup_current_project or "default"
     
     def get_image_path(self, col_index: int) -> Optional[str]:
         """

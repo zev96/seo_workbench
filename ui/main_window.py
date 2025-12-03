@@ -18,6 +18,7 @@ from .widgets.strategy_panel import StrategyPanel
 from .widgets.toolbar import Toolbar
 from .widgets.log_panel import LogPanel
 from .widgets.comparison_table import ComparisonTableWidget
+from .widgets.zhihu_monitor import ZhihuMonitorWidget
 from .dialogs.api_settings import APISettingsDialog
 from .dialogs.ai_title_dialog import AITitleDialog
 from .dialogs.ai_rewrite_dialog import AIRewriteDialog
@@ -129,6 +130,11 @@ class MainWindow(MSFluentWindow):
         self.comparison_table_widget = ComparisonTableWidget()
         self.addSubInterface(self.comparison_table_widget, FIF.DICTIONARY, "数据库")
         
+        # 创建知乎监测界面
+        self.zhihu_monitor_widget = ZhihuMonitorWidget(self.db_manager.get_session())
+        self.zhihu_monitor_widget.setObjectName("zhihu_monitor_widget")
+        self.addSubInterface(self.zhihu_monitor_widget, FIF.SEARCH, "知乎监测")
+        
         # 3. 底部：日志面板（隐藏，用户不需要）
         # self.log_panel = LogPanel()
         # main_layout.addWidget(self.log_panel)
@@ -165,6 +171,7 @@ class MainWindow(MSFluentWindow):
         self.strategy_panel.ai_rewrite_clicked.connect(self._on_ai_rewrite_dialog)
         self.strategy_panel.strategy_config_clicked.connect(self._on_strategy_config)
         self.strategy_panel.seo_config_clicked.connect(self._on_seo_config)
+        self.strategy_panel.dedup_config_clicked.connect(self._on_dedup_config)
         
         # 素材库信号
         self.material_library.material_selected.connect(self._on_material_selected)
@@ -1413,6 +1420,26 @@ class MainWindow(MSFluentWindow):
             )
             
             logger.info(f"SEO 核心词配置已更新: {self.config.target_keywords}")
+    
+    def _on_dedup_config(self):
+        """打开历史查重配置对话框"""
+        from .dialogs.dedup_config_dialog import DedupConfigDialog
+        
+        dialog = DedupConfigDialog(self.config, self)
+        if dialog.exec():
+            # 用户点击了"保存"，配置已在对话框中保存
+            from qfluentwidgets import InfoBar, InfoBarPosition
+            InfoBar.success(
+                title='配置已更新',
+                content=f'历史查重配置已生效',
+                orient=Qt.Orientation.Horizontal,
+                isClosable=False,
+                position=InfoBarPosition.BOTTOM_RIGHT,
+                duration=2000,
+                parent=self
+            )
+            
+            logger.info(f"历史查重配置已更新: 启用={self.config.dedup_enabled}, 阈值={self.config.dedup_similarity_threshold}")
     
     def _on_ai_title(self, keyword: str, prompt: str):
         """AI 生成标题"""

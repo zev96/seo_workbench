@@ -17,6 +17,9 @@ from .image_processor import ImageProcessor
 from .shuffle_engine import ShuffleEngine, SmartShuffle
 from ..config.settings import ProfileConfig
 from ..utils.file_handler import FileHandler
+from ..database.db_manager import DatabaseManager
+from ..database.fingerprint_manager import FingerprintManager
+from .simhash_deduplicator import ContentDeduplicator
 
 # 对比表功能（可选依赖）
 try:
@@ -49,6 +52,27 @@ class DocumentGenerator:
             self.shuffle_engine = ShuffleEngine(config.shuffling_strategies)
         else:
             self.shuffle_engine = None
+        
+        # 初始化查重器
+        if config.dedup_enabled:
+            logger.info("✓ 历史查重功能已启用")
+            db_manager = DatabaseManager()
+            fp_manager = FingerprintManager(db_manager)
+            
+            dedup_config = {
+                'enabled': config.dedup_enabled,
+                'max_distance': config.get_dedup_max_distance(),
+                'max_retries': config.dedup_max_retries,
+                'retention_days': config.dedup_retention_days,
+            }
+            
+            self.deduplicator = ContentDeduplicator(fp_manager, dedup_config)
+            logger.info(f"  - 相似度阈值: {config.dedup_similarity_threshold*100:.0f}% (海明距离≤{config.get_dedup_max_distance()})")
+            logger.info(f"  - 最大重试: {config.dedup_max_retries} 次")
+            logger.info(f"  - 项目范围: {'全局' if config.dedup_cross_project else config.dedup_current_project}")
+        else:
+            self.deduplicator = None
+            logger.debug("历史查重功能未启用")
         
         # 初始化对比表生成器和数据库管理器（如果可用）
         if COMPARISON_TABLE_AVAILABLE:
@@ -129,6 +153,13 @@ class DocumentGenerator:
         FileHandler.ensure_directory(output_dir)
         generated_files = []
         
+        # 查重统计
+        duplicate_count = 0
+        retry_count = 0
+        
+        # 获取项目名称（用于查重）
+        project_name = self.config.get_dedup_project_name() if self.deduplicator else None
+        
         # 如果直接提供了列数据，使用它；否则转置行数据
         if columns_data is not None:
             logger.info("使用直接提供的列数据（避免转置）")
@@ -153,11 +184,14 @@ class DocumentGenerator:
         for i, (items, shuffler) in enumerate(column_shufflers):
             logger.debug(f"列 {i+1}: {len(items)} 个有效内容")
         
-        for doc_idx in range(count):
+        doc_idx = 0
+        attempts = 0
+        max_total_attempts = count * (self.config.dedup_max_retries if self.deduplicator else 1)
+        
+        while doc_idx < count and attempts < max_total_attempts:
+            attempts += 1
+            
             try:
-                # 创建文档
-                doc = self._create_document()
-                
                 # 使用智能轮播器随机选择每列的一行
                 selected_row = []
                 for valid_items, shuffler in column_shufflers:
@@ -177,6 +211,42 @@ class DocumentGenerator:
                         for i, cell in enumerate(selected_row)
                     ]
                 
+                # 提取全文本（用于查重）
+                full_text = self._extract_full_text(selected_row)
+                
+                # 查重检查
+                if self.deduplicator:
+                    is_duplicate, dup_info = self.deduplicator.check_duplicate(
+                        text=full_text,
+                        source_project=project_name
+                    )
+                    
+                    if is_duplicate:
+                        duplicate_count += 1
+                        retry_count += 1
+                        
+                        similarity = dup_info.get('similarity_percent', 100)
+                        logger.warning(
+                            f"⚠ 检测到重复内容 (相似度: {similarity:.1f}%), "
+                            f"重试 {retry_count}/{self.config.dedup_max_retries}"
+                        )
+                        
+                        # 检查是否超过最大重试次数
+                        if retry_count >= self.config.dedup_max_retries:
+                            logger.error(
+                                f"✗ 文档 {doc_idx + 1} 超过最大重试次数，跳过"
+                            )
+                            doc_idx += 1  # 跳过这篇
+                            retry_count = 0
+                        
+                        continue  # 重新生成
+                
+                # 通过查重，开始生成文档
+                retry_count = 0  # 重置重试计数
+                
+                # 创建文档
+                doc = self._create_document()
+                
                 # 添加内容
                 self._add_row_content(doc, selected_row, doc_idx)
                 
@@ -187,12 +257,31 @@ class DocumentGenerator:
                 # 保存文档
                 if FileHandler.save_word(doc, filepath):
                     generated_files.append(filepath)
-                    logger.info(f"生成文档 {doc_idx + 1}/{count}: {filename}")
+                    
+                    # 保存成功后，将指纹写入数据库
+                    if self.deduplicator:
+                        relative_path = os.path.relpath(filepath, output_dir)
+                        self.deduplicator.add_content_fingerprint(
+                            text=full_text,
+                            source_project=project_name or "default",
+                            document_path=relative_path
+                        )
+                        logger.debug(f"✓ 指纹已记录: {filename}")
+                    
+                    logger.info(f"✓ 生成文档 {doc_idx + 1}/{count}: {filename}")
+                    doc_idx += 1
                 
             except Exception as e:
                 logger.error(f"生成第 {doc_idx + 1} 个文档失败: {e}")
+                doc_idx += 1  # 继续下一篇
+                retry_count = 0
         
+        # 生成完成，输出统计
         logger.info(f"混排生成完成，共 {len(generated_files)} 个文档")
+        
+        if self.deduplicator and duplicate_count > 0:
+            logger.warning(f"查重统计: 拦截 {duplicate_count} 次重复, 总尝试 {attempts} 次")
+        
         return generated_files
     
     def _create_document(self) -> Document:
@@ -563,6 +652,35 @@ class DocumentGenerator:
             columns.append(column)
         
         return columns
+    
+    def _extract_full_text(self, row_data: List[str]) -> str:
+        """
+        提取一行数据的全文本（用于查重）
+        
+        Args:
+            row_data: 行数据
+            
+        Returns:
+            合并后的文本
+        """
+        full_text = []
+        
+        for col_idx, cell_content in enumerate(row_data):
+            if not cell_content or not cell_content.strip():
+                continue
+            
+            # 获取列类型
+            col_type = self.config.get_column_type(col_idx)
+            
+            # 忽略此列
+            if col_type == 'Ignore':
+                continue
+            
+            # 解析 Spintax
+            parsed_content = self.spintax_parser.parse(cell_content)
+            full_text.append(parsed_content)
+        
+        return " ".join(full_text)
 
 
 if __name__ == "__main__":

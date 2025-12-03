@@ -227,6 +227,7 @@ class StrategyPanel(QWidget):
     ai_rewrite_clicked = pyqtSignal()    # AI 内容改写
     strategy_config_clicked = pyqtSignal()  # 混排策略配置
     seo_config_clicked = pyqtSignal()    # SEO 核心词配置
+    dedup_config_clicked = pyqtSignal()  # 历史查重配置
     
     def __init__(self, config: ProfileConfig):
         super().__init__()
@@ -278,6 +279,11 @@ class StrategyPanel(QWidget):
         self.config_strategy_btn = CardButton(FIF.LAYOUT, "随机组设置")
         self.config_strategy_btn.clicked.connect(self.strategy_config_clicked)
         layout.addWidget(self.config_strategy_btn)
+        
+        # 8. 历史查重配置
+        self.dedup_config_btn = CardButton(FIF.HISTORY, "历史查重")
+        self.dedup_config_btn.clicked.connect(self.dedup_config_clicked)
+        layout.addWidget(self.dedup_config_btn)
         
         # 弹性空间
         layout.addStretch()

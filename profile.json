@@ -180,5 +180,11 @@
   ],
   "seo_density_min": 0.01,
   "seo_density_max": 0.03,
-  "seo_check_enabled": true
+  "seo_check_enabled": true,
+  "dedup_enabled": false,
+  "dedup_similarity_threshold": 0.9,
+  "dedup_max_retries": 10,
+  "dedup_retention_days": 180,
+  "dedup_cross_project": false,
+  "dedup_current_project": "default"
 }
