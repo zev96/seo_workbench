@@ -18,6 +18,17 @@ from .shuffle_engine import ShuffleEngine, SmartShuffle
 from ..config.settings import ProfileConfig
 from ..utils.file_handler import FileHandler
 
+# 对比表功能（可选依赖）
+try:
+    from .comparison_image_generator import ComparisonTableImageGenerator
+    from ..database.comparison_db_manager import ComparisonDBManager
+    COMPARISON_TABLE_AVAILABLE = True
+except ImportError as e:
+    logger.warning(f"对比表功能不可用（缺少依赖）: {e}")
+    ComparisonTableImageGenerator = None
+    ComparisonDBManager = None
+    COMPARISON_TABLE_AVAILABLE = False
+
 
 class DocumentGenerator:
     """Word 文档生成器"""
@@ -38,6 +49,22 @@ class DocumentGenerator:
             self.shuffle_engine = ShuffleEngine(config.shuffling_strategies)
         else:
             self.shuffle_engine = None
+        
+        # 初始化对比表生成器和数据库管理器（如果可用）
+        if COMPARISON_TABLE_AVAILABLE:
+            logger.info("✓ 对比表功能可用，正在初始化...")
+            self.comparison_generator = ComparisonTableImageGenerator()
+            self.comparison_db = ComparisonDBManager()
+            self.comparison_table_config = self._load_comparison_config()
+            if self.comparison_table_config:
+                logger.info("✓ 对比表配置已加载")
+            else:
+                logger.warning("⚠ 对比表配置未设置（请在数据库界面配置）")
+        else:
+            logger.warning("⚠ 对比表功能不可用（matplotlib未安装）")
+            self.comparison_generator = None
+            self.comparison_db = None
+            self.comparison_table_config = None
     
     def generate_by_row(
         self,
@@ -187,6 +214,9 @@ class DocumentGenerator:
             row_data: 行数据
             row_idx: 行索引
         """
+        # 收集文档全文，用于品牌识别
+        full_text = " ".join(row_data)
+        
         for col_idx, cell_content in enumerate(row_data):
             if not cell_content or not cell_content.strip():
                 continue
@@ -217,6 +247,166 @@ class DocumentGenerator:
             image_path = self.config.get_image_path(col_idx)
             if image_path:
                 self._add_image(doc, image_path, row_idx)
+            
+            # 检查是否需要插入对比表图片
+            self._check_and_insert_comparison_table(doc, col_idx, parsed_content, full_text)
+    
+    def _check_and_insert_comparison_table(
+        self, 
+        doc: Document, 
+        col_idx: int, 
+        current_content: str,
+        full_text: str
+    ):
+        """
+        检查是否需要插入对比表图片
+        
+        Args:
+            doc: Document 对象
+            col_idx: 当前列索引
+            current_content: 当前段落内容
+            full_text: 文档全文
+        """
+        # 调试日志：方法被调用
+        logger.debug(f"_check_and_insert_comparison_table 被调用: col_idx={col_idx}")
+        
+        # 如果对比表功能不可用，直接返回
+        if not COMPARISON_TABLE_AVAILABLE:
+            logger.warning("对比表功能不可用: COMPARISON_TABLE_AVAILABLE=False (可能缺少matplotlib)")
+            return
+        
+        if not self.comparison_table_config:
+            logger.warning("对比表配置未加载: comparison_table_config=None (请在数据库界面配置)")
+            return
+        
+        insert_config = self.comparison_table_config.get('insert_strategy')
+        style_config = self.comparison_table_config.get('table_style')
+        
+        if not insert_config:
+            logger.warning("未找到插入策略配置 (请在数据库界面点击'插入策略配置')")
+            return
+        
+        logger.debug(f"插入配置: 模式={insert_config.get('insert_mode')}, 列号={insert_config.get('insert_column')}, 锚点={insert_config.get('insert_anchor_text')}")
+        
+        should_insert = False
+        insert_reason = ""
+        
+        # 判断是否需要插入
+        if insert_config['insert_mode'] == 'column':
+            # 按列插入：在第N列后插入
+            target_column = insert_config['insert_column'] - 1
+            logger.debug(f"按列模式: 目标列={target_column}, 当前列={col_idx}")
+            if col_idx == target_column:
+                should_insert = True
+                insert_reason = f"按列插入（列索引={col_idx}）"
+        
+        elif insert_config['insert_mode'] == 'anchor':
+            # 智能锚点：检测到特定文本后插入
+            anchor_text = insert_config['insert_anchor_text']
+            logger.debug(f"锚点模式: 锚点文本='{anchor_text}', 当前内容前50字='{current_content[:50]}'")
+            if anchor_text and anchor_text in current_content:
+                should_insert = True
+                insert_reason = f"智能锚点匹配（锚点文本='{anchor_text}'）"
+        
+        if not should_insert:
+            logger.debug(f"列{col_idx}: 不满足插入条件（模式={insert_config['insert_mode']}）")
+            return
+        
+        logger.info(f"✓ 触发对比表插入: {insert_reason}")
+        
+        # 提取文档中提及的品牌
+        mentioned_brands = self._extract_mentioned_brands(full_text)
+        
+        # 获取所有类目
+        categories = self.comparison_db.get_all_categories()
+        if not categories:
+            logger.warning("未找到对比表类目，无法生成对比表")
+            return
+        
+        # 使用第一个类目（后续可以扩展为智能匹配类目）
+        category = categories[0]
+        logger.info(f"使用类目: {category.name} (ID={category.id})")
+        
+        try:
+            # 生成对比表图片
+            logger.info(f"开始生成对比表图片...")
+            image_path = self.comparison_generator.generate_from_category(
+                db_manager=self.comparison_db,
+                category_id=category.id,
+                mentioned_brands=mentioned_brands,
+                style_config=style_config,
+                insert_config=insert_config
+            )
+            
+            # 插入图片到文档
+            if image_path and os.path.exists(image_path):
+                paragraph = doc.add_paragraph()
+                run = paragraph.add_run()
+                
+                # 使用配置的图片宽度
+                image_width = style_config.get('image_width', 15) if style_config else 15
+                run.add_picture(image_path, width=Inches(image_width / 2.54))  # 厘米转英寸
+                
+                paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                logger.info(f"✓ 对比表图片已插入: {image_path}")
+            else:
+                logger.warning(f"对比表图片生成失败或文件不存在: {image_path}")
+                
+        except Exception as e:
+            logger.error(f"插入对比表图片失败: {e}")
+            import traceback
+            logger.error(traceback.format_exc())
+    
+    def _extract_mentioned_brands(self, text: str) -> List[str]:
+        """
+        从文本中提取提及的品牌（仅完整匹配）
+        
+        Args:
+            text: 文档文本
+        
+        Returns:
+            品牌名称列表
+        """
+        mentioned_brands = []
+        
+        # 获取所有品牌
+        categories = self.comparison_db.get_all_categories()
+        for category in categories:
+            brands = self.comparison_db.get_brands_by_category(category.id)
+            for brand in brands:
+                brand_name = brand.name
+                
+                # 仅完整匹配（精确匹配完整品牌名）
+                if brand_name in text:
+                    mentioned_brands.append(brand_name)
+                    logger.debug(f"品牌完整匹配: {brand_name}")
+        
+        logger.info(f"识别到的品牌: {mentioned_brands if mentioned_brands else '无'}")
+        return mentioned_brands
+    
+    def _load_comparison_config(self) -> Optional[Dict]:
+        """
+        加载对比表配置
+        
+        Returns:
+            配置字典
+        """
+        if not COMPARISON_TABLE_AVAILABLE:
+            return None
+            
+        try:
+            insert_config = self.comparison_db.get_config('insert_strategy')
+            style_config = self.comparison_db.get_config('table_style')
+            
+            if insert_config or style_config:
+                return {
+                    'insert_strategy': insert_config,
+                    'table_style': style_config
+                }
+            return None
+        except Exception as e:
+            logger.warning(f"加载对比表配置失败: {e}")
+            return None
     
     def _add_heading(self, doc: Document, text: str, level: int):
         """

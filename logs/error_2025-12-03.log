@@ -1,0 +1,4 @@
+2025-12-03 10:13:42 | CRITICAL | __main__:main:79 - 程序启动失败: type object 'FluentIcon' has no attribute 'DATABASE'
+2025-12-03 10:14:55 | CRITICAL | __main__:main:79 - 程序启动失败: The object name of `interface` can't be empty string.
+2025-12-03 10:49:27 | ERROR    | seo_workbench.core.generation_worker:run:81 - 生成失败: cannot access local variable 'row_data' where it is not associated with a value
+2025-12-03 10:49:28 | ERROR    | seo_workbench.ui.main_window:<lambda>:299 - 生成错误: 生成失败: cannot access local variable 'row_data' where it is not associated with a value

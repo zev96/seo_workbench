@@ -175,7 +175,9 @@
   "quality_threshold_premium": 0.2,
   "quality_threshold_standard": 0.5,
   "quality_generate_report": true,
-  "target_keywords": [],
+  "target_keywords": [
+    "无线吸尘器"
+  ],
   "seo_density_min": 0.01,
   "seo_density_max": 0.03,
   "seo_check_enabled": true

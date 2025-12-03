@@ -17,6 +17,7 @@ from .widgets.smart_grid import SmartGrid
 from .widgets.strategy_panel import StrategyPanel
 from .widgets.toolbar import Toolbar
 from .widgets.log_panel import LogPanel
+from .widgets.comparison_table import ComparisonTableWidget
 from .dialogs.api_settings import APISettingsDialog
 from .dialogs.ai_title_dialog import AITitleDialog
 from .dialogs.ai_rewrite_dialog import AIRewriteDialog
@@ -75,7 +76,7 @@ class MainWindow(MSFluentWindow):
     
     def _init_ui(self):
         """初始化 UI"""
-        # 创建中心部件容器
+        # 创建中心部件容器（工作台）
         self.central_widget = QWidget()
         self.central_widget.setObjectName("central_widget")
         self.addSubInterface(self.central_widget, FIF.HOME, "工作台")
@@ -123,6 +124,10 @@ class MainWindow(MSFluentWindow):
         content_splitter.setStretchFactor(2, 20)
         
         main_layout.addWidget(content_splitter)
+        
+        # 创建对比表管理界面（新的子界面）
+        self.comparison_table_widget = ComparisonTableWidget()
+        self.addSubInterface(self.comparison_table_widget, FIF.DICTIONARY, "数据库")
         
         # 3. 底部：日志面板（隐藏，用户不需要）
         # self.log_panel = LogPanel()
@@ -492,6 +497,10 @@ class MainWindow(MSFluentWindow):
                     
                     # 插入该列的图片（如果有）- 在该列所有段落之后
                     self._insert_column_image(doc, col_idx)
+                    
+                    # 检查是否需要插入对比表图片（根据模式使用不同的变量名）
+                    current_row_data = row_data if mode == "row" else processed_row
+                    self._check_and_insert_comparison_table(doc, col_idx, content, current_row_data)
                 
                 # 质量检查和文件名标记
                 title = row_data[0] if row_data else f"文档{idx + 1}"
@@ -653,6 +662,10 @@ class MainWindow(MSFluentWindow):
                     
                     # 插入该列的图片（如果有）- 在该列所有段落之后
                     self._insert_column_image(doc, col_idx)
+                    
+                    # 检查是否需要插入对比表图片（根据模式使用不同的变量名）
+                    current_row_data = row_data if mode == "row" else processed_row
+                    self._check_and_insert_comparison_table(doc, col_idx, content, current_row_data)
                 
                 # 质量检查和文件名标记
                 title = processed_row[0] if processed_row else f"文档{i + 1}"
@@ -770,6 +783,152 @@ class MainWindow(MSFluentWindow):
             
         except Exception as e:
             logger.error(f"插入图片失败: {img_path}, 错误: {e}")
+    
+    def _check_and_insert_comparison_table(self, doc, col_idx: int, current_content: str, row_data: list):
+        """检查并插入对比表图片（支持多任务）
+        
+        Args:
+            doc: Document对象
+            col_idx: 列索引
+            current_content: 当前列的内容
+            row_data: 整行数据（用于提取品牌）
+        """
+        try:
+            # 导入对比表模块
+            from ..core.comparison_image_generator import ComparisonTableImageGenerator
+            from ..database.comparison_db_manager import ComparisonDBManager
+            from docx.shared import Inches
+            from docx.enum.text import WD_ALIGN_PARAGRAPH
+            import os
+            
+            # 初始化管理器
+            comparison_db = ComparisonDBManager()
+            comparison_generator = ComparisonTableImageGenerator()
+            
+            # 加载全局配置
+            global_config = comparison_db.get_config('insert_strategy')
+            if not global_config:
+                logger.debug("未找到全局配置")
+                return
+            
+            # 获取所有类目
+            categories = comparison_db.get_all_categories()
+            if not categories:
+                logger.warning("未找到对比表类目")
+                return
+            
+            # 使用第一个类目
+            category = categories[0]
+            
+            # 获取该类目下的所有任务（按排序）
+            tasks = comparison_db.get_tasks_by_category(category.id)
+            if not tasks:
+                logger.debug("该类目下没有任务")
+                return
+            
+            # 提取文章中的品牌（所有任务共用）
+            full_text = " ".join([str(c) for c in row_data if c])
+            mentioned_brands = self._extract_mentioned_brands(comparison_db, full_text)
+            
+            # 遍历所有任务，检查是否需要插入
+            for task in tasks:
+                should_insert = False
+                insert_reason = ""
+                
+                # 判断是否需要插入
+                if task.insert_mode == 'column':
+                    # 按列插入
+                    if col_idx == task.insert_column - 1:
+                        should_insert = True
+                        insert_reason = f"任务'{task.task_name}': 按列插入（列{col_idx}）"
+                
+                elif task.insert_mode == 'anchor':
+                    # 智能锚点
+                    if task.insert_anchor_text and task.insert_anchor_text in current_content:
+                        should_insert = True
+                        insert_reason = f"任务'{task.task_name}': 锚点匹配（'{task.insert_anchor_text}'）"
+                
+                if not should_insert:
+                    continue
+                
+                logger.info(f"✓ 触发对比表插入: {insert_reason}")
+                
+                # 获取任务的参数选择
+                selected_param_ids = comparison_db.get_task_parameters(task.id)
+                if not selected_param_ids:
+                    logger.warning(f"任务'{task.task_name}'未选择任何参数，跳过")
+                    continue
+                
+                # 获取任务的样式配置
+                style_config = task.get_style_dict()
+                if not style_config:
+                    # 使用默认样式
+                    style_config = {
+                        'header_bg_color': '#4472C4',
+                        'header_text_color': '#FFFFFF',
+                        'own_brand_bg_color': '#FFF2CC',
+                        'border_width': 1.5,
+                        'image_width': 15,
+                        'dpi': 300,
+                        'font_name': 'Microsoft YaHei',
+                        'font_size': 10
+                    }
+                
+                # 生成图片
+                image_path = comparison_generator.generate_from_category(
+                    db_manager=comparison_db,
+                    category_id=category.id,
+                    mentioned_brands=mentioned_brands,
+                    style_config=style_config,
+                    insert_config=global_config,
+                    selected_parameter_ids=selected_param_ids
+                )
+                
+                # 插入图片
+                if image_path and os.path.exists(image_path):
+                    paragraph = doc.add_paragraph()
+                    run = paragraph.add_run()
+                    
+                    image_width = style_config.get('image_width', 15)
+                    run.add_picture(image_path, width=Inches(image_width / 2.54))
+                    
+                    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+                    logger.info(f"✓ 对比表图片已插入: {task.task_name}")
+                else:
+                    logger.warning(f"对比表图片生成失败: {task.task_name}")
+        
+        except ImportError as e:
+            logger.debug(f"对比表功能不可用: {e}")
+        except Exception as e:
+            logger.error(f"插入对比表失败: {e}")
+            import traceback
+            logger.error(traceback.format_exc())
+    
+    def _extract_mentioned_brands(self, comparison_db, text: str) -> list:
+        """提取文章中提及的品牌（仅完整匹配）
+        
+        Args:
+            comparison_db: 数据库管理器
+            text: 文档文本
+            
+        Returns:
+            品牌名称列表
+        """
+        mentioned_brands = []
+        
+        categories = comparison_db.get_all_categories()
+        for category in categories:
+            brands = comparison_db.get_brands_by_category(category.id)
+            for brand in brands:
+                brand_name = brand.name
+                
+                # 仅完整匹配（精确匹配完整品牌名）
+                if brand_name in text:
+                    mentioned_brands.append(brand_name)
+                    logger.debug(f"品牌完整匹配: {brand_name}")
+        
+        logger.info(f"识别到的品牌: {mentioned_brands if mentioned_brands else '无'}")
+        return mentioned_brands
     
     def _apply_heading_style(self, paragraph, level: int):
         """应用标题样式
