@@ -6,15 +6,15 @@
 import json
 from datetime import datetime
 from PyQt6.QtWidgets import (
-    QWidget, QVBoxLayout, QHBoxLayout, QTableWidget, QTableWidgetItem,
-    QPushButton, QLabel, QHeaderView, QDialog, QFormLayout, QMessageBox,
-    QFileDialog, QCheckBox
+    QWidget, QVBoxLayout, QHBoxLayout, QTableWidgetItem,
+    QHeaderView, QDialog, QFormLayout, QFileDialog
 )
-from PyQt6.QtCore import Qt, pyqtSignal, QUrl
+from PyQt6.QtCore import Qt, pyqtSignal, QUrl, QTime
 from PyQt6.QtGui import QColor, QDesktopServices
 from qfluentwidgets import (
     PushButton, LineEdit, SpinBox, MessageBox, ProgressBar,
-    FluentIcon, TableWidget, ToolButton, ComboBox
+    FluentIcon, TableWidget, ToolButton, ComboBox, CheckBox,
+    TransparentToolButton, TimePicker, BodyLabel
 )
 from loguru import logger
 from sqlalchemy.orm import Session
@@ -62,10 +62,8 @@ class AddTaskDialog(QDialog):
         
         layout.addLayout(form_layout)
         
-        # 提示
-        tip_label = QLabel(
-            "💡 提示：添加后可手动检测或设置定时任务"
-        )
+        # 提示 - 使用 BodyLabel
+        tip_label = BodyLabel("💡 提示：添加后可手动检测或设置定时任务")
         tip_label.setStyleSheet("color: #666; padding: 10px; background: #f5f5f5; border-radius: 5px;")
         layout.addWidget(tip_label)
         
@@ -187,9 +185,9 @@ class ZhihuMonitorWidget(QWidget):
         
         toolbar_layout.addStretch()
         
-        # 统计信息
-        self.stats_label = QLabel("共 0 个监控任务")
-        self.stats_label.setStyleSheet("color: #666; font-size: 13px;")
+        # 统计信息 - 使用 BodyLabel
+        self.stats_label = BodyLabel("共 0 个监控任务")
+        self.stats_label.setStyleSheet("color: #666;")
         toolbar_layout.addWidget(self.stats_label)
         
         layout.addLayout(toolbar_layout)
@@ -199,8 +197,10 @@ class ZhihuMonitorWidget(QWidget):
         self.progress_bar.setVisible(False)
         layout.addWidget(self.progress_bar)
         
-        # 监控列表表格
+        # 监控列表表格 - 使用 Fluent TableWidget
         self.table = TableWidget()
+        self.table.setBorderVisible(True)
+        self.table.setBorderRadius(8)
         self.table.setColumnCount(8)  # 增加一列用于复选框
         self.table.setHorizontalHeaderLabels([
             "☐", "问题链接", "目标品牌", "状态", "排名", "浏览量/关注", "最后更新", "操作"
@@ -240,8 +240,8 @@ class ZhihuMonitorWidget(QWidget):
             self.table.setRowCount(len(tasks))
             
             for row, task in enumerate(tasks):
-                # 第0列：复选框（默认不勾选）
-                checkbox = QCheckBox()
+                # 第0列：复选框（默认不勾选） - 使用 Fluent CheckBox
+                checkbox = CheckBox()
                 checkbox.setProperty('task_id', task.id)
                 checkbox_widget = QWidget()
                 checkbox_layout = QHBoxLayout(checkbox_widget)
@@ -333,33 +333,30 @@ class ZhihuMonitorWidget(QWidget):
             return str(num)
     
     def _create_action_buttons(self, task_id: int, is_scheduled: bool = False) -> QWidget:
-        """创建操作按钮组"""
+        """创建操作按钮组 - 使用 Fluent TransparentToolButton"""
         widget = QWidget()
         layout = QHBoxLayout(widget)
         layout.setContentsMargins(5, 2, 5, 2)
         layout.setSpacing(5)
         
         # 详情按钮
-        detail_btn = QPushButton("📊")
+        detail_btn = TransparentToolButton(FluentIcon.INFO, self)
         detail_btn.setToolTip("查看详细分析")
         detail_btn.clicked.connect(lambda: self._show_detail(task_id))
-        detail_btn.setFixedWidth(35)
         layout.addWidget(detail_btn)
         
         # 定时任务按钮
-        schedule_btn = QPushButton("⏰" if is_scheduled else "⏰")
-        schedule_btn.setToolTip("配置定时任务")
+        schedule_btn = TransparentToolButton(FluentIcon.CALENDAR, self)
+        schedule_btn.setToolTip("配置定时任务" + (" (已启用)" if is_scheduled else ""))
         schedule_btn.clicked.connect(lambda: self._config_schedule(task_id))
-        schedule_btn.setFixedWidth(35)
         if is_scheduled:
-            schedule_btn.setStyleSheet("background-color: #4CAF50; color: white;")
+            schedule_btn.setStyleSheet("background-color: #4CAF50; border-radius: 4px;")
         layout.addWidget(schedule_btn)
         
         # 删除按钮
-        delete_btn = QPushButton("🗑️")
+        delete_btn = TransparentToolButton(FluentIcon.DELETE, self)
         delete_btn.setToolTip("删除监控")
         delete_btn.clicked.connect(lambda: self._delete_task(task_id))
-        delete_btn.setFixedWidth(35)
         layout.addWidget(delete_btn)
         
         return widget
@@ -381,7 +378,7 @@ class ZhihuMonitorWidget(QWidget):
         for row in range(self.table.rowCount()):
             checkbox_widget = self.table.cellWidget(row, 0)
             if checkbox_widget:
-                checkbox = checkbox_widget.findChild(QCheckBox)
+                checkbox = checkbox_widget.findChild(CheckBox)
                 if checkbox:
                     checkbox.setChecked(checked)
         
@@ -394,7 +391,7 @@ class ZhihuMonitorWidget(QWidget):
         for row in range(self.table.rowCount()):
             checkbox_widget = self.table.cellWidget(row, 0)
             if checkbox_widget:
-                checkbox = checkbox_widget.findChild(QCheckBox)
+                checkbox = checkbox_widget.findChild(CheckBox)
                 if checkbox and checkbox.isChecked():
                     task_id = checkbox.property('task_id')
                     if task_id:
@@ -829,6 +826,7 @@ class ZhihuMonitorWidget(QWidget):
             
             # 准备历史数据
             import pandas as pd
+            from openpyxl.styles import Font, Alignment
             
             data = []
             for history in histories:
@@ -890,10 +888,8 @@ class ZhihuMonitorWidget(QWidget):
             logger.error(f"初始化调度器失败: {e}")
     
     def _config_schedule(self, task_id: int):
-        """配置定时任务"""
-        from PyQt6.QtWidgets import QDialog, QVBoxLayout, QFormLayout, QTimeEdit, QCheckBox
-        from PyQt6.QtCore import QTime
-        from qfluentwidgets import PushButton
+        """配置定时任务 - 使用 Fluent Widgets"""
+        from PyQt6.QtWidgets import QDialog, QVBoxLayout, QFormLayout
         
         task = self.db_session.query(ZhihuMonitorTask).filter(
             ZhihuMonitorTask.id == task_id
@@ -905,36 +901,33 @@ class ZhihuMonitorWidget(QWidget):
         # 创建配置对话框
         dialog = QDialog(self)
         dialog.setWindowTitle("配置定时任务")
-        dialog.resize(400, 200)
+        dialog.resize(400, 250)
         
         layout = QVBoxLayout(dialog)
         form_layout = QFormLayout()
         
-        # 启用开关
-        enable_check = QCheckBox("启用定时任务")
+        # 启用开关 - 使用 Fluent CheckBox
+        enable_check = CheckBox("启用定时任务")
         enable_check.setChecked(task.schedule_enabled == 1)
         form_layout.addRow("状态:", enable_check)
         
-        # 时间选择
-        time_edit = QTimeEdit()
+        # 时间选择 - 使用 Fluent TimePicker
+        time_picker = TimePicker(self)
         if task.schedule_time:
             try:
                 hour, minute = map(int, task.schedule_time.split(':'))
-                time_edit.setTime(QTime(hour, minute))
+                time_picker.setTime(QTime(hour, minute))
             except:
-                time_edit.setTime(QTime(10, 0))  # 默认10:00
+                time_picker.setTime(QTime(10, 0))  # 默认10:00
         else:
-            time_edit.setTime(QTime(10, 0))
+            time_picker.setTime(QTime(10, 0))
         
-        time_edit.setDisplayFormat("HH:mm")
-        form_layout.addRow("执行时间:", time_edit)
+        form_layout.addRow("执行时间:", time_picker)
         
         layout.addLayout(form_layout)
         
-        # 提示
-        tip_label = QLabel(
-            "💡 提示：每天到达设定时间后自动执行一次检测"
-        )
+        # 提示 - 使用 BodyLabel
+        tip_label = BodyLabel("💡 提示：每天到达设定时间后自动执行一次检测")
         tip_label.setStyleSheet("color: #666; padding: 10px; background: #f5f5f5; border-radius: 3px;")
         layout.addWidget(tip_label)
         
@@ -950,7 +943,7 @@ class ZhihuMonitorWidget(QWidget):
         def save_schedule():
             try:
                 task.schedule_enabled = 1 if enable_check.isChecked() else 0
-                task.schedule_time = time_edit.time().toString("HH:mm")
+                task.schedule_time = time_picker.getTime().toString("HH:mm")
                 
                 self.db_session.commit()
                 

@@ -4,16 +4,16 @@
 """
 
 from PyQt6.QtWidgets import (
-    QWidget, QVBoxLayout, QHBoxLayout, QListWidget, QTableWidget,
-    QTableWidgetItem, QPushButton, QLabel, QFileDialog, QMenu,
-    QHeaderView, QMessageBox, QInputDialog, QSplitter
+    QWidget, QVBoxLayout, QHBoxLayout, QTableWidgetItem, 
+    QFileDialog, QHeaderView, QSplitter
 )
 from PyQt6.QtCore import Qt, pyqtSignal
-from PyQt6.QtGui import QIcon, QColor, QBrush, QAction
+from PyQt6.QtGui import QIcon, QColor, QBrush
 from qfluentwidgets import (
-    PushButton, PrimaryPushButton, ListWidget,
+    PushButton, PrimaryPushButton, ListWidget, TableWidget,
     ToolButton, FluentIcon as FIF, MessageBox,
-    InfoBar, InfoBarPosition, LineEdit
+    InfoBar, InfoBarPosition, LineEdit, RoundMenu, Action,
+    SubtitleLabel, BodyLabel
 )
 from loguru import logger
 import openpyxl
@@ -75,28 +75,12 @@ class ComparisonTableWidget(QWidget):
         layout.setContentsMargins(10, 10, 10, 10)
         layout.setSpacing(10)
         
-        # 标题
-        title_label = QLabel("类目列表")
-        title_label.setStyleSheet("""
-            QLabel {
-                font-size: 16px;
-                font-weight: bold;
-                color: #333;
-                background: transparent;
-                border: none;
-            }
-        """)
+        # 标题 - 使用 SubtitleLabel
+        title_label = SubtitleLabel("类目列表")
         layout.addWidget(title_label)
         
         # 类目列表
         self.category_list = ListWidget()
-        self.category_list.setStyleSheet("""
-            ListWidget {
-                background-color: white;
-                border: 1px solid #e0e0e0;
-                border-radius: 5px;
-            }
-        """)
         self.category_list.itemClicked.connect(self._on_category_selected)
         layout.addWidget(self.category_list)
         
@@ -145,35 +129,15 @@ class ComparisonTableWidget(QWidget):
         toolbar_layout.addStretch()
         layout.addLayout(toolbar_layout)
         
-        # 表格编辑区
-        self.table_widget = QTableWidget()
-        self.table_widget.setStyleSheet("""
-            QTableWidget {
-                background-color: white;
-                border: 1px solid #e0e0e0;
-                border-radius: 5px;
-                gridline-color: #e0e0e0;
-            }
-            QTableWidget::item {
-                padding: 8px;
-            }
-            QTableWidget::item:selected {
-                background-color: #cce8ff;
-            }
-            QHeaderView::section {
-                background-color: #f0f0f0;
-                padding: 8px;
-                border: none;
-                border-right: 1px solid #e0e0e0;
-                border-bottom: 1px solid #e0e0e0;
-                font-weight: bold;
-            }
-        """)
+        # 表格编辑区 - 使用 TableWidget
+        self.table_widget = TableWidget()
+        self.table_widget.setBorderVisible(True)
+        self.table_widget.setBorderRadius(8)
         
         # 设置表格属性
         self.table_widget.setAlternatingRowColors(True)
-        self.table_widget.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectItems)
-        self.table_widget.setEditTriggers(QTableWidget.EditTrigger.DoubleClicked)
+        self.table_widget.setSelectionBehavior(TableWidget.SelectionBehavior.SelectItems)
+        self.table_widget.setEditTriggers(TableWidget.EditTrigger.DoubleClicked)
         
         # 允许调整列宽
         self.table_widget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Interactive)
@@ -188,14 +152,9 @@ class ComparisonTableWidget(QWidget):
         
         layout.addWidget(self.table_widget)
         
-        # 提示信息
-        hint_label = QLabel("提示：双击单元格编辑，拖拽列边界调整宽度，右键查看更多操作")
-        hint_label.setStyleSheet("""
-            QLabel {
-                color: #888;
-                font-size: 12px;
-            }
-        """)
+        # 提示信息 - 使用 BodyLabel
+        hint_label = BodyLabel("提示：双击单元格编辑，拖拽列边界调整宽度，右键查看更多操作")
+        hint_label.setStyleSheet("color: #888;")
         layout.addWidget(hint_label)
         
         return panel
@@ -221,11 +180,12 @@ class ComparisonTableWidget(QWidget):
         self._load_table_data(category_id)
     
     def _on_new_category(self):
-        """新建类目"""
-        name, ok = QInputDialog.getText(self, "新建类目", "请输入类目名称：")
-        if ok and name.strip():
-            result = self.db_manager.add_category(name.strip())
-            if result:
+        """新建类目 - 使用自定义输入对话框"""
+        result = self._show_input_dialog("新建类目", "请输入类目名称：")
+        if result:
+            name = result.strip()
+            add_result = self.db_manager.add_category(name)
+            if add_result:
                 InfoBar.success(
                     title="成功",
                     content=f"类目 '{name}' 创建成功",
@@ -447,42 +407,47 @@ class ComparisonTableWidget(QWidget):
         )
     
     def _show_context_menu(self, pos):
-        """显示右键菜单"""
-        menu = QMenu(self)
+        """显示右键菜单 - 使用 RoundMenu"""
+        menu = RoundMenu(parent=self)
         
-        add_row_action = QAction("插入行", self)
+        # 插入行
+        add_row_action = Action(FIF.ADD, "插入行")
         add_row_action.triggered.connect(self._add_row)
         menu.addAction(add_row_action)
         
-        add_col_action = QAction("插入列", self)
+        # 插入列
+        add_col_action = Action(FIF.ADD, "插入列")
         add_col_action.triggered.connect(self._add_column)
         menu.addAction(add_col_action)
         
         menu.addSeparator()
         
-        del_row_action = QAction("删除行", self)
+        # 删除行
+        del_row_action = Action(FIF.DELETE, "删除行")
         del_row_action.triggered.connect(self._delete_row)
         menu.addAction(del_row_action)
         
-        del_col_action = QAction("删除列", self)
+        # 删除列
+        del_col_action = Action(FIF.DELETE, "删除列")
         del_col_action.triggered.connect(self._delete_column)
         menu.addAction(del_col_action)
         
         menu.addSeparator()
         
-        clear_action = QAction("清空内容", self)
+        # 清空内容
+        clear_action = Action(FIF.CANCEL, "清空内容")
         clear_action.triggered.connect(self._clear_cell)
         menu.addAction(clear_action)
         
         menu.exec(self.table_widget.viewport().mapToGlobal(pos))
     
     def _add_row(self):
-        """添加行（参数）"""
+        """添加行（参数） - 使用自定义输入对话框"""
         if not self.current_category_id:
             return
         
-        name, ok = QInputDialog.getText(self, "添加参数", "请输入参数名称：")
-        if ok and name.strip():
+        name = self._show_input_dialog("添加参数", "请输入参数名称：")
+        if name and name.strip():
             result = self.db_manager.add_parameter(
                 self.current_category_id,
                 name.strip(),
@@ -492,12 +457,12 @@ class ComparisonTableWidget(QWidget):
                 self._load_table_data(self.current_category_id)
     
     def _add_column(self):
-        """添加列（品牌）"""
+        """添加列（品牌） - 使用自定义输入对话框"""
         if not self.current_category_id:
             return
         
-        name, ok = QInputDialog.getText(self, "添加品牌", "请输入品牌名称：")
-        if ok and name.strip():
+        name = self._show_input_dialog("添加品牌", "请输入品牌名称：")
+        if name and name.strip():
             result = self.db_manager.add_brand(
                 self.current_category_id,
                 name.strip(),
@@ -537,6 +502,32 @@ class ComparisonTableWidget(QWidget):
         current_item = self.table_widget.currentItem()
         if current_item:
             current_item.setText("")
+    
+    # ==================== 自定义对话框 ====================
+    
+    def _show_input_dialog(self, title: str, content: str) -> Optional[str]:
+        """显示自定义输入对话框（使用 Fluent Widgets 风格）
+        
+        Args:
+            title: 对话框标题
+            content: 提示内容
+            
+        Returns:
+            用户输入的文本，如果取消则返回 None
+        """
+        # 创建自定义对话框
+        w = MessageBox(title, content, self)
+        
+        # 添加输入框
+        input_edit = LineEdit()
+        input_edit.setPlaceholderText("请输入内容")
+        input_edit.setClearButtonEnabled(True)
+        w.textLayout.addWidget(input_edit)
+        
+        # 显示对话框
+        if w.exec():
+            return input_edit.text()
+        return None
     
     # ==================== 配置对话框 ====================
     
