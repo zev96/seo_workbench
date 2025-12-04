@@ -102,6 +102,14 @@ class ZhihuDetailDialog(QDialog):
         
         layout.addLayout(title_layout)
         
+        # 问题描述（如果有）
+        question_detail = self.task.question_detail if hasattr(self.task, 'question_detail') else None
+        if question_detail:
+            detail_label = QLabel(f"<b>描述:</b> {question_detail}")
+            detail_label.setWordWrap(True)
+            detail_label.setStyleSheet("font-size: 13px; padding: 5px; color: #666;")
+            layout.addWidget(detail_label)
+        
         # 核心数据
         stats_layout = QHBoxLayout()
         
@@ -363,6 +371,8 @@ class ZhihuDetailDialog(QDialog):
         try:
             # 更新数据库
             self.task.set_snapshot(detail_data)
+            self.task.question_title = detail_data.get('question_title', self.task.question_title)
+            self.task.question_detail = detail_data.get('question_detail', '')
             self.task.total_views = detail_data.get('total_views', 0)
             self.task.total_followers = detail_data.get('total_followers', 0)
             self.db_session.commit()

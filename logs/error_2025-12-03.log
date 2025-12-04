@@ -4,3 +4,174 @@
 2025-12-03 10:49:28 | ERROR    | seo_workbench.ui.main_window:<lambda>:299 - 生成错误: 生成失败: cannot access local variable 'row_data' where it is not associated with a value
 2025-12-03 15:09:45 | CRITICAL | __main__:main:79 - 程序启动失败: name 'db_manager' is not defined
 2025-12-03 15:12:48 | CRITICAL | __main__:main:79 - 程序启动失败: The object name of `interface` can't be empty string.
+2025-12-03 17:27:42 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:212 - 加载配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.chromedriver_path
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.allow_fake_browsing AS zhihu_monitor_configs_allow_fake_browsing, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 17:29:32 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:178 - 加载配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.gentle_mode
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 17:54:56 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:211 - 加载配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.gentle_mode
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.allow_fake_browsing AS zhihu_monitor_configs_allow_fake_browsing, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 17:54:56 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:get_config_dict:305 - 获取配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.gentle_mode
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.allow_fake_browsing AS zhihu_monitor_configs_allow_fake_browsing, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 17:54:57 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:185 - 初始化WebDriver失败: <urlopen error [WinError 10054] 远程主机强迫关闭了一个现有的连接。>
+2025-12-03 17:55:02 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:211 - 加载配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.gentle_mode
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.allow_fake_browsing AS zhihu_monitor_configs_allow_fake_browsing, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 17:56:08 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:211 - 加载配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.gentle_mode
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.allow_fake_browsing AS zhihu_monitor_configs_allow_fake_browsing, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 17:56:17 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:247 - 保存配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.gentle_mode
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.allow_fake_browsing AS zhihu_monitor_configs_allow_fake_browsing, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 18:06:10 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:211 - 加载配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.gentle_mode
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.allow_fake_browsing AS zhihu_monitor_configs_allow_fake_browsing, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 18:14:41 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:185 - 初始化WebDriver失败: Message: session not created: cannot connect to chrome at 127.0.0.1:11367
+from session not created: This version of ChromeDriver only supports Chrome version 143
+Current browser version is 142.0.7444.176; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0xd20d23
+	0xd20d64
+	0xb0e6dd
+	0xb4a958
+	0xb49992
+	0xb3fbe5
+	0xb3fa16
+	0xb87826
+	0xb87047
+	0xb7b2e6
+	0xb4d321
+	0xb4e1d4
+	0xf74d64
+	0xf7031b
+	0xf8cbfa
+	0xd3ac28
+	0xd42c2d
+	0xd29028
+	0xd291e9
+	0xd13578
+	0x762ffa29
+	0x77a57a9e
+	0x77a57a6e
+
+2025-12-03 18:14:41 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:187 - 提示：请手动下载ChromeDriver并在设置中指定路径
+2025-12-03 18:14:50 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:185 - 初始化WebDriver失败: Message: session not created: cannot connect to chrome at 127.0.0.1:11407
+from session not created: This version of ChromeDriver only supports Chrome version 143
+Current browser version is 142.0.7444.176; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x980d23
+	0x980d64
+	0x76e6dd
+	0x7aa958
+	0x7a9992
+	0x79fbe5
+	0x79fa16
+	0x7e7826
+	0x7e7047
+	0x7db2e6
+	0x7ad321
+	0x7ae1d4
+	0xbd4d64
+	0xbd031b
+	0xbecbfa
+	0x99ac28
+	0x9a2c2d
+	0x989028
+	0x9891e9
+	0x973578
+	0x762ffa29
+	0x77a57a9e
+	0x77a57a6e
+
+2025-12-03 18:14:50 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:187 - 提示：请手动下载ChromeDriver并在设置中指定路径
+2025-12-03 18:15:50 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:185 - 初始化WebDriver失败: Message: session not created: cannot connect to chrome at 127.0.0.1:11477
+from session not created: This version of ChromeDriver only supports Chrome version 143
+Current browser version is 142.0.7444.176; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x990d23
+	0x990d64
+	0x77e6dd
+	0x7ba958
+	0x7b9992
+	0x7afbe5
+	0x7afa16
+	0x7f7826
+	0x7f7047
+	0x7eb2e6
+	0x7bd321
+	0x7be1d4
+	0xbe4d64
+	0xbe031b
+	0xbfcbfa
+	0x9aac28
+	0x9b2c2d
+	0x999028
+	0x9991e9
+	0x983578
+	0x762ffa29
+	0x77a57a9e
+	0x77a57a6e
+
+2025-12-03 18:15:50 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:187 - 提示：请手动下载ChromeDriver并在设置中指定路径
+2025-12-03 18:21:08 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:174 - 自动获取ChromeDriver失败: <urlopen error [WinError 10054] 远程主机强迫关闭了一个现有的连接。>
+
+建议解决方案：
+1. 手动下载ChromeDriver（与您的Chrome版本匹配）
+   下载地址: https://googlechromelabs.github.io/chrome-for-testing/
+2. 在【设置】中指定ChromeDriver路径
+3. 或更新Chrome浏览器到最新版本
+2025-12-03 18:21:17 | ERROR    | seo_workbench.ui.widgets.zhihu_monitor:_on_task_failed:570 - 初始化失败: 自动获取ChromeDriver失败: <urlopen error [WinError 10054] 远程主机强迫关闭了一个现有的连接。>
+
+建议解决方案：
+1. 手动下载ChromeDriver（与您的Chrome版本匹配）
+   下载地址: https://googlechromelabs.github.io/chrome-for-testing/
+2. 在【设置】中指定ChromeDriver路径
+3. 或更新Chrome浏览器到最新版本
+2025-12-03 18:45:31 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:237 - 加载配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.anti_detect_level
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.anti_detect_level AS zhihu_monitor_configs_anti_detect_level, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 18:47:16 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:286 - 保存配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.anti_detect_level
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.anti_detect_level AS zhihu_monitor_configs_anti_detect_level, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 18:48:02 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:286 - 保存配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.anti_detect_level
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.anti_detect_level AS zhihu_monitor_configs_anti_detect_level, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)

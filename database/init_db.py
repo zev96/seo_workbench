@@ -12,6 +12,7 @@ from .models import (
     ContentFingerprint, ZhihuBrand, ZhihuMonitorTask, ZhihuMonitorHistory,
     ZhihuMonitorConfig
 )
+from .migrations import migrate_database, check_migration_needed
 
 
 def init_database(db_path: str = "assets.db") -> DatabaseManager:
@@ -37,6 +38,11 @@ def init_database(db_path: str = "assets.db") -> DatabaseManager:
     
     # 创建表（如果不存在）
     db_manager.create_tables()
+    
+    # 执行数据库迁移（为已存在的表添加新字段）
+    if db_exists and check_migration_needed(db_path):
+        logger.info("检测到数据库需要迁移，开始执行迁移...")
+        migrate_database(db_path)
     
     # 如果是新数据库，添加一些示例数据
     if not db_exists:

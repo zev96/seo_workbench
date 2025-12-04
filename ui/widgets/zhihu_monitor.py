@@ -152,6 +152,19 @@ class ZhihuMonitorWidget(QWidget):
         self.template_btn.clicked.connect(self._download_template)
         toolbar_layout.addWidget(self.template_btn)
         
+        toolbar_layout.addSpacing(10)
+        
+        # 全选/取消全选按钮
+        self.select_all_btn = PushButton("全选", self, FluentIcon.CHECKBOX)
+        self.select_all_btn.clicked.connect(lambda: self._on_select_all(Qt.CheckState.Checked.value))
+        toolbar_layout.addWidget(self.select_all_btn)
+        
+        self.deselect_all_btn = PushButton("取消全选", self, FluentIcon.CANCEL)
+        self.deselect_all_btn.clicked.connect(lambda: self._on_select_all(Qt.CheckState.Unchecked.value))
+        toolbar_layout.addWidget(self.deselect_all_btn)
+        
+        toolbar_layout.addSpacing(10)
+        
         self.batch_delete_btn = PushButton("批量删除", self, FluentIcon.DELETE)
         self.batch_delete_btn.clicked.connect(self._batch_delete)
         toolbar_layout.addWidget(self.batch_delete_btn)
@@ -190,7 +203,7 @@ class ZhihuMonitorWidget(QWidget):
         self.table = TableWidget()
         self.table.setColumnCount(8)  # 增加一列用于复选框
         self.table.setHorizontalHeaderLabels([
-            "☐", "问题标题", "目标品牌", "状态", "排名", "浏览量/关注", "最后更新", "操作"
+            "☐", "问题链接", "目标品牌", "状态", "排名", "浏览量/关注", "最后更新", "操作"
         ])
         
         # 设置列宽
@@ -211,16 +224,6 @@ class ZhihuMonitorWidget(QWidget):
         self.table.setColumnWidth(5, 130)  # 浏览量/关注
         self.table.setColumnWidth(6, 150)  # 最后更新
         self.table.setColumnWidth(7, 150)  # 操作
-        
-        # 添加表头复选框用于全选
-        self.select_all_checkbox = QCheckBox()
-        self.select_all_checkbox.stateChanged.connect(self._on_select_all)
-        header_widget = QWidget()
-        header_layout = QHBoxLayout(header_widget)
-        header_layout.addWidget(self.select_all_checkbox)
-        header_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        header_layout.setContentsMargins(0, 0, 0, 0)
-        self.table.setCellWidget(0, 0, header_widget)  # 暂时这样，后面会正确设置
         
         # 双击标题打开链接
         self.table.cellDoubleClicked.connect(self._on_cell_double_clicked)
@@ -472,6 +475,35 @@ class ZhihuMonitorWidget(QWidget):
         settings_dialog = ZhihuSettingsDialog(self.db_session, self)
         config = settings_dialog.get_config_dict()
         
+        # ✅ 关键检查：验证 ChromeDriver 路径是否已配置
+        chromedriver_path = config.get('chromedriver_path')
+        if not chromedriver_path:
+            MessageBox(
+                "配置错误",
+                "未配置 ChromeDriver 路径！\n\n"
+                "请先点击右上角【设置】按钮，\n"
+                "在 ChromeDriver 配置 区域选择 chromedriver.exe 文件路径。\n\n"
+                "下载地址：\n"
+                "https://googlechromelabs.github.io/chrome-for-testing/",
+                self
+            ).exec()
+            logger.error("❌ 未配置 ChromeDriver 路径，无法启动检测")
+            return
+        
+        # 验证路径是否存在
+        import os
+        if not os.path.exists(chromedriver_path):
+            MessageBox(
+                "路径错误",
+                f"ChromeDriver 文件不存在：\n{chromedriver_path}\n\n"
+                "请重新配置正确的路径。",
+                self
+            ).exec()
+            logger.error(f"❌ ChromeDriver 文件不存在: {chromedriver_path}")
+            return
+        
+        logger.info(f"✅ ChromeDriver 路径验证通过: {chromedriver_path}")
+        
         # 获取品牌关键词
         brands = self.db_session.query(ZhihuBrand).all()
         brand_keywords = [brand.name for brand in brands]
@@ -487,7 +519,18 @@ class ZhihuMonitorWidget(QWidget):
                 'check_range': task.check_range
             })
         
+        logger.info("="*60)
+        logger.info(f"📋 准备检测 {len(task_list)} 个任务")
+        for i, task in enumerate(task_list, 1):
+            logger.info(f"  {i}. {task['title'] or task['url'][:50]}")
+        logger.info(f"🔧 配置信息:")
+        logger.info(f"  - ChromeDriver: {chromedriver_path}")
+        logger.info(f"  - 反检测强度: {config.get('anti_detect_level', 'medium')}")
+        logger.info(f"  - Cookie: {'已配置' if config.get('cookie') else '未配置'}")
+        logger.info("="*60)
+        
         # 创建工作线程
+        logger.info("🚀 创建工作线程...")
         self.worker = ZhihuMonitorWorker(task_list, config, brand_keywords)
         self.worker.progress_updated.connect(self._on_progress_updated)
         self.worker.task_completed.connect(self._on_task_completed)
@@ -503,9 +546,16 @@ class ZhihuMonitorWidget(QWidget):
         self.progress_bar.setValue(0)
         
         # 启动线程
-        self.worker.start()
-        
-        logger.info(f"开始检测 {len(task_list)} 个任务")
+        logger.info("🎬 启动检测线程...")
+        try:
+            self.worker.start()
+            logger.success(f"✅ 线程已启动，开始检测 {len(task_list)} 个任务")
+        except Exception as e:
+            logger.error(f"❌ 启动线程失败: {e}")
+            MessageBox("错误", f"启动检测失败:\n{e}", self).exec()
+            self.check_btn.setEnabled(True)
+            self.add_btn.setEnabled(True)
+            self.progress_bar.setVisible(False)
     
     def _on_progress_updated(self, current: int, total: int, message: str):
         """进度更新"""
@@ -522,6 +572,7 @@ class ZhihuMonitorWidget(QWidget):
             
             if task:
                 task.question_title = result.get('question_title')
+                task.question_detail = result.get('question_detail', '')
                 task.total_views = result.get('total_views', 0)
                 task.total_followers = result.get('total_followers', 0)
                 task.set_result_list(result.get('found_ranks', []))
@@ -682,7 +733,6 @@ class ZhihuMonitorWidget(QWidget):
             schedule_text = f"✓ {task.schedule_time}" if task.schedule_enabled else "✗"
             
             data.append({
-                '问题标题': task.question_title or '未知',
                 '问题链接': task.question_url,
                 '目标品牌': task.target_brand,
                 '检测范围': f"Top {task.check_range}",

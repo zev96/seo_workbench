@@ -35,12 +35,12 @@
     },
     {
       "col_index": 58,
-      "type": "Body",
+      "type": "H3",
       "name": "列59"
     },
     {
       "col_index": 36,
-      "type": "Body",
+      "type": "H3",
       "name": "列37"
     },
     {
@@ -50,32 +50,32 @@
     },
     {
       "col_index": 6,
-      "type": "H1",
+      "type": "H2",
       "name": "列7"
     },
     {
       "col_index": 7,
-      "type": "H2",
+      "type": "H3",
       "name": "列8"
     },
     {
       "col_index": 9,
-      "type": "H2",
+      "type": "H3",
       "name": "列10"
     },
     {
       "col_index": 11,
-      "type": "H2",
+      "type": "H3",
       "name": "列12"
     },
     {
       "col_index": 13,
-      "type": "H2",
+      "type": "H3",
       "name": "列14"
     },
     {
       "col_index": 15,
-      "type": "H2",
+      "type": "H3",
       "name": "列16"
     },
     {
@@ -85,13 +85,103 @@
     },
     {
       "col_index": 19,
-      "type": "H2",
+      "type": "H3",
       "name": "列20"
     },
     {
       "col_index": 21,
-      "type": "H1",
+      "type": "H2",
       "name": "列22"
+    },
+    {
+      "col_index": 22,
+      "type": "H3",
+      "name": "列23"
+    },
+    {
+      "col_index": 26,
+      "type": "H3",
+      "name": "列27"
+    },
+    {
+      "col_index": 28,
+      "type": "H3",
+      "name": "列29"
+    },
+    {
+      "col_index": 30,
+      "type": "H3",
+      "name": "列31"
+    },
+    {
+      "col_index": 32,
+      "type": "H3",
+      "name": "列33"
+    },
+    {
+      "col_index": 34,
+      "type": "H3",
+      "name": "列35"
+    },
+    {
+      "col_index": 38,
+      "type": "H3",
+      "name": "列39"
+    },
+    {
+      "col_index": 40,
+      "type": "H3",
+      "name": "列41"
+    },
+    {
+      "col_index": 42,
+      "type": "H3",
+      "name": "列43"
+    },
+    {
+      "col_index": 44,
+      "type": "H3",
+      "name": "列45"
+    },
+    {
+      "col_index": 46,
+      "type": "H3",
+      "name": "列47"
+    },
+    {
+      "col_index": 48,
+      "type": "H3",
+      "name": "列49"
+    },
+    {
+      "col_index": 50,
+      "type": "H3",
+      "name": "列51"
+    },
+    {
+      "col_index": 52,
+      "type": "H3",
+      "name": "列53"
+    },
+    {
+      "col_index": 54,
+      "type": "H3",
+      "name": "列55"
+    },
+    {
+      "col_index": 56,
+      "type": "H3",
+      "name": "列57"
+    },
+    {
+      "col_index": 60,
+      "type": "H3",
+      "name": "列61"
+    },
+    {
+      "col_index": 62,
+      "type": "H2",
+      "name": "列63"
     }
   ],
   "image_paths": {
@@ -99,7 +189,19 @@
   },
   "column_images": {},
   "bold_keywords": [
-    "CEWEY"
+    "欧盟CE",
+    "美国FCC认证",
+    "12万转高速无刷电机",
+    "复合锥形气旋系统",
+    "220AW",
+    "35Kpa",
+    "SILK防缠系统",
+    "SEAL防反漏设计",
+    "吸毛效率达到99%",
+    "1.5kg",
+    "人体工学",
+    "120°绿光显尘照明",
+    "宠物除毛刷头"
   ],
   "shuffling_strategies": [
     {

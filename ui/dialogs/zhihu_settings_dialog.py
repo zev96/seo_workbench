@@ -5,12 +5,12 @@
 
 from PyQt6.QtWidgets import (
     QDialog, QVBoxLayout, QHBoxLayout, QLabel, 
-    QGroupBox, QFormLayout, QSpinBox, QTextEdit
+    QGroupBox, QFormLayout, QSpinBox, QTextEdit, QCheckBox, QFileDialog
 )
 from PyQt6.QtCore import Qt
 from qfluentwidgets import (
     PushButton, LineEdit, SpinBox, TextEdit, MessageBox,
-    FluentIcon
+    FluentIcon, ComboBox
 )
 from loguru import logger
 from sqlalchemy.orm import Session
@@ -54,10 +54,49 @@ class ZhihuSettingsDialog(QDialog):
         cookie_group.setLayout(cookie_layout)
         layout.addWidget(cookie_group)
         
+        # ChromeDriver 配置区
+        driver_group = QGroupBox("🔧 ChromeDriver 配置")
+        driver_layout = QVBoxLayout()
+        
+        driver_info = QLabel(
+            "💡 提示：为降低知乎反爬检测，请手动配置本机 ChromeDriver 路径\n"
+            "下载地址：https://googlechromelabs.github.io/chrome-for-testing/\n"
+            "请确保 ChromeDriver 版本与本机 Chrome 浏览器版本一致"
+        )
+        driver_info.setStyleSheet("color: #666; padding: 10px; background: #f5f5f5; border-radius: 5px;")
+        driver_info.setWordWrap(True)
+        driver_layout.addWidget(driver_info)
+        
+        # ChromeDriver 路径选择
+        path_layout = QHBoxLayout()
+        self.chromedriver_path_input = LineEdit()
+        self.chromedriver_path_input.setPlaceholderText("请选择 chromedriver.exe 文件路径...")
+        path_layout.addWidget(self.chromedriver_path_input)
+        
+        self.browse_btn = PushButton("浏览...", self, FluentIcon.FOLDER)
+        self.browse_btn.clicked.connect(self._browse_chromedriver)
+        self.browse_btn.setFixedWidth(100)
+        path_layout.addWidget(self.browse_btn)
+        
+        driver_layout.addLayout(path_layout)
+        driver_group.setLayout(driver_layout)
+        layout.addWidget(driver_group)
+        
         # 防封策略配置
         anti_ban_group = QGroupBox("🛡️ 防封策略")
         anti_ban_layout = QFormLayout()
         anti_ban_layout.setSpacing(15)
+        
+        # 反检测强度选择
+        self.anti_detect_combo = ComboBox()
+        self.anti_detect_combo.addItems(["低（速度快）", "中（推荐）", "高（最稳定）"])
+        self.anti_detect_combo.setCurrentIndex(1)  # 默认"中"
+        self.anti_detect_combo.setToolTip(
+            "低：最少停顿，8-12秒/任务\n"
+            "中：适度模拟，15-30秒/任务（推荐）\n"
+            "高：强模拟，40-60秒/任务（知乎风控重时使用）"
+        )
+        anti_ban_layout.addRow("反检测强度:", self.anti_detect_combo)
         
         # User-Agent
         self.user_agent_input = LineEdit()
@@ -106,13 +145,12 @@ class ZhihuSettingsDialog(QDialog):
         retry_group.setLayout(retry_layout)
         layout.addWidget(retry_group)
         
-        # 温和模式配置
-        gentle_group = QGroupBox("🛡️ 温和模式（防封）")
+        # 温和模式配置（已被反检测强度替代，保留以兼容旧配置）
+        gentle_group = QGroupBox("🛡️ 温和模式（已集成到反检测强度）")
         gentle_layout = QFormLayout()
         gentle_layout.setSpacing(15)
         
-        from PyQt6.QtWidgets import QCheckBox
-        self.gentle_mode_check = QCheckBox("启用温和模式")
+        self.gentle_mode_check = QCheckBox("启用温和模式（旧版，已不推荐）")
         self.gentle_mode_check.setToolTip(
             "温和模式下：\n"
             "• 请求间隔：8-15秒（更长）\n"
@@ -155,6 +193,19 @@ class ZhihuSettingsDialog(QDialog):
         btn_layout.addWidget(self.cancel_btn)
         
         layout.addLayout(btn_layout)
+    
+    def _browse_chromedriver(self):
+        """浏览选择 ChromeDriver 文件"""
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            "选择 ChromeDriver 可执行文件",
+            "",
+            "可执行文件 (*.exe);;所有文件 (*.*)"
+        )
+        
+        if file_path:
+            self.chromedriver_path_input.setText(file_path)
+            logger.info(f"已选择 ChromeDriver: {file_path}")
         
     def _load_config(self):
         """加载配置"""
@@ -169,6 +220,14 @@ class ZhihuSettingsDialog(QDialog):
                 self.retry_count_spin.setValue(config.retry_count)
                 self.retry_delay_spin.setValue(config.retry_delay)
                 self.gentle_mode_check.setChecked(getattr(config, 'gentle_mode', 0) == 1)
+                
+                # 加载新字段
+                self.chromedriver_path_input.setText(getattr(config, 'chromedriver_path', '') or '')
+                
+                # 加载反检测强度
+                anti_detect_level = getattr(config, 'anti_detect_level', 'medium') or 'medium'
+                level_map = {'low': 0, 'medium': 1, 'high': 2}
+                self.anti_detect_combo.setCurrentIndex(level_map.get(anti_detect_level, 1))
                 
                 logger.info("已加载知乎监测配置")
             else:
@@ -185,6 +244,14 @@ class ZhihuSettingsDialog(QDialog):
                 MessageBox("提示", "最小间隔不能大于最大间隔", self).exec()
                 return
             
+            # 验证 ChromeDriver 路径
+            chromedriver_path = self.chromedriver_path_input.text().strip()
+            if chromedriver_path:
+                import os
+                if not os.path.exists(chromedriver_path):
+                    MessageBox("警告", f"ChromeDriver 路径不存在:\n{chromedriver_path}\n\n请确认路径是否正确", self).exec()
+                    # 不阻止保存，仅警告
+            
             config = self.db_session.query(ZhihuMonitorConfig).first()
             
             if not config:
@@ -199,6 +266,13 @@ class ZhihuSettingsDialog(QDialog):
             config.retry_count = self.retry_count_spin.value()
             config.retry_delay = self.retry_delay_spin.value()
             config.gentle_mode = 1 if self.gentle_mode_check.isChecked() else 0
+            
+            # 保存新字段
+            config.chromedriver_path = chromedriver_path or None
+            
+            # 保存反检测强度
+            level_map = {0: 'low', 1: 'medium', 2: 'high'}
+            config.anti_detect_level = level_map.get(self.anti_detect_combo.currentIndex(), 'medium')
             
             self.db_session.commit()
             
@@ -248,7 +322,9 @@ class ZhihuSettingsDialog(QDialog):
                     'delay_max': config.request_delay_max,
                     'retry_count': config.retry_count,
                     'retry_delay': config.retry_delay,
-                    'gentle_mode': getattr(config, 'gentle_mode', 0)
+                    'gentle_mode': getattr(config, 'gentle_mode', 0),
+                    'chromedriver_path': getattr(config, 'chromedriver_path', None),
+                    'anti_detect_level': getattr(config, 'anti_detect_level', 'medium')
                 }
             else:
                 # 返回默认配置
@@ -259,7 +335,9 @@ class ZhihuSettingsDialog(QDialog):
                     'delay_max': 6,
                     'retry_count': 3,
                     'retry_delay': 600,
-                    'gentle_mode': 0
+                    'gentle_mode': 0,
+                    'chromedriver_path': None,
+                    'anti_detect_level': 'medium'
                 }
                 
         except Exception as e:

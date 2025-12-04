@@ -382,6 +382,7 @@ class ZhihuMonitorTask(Base):
     id = Column(Integer, primary_key=True, autoincrement=True, comment='自增主键')
     question_url = Column(String(500), nullable=False, comment='知乎问题URL')
     question_title = Column(String(200), comment='问题标题')
+    question_detail = Column(Text, comment='问题描述/补充说明')
     target_brand = Column(String(100), nullable=False, comment='目标品牌词（我方）')
     check_range = Column(Integer, default=20, comment='检测范围（Top N）')
     
@@ -504,6 +505,11 @@ class ZhihuMonitorConfig(Base):
     retry_count = Column(Integer, default=3, comment='失败重试次数')
     retry_delay = Column(Integer, default=600, comment='重试间隔（秒）')
     gentle_mode = Column(Integer, default=0, comment='温和模式: 0=否 1=是')
+    
+    # 新增：ChromeDriver 路径和反检测级别
+    chromedriver_path = Column(String(500), comment='ChromeDriver 可执行文件路径')
+    anti_detect_level = Column(String(20), default='medium', comment='反检测强度: low=低 medium=中 high=高')
+    
     updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now, comment='更新时间')
     
     def to_dict(self):
@@ -517,5 +523,7 @@ class ZhihuMonitorConfig(Base):
             'retry_count': self.retry_count,
             'retry_delay': self.retry_delay,
             'gentle_mode': self.gentle_mode,
+            'chromedriver_path': self.chromedriver_path,
+            'anti_detect_level': self.anti_detect_level,
             'updated_at': self.updated_at.isoformat() if self.updated_at else None
         }

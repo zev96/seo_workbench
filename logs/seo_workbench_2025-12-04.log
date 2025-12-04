@@ -1,0 +1,647 @@
+2025-12-04 10:09:03 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-04 10:09:03 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-04 10:09:03 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-04 10:09:03 | INFO     | seo_workbench.database.init_db:init_database:34 - 数据库文件已存在: assets.db
+2025-12-04 10:09:03 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-04 10:09:03 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-04 10:09:03 | INFO     | seo_workbench.database.init_db:init_database:54 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-04 10:09:03 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-04 10:09:03 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-04 10:09:04 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-04 10:09:05 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 3 个监控任务
+2025-12-04 10:09:05 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:883 - 知乎监测调度器已启动
+2025-12-04 10:09:05 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-04 10:09:05 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-04 10:09:11 | INFO     | seo_workbench.ui.widgets.comparison_table:_load_table_data:396 - 表格数据加载成功: 类目ID=1
+2025-12-04 10:09:22 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:09:25 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:09:28 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 5 条排名数据
+2025-12-04 10:09:40 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_delete_task:652 - 任务已删除: 1
+2025-12-04 10:09:40 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 2 个监控任务
+2025-12-04 10:09:40 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:13:01 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-04 10:13:01 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-04 10:13:01 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-04 10:13:01 | INFO     | seo_workbench.database.init_db:init_database:34 - 数据库文件已存在: assets.db
+2025-12-04 10:13:01 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-04 10:13:01 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-04 10:13:01 | INFO     | seo_workbench.database.init_db:init_database:54 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-04 10:13:01 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-04 10:13:01 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-04 10:13:02 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-04 10:13:02 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 2 个监控任务
+2025-12-04 10:13:02 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:883 - 知乎监测调度器已启动
+2025-12-04 10:13:02 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-04 10:13:02 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-04 10:21:45 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_delete_task:652 - 任务已删除: 2
+2025-12-04 10:21:45 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-04 10:21:47 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_delete_task:652 - 任务已删除: 3
+2025-12-04 10:21:47 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 0 个监控任务
+2025-12-04 10:22:22 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_add_task:438 - 监控任务已添加: https://www.zhihu.com/question/449506220
+2025-12-04 10:22:23 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-04 10:22:34 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_add_task:438 - 监控任务已添加: https://www.zhihu.com/question/318918916
+2025-12-04 10:22:35 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 2 个监控任务
+2025-12-04 10:23:09 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_add_task:438 - 监控任务已添加: https://www.zhihu.com/question/466077385
+2025-12-04 10:23:10 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 3 个监控任务
+2025-12-04 10:23:18 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-04 10:23:18 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:502 - ✅ ChromeDriver 路径验证通过: C:/Users/EDY/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe
+2025-12-04 10:23:18 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:519 - ============================================================
+2025-12-04 10:23:18 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:520 - 📋 准备检测 3 个任务
+2025-12-04 10:23:18 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:522 -   1. https://www.zhihu.com/question/449506220
+2025-12-04 10:23:18 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:522 -   2. https://www.zhihu.com/question/318918916
+2025-12-04 10:23:18 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:522 -   3. https://www.zhihu.com/question/466077385
+2025-12-04 10:23:18 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:523 - 🔧 配置信息:
+2025-12-04 10:23:18 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:524 -   - ChromeDriver: C:/Users/EDY/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe
+2025-12-04 10:23:18 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:525 -   - 反检测强度: high
+2025-12-04 10:23:18 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:526 -   - Cookie: 已配置
+2025-12-04 10:23:18 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:527 - ============================================================
+2025-12-04 10:23:18 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:530 - 🚀 创建工作线程...
+2025-12-04 10:23:18 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:546 - 🎬 启动检测线程...
+2025-12-04 10:23:18 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_start_check:549 - ✅ 线程已启动，开始检测 3 个任务
+2025-12-04 10:23:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:147 - 🎯 反检测强度: high
+2025-12-04 10:23:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:167 - 📂 ChromeDriver 路径: C:/Users/EDY/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe
+2025-12-04 10:23:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:168 - 🚀 正在启动浏览器...
+2025-12-04 10:23:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:180 - 🌐 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...
+2025-12-04 10:23:19 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:195 - ✅ 浏览器已启动
+2025-12-04 10:23:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:198 - 🔧 正在注入反检测脚本...
+2025-12-04 10:23:19 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:229 - ✅ 反检测脚本已注入
+2025-12-04 10:23:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:232 - ⏳ 等待浏览器完全启动...
+2025-12-04 10:23:21 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:236 - 🧪 测试浏览器连接...
+2025-12-04 10:23:24 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:241 - ✅ 浏览器测试成功，当前URL: https://www.baidu.com/
+2025-12-04 10:23:24 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:250 - 🍪 正在注入 Cookie...
+2025-12-04 10:23:24 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:254 - 🌐 访问知乎首页...
+2025-12-04 10:23:25 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:259 - ⏳ 等待页面加载 2.9 秒...
+2025-12-04 10:23:28 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:264 - 📍 当前页面: https://www.zhihu.com/signin?next=%2F
+2025-12-04 10:23:28 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:281 - ✅ Cookie 已注入（28 条）
+2025-12-04 10:23:34 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:287 - ✅ Cookie 注入完成
+2025-12-04 10:23:34 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:302 - ✅ WebDriver 初始化成功
+2025-12-04 10:23:34 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:458 - ============================================================
+2025-12-04 10:23:34 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_progress_updated:561 - 进度: 1/3 - 正在检测: None
+2025-12-04 10:23:34 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:459 - 🎯 开始检测: https://www.zhihu.com/question/449506220
+2025-12-04 10:23:34 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:460 - 📌 目标品牌: CEWEY
+2025-12-04 10:23:34 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:461 - 📊 检测范围: Top 10
+2025-12-04 10:23:34 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:462 - ============================================================
+2025-12-04 10:23:34 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:465 - 🌐 正在访问页面: https://www.zhihu.com/question/449506220
+2025-12-04 10:23:38 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:469 - ✅ 页面访问命令已发送
+2025-12-04 10:23:39 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:476 - 📍 当前页面URL: https://www.zhihu.com/question/449506220
+2025-12-04 10:23:39 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:481 - 📄 页面标题: (24 封私信 / 99+ 条消息) 适合家用的吸尘器推荐？ - 知乎
+2025-12-04 10:23:39 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:500 - ⏳ 等待页面完全加载 6.4 秒...
+2025-12-04 10:23:45 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:504 - 🔍 等待页面关键元素...
+2025-12-04 10:23:45 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:508 - ✅ 页面关键元素已加载
+2025-12-04 10:23:45 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:516 - 🖱️ 模拟真人行为...
+2025-12-04 10:23:52 | INFO     | seo_workbench.core.zhihu_monitor_worker:_mimic_human_behavior:386 - ✅ 模拟鼠标移动完成
+2025-12-04 10:23:52 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:535 - 问题标题: 
+2025-12-04 10:23:52 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:555 - 问题描述: 问题修改后比较通顺一些显示全部...
+2025-12-04 10:23:52 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:581 - 📜 开始加载回答列表（目标: 10 条，最多 10 轮滚动）...
+2025-12-04 10:23:52 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（13 次）...
+2025-12-04 10:24:10 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:24:10 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 1 轮滚动完成，已找到 5 个回答
+2025-12-04 10:24:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（15 次）...
+2025-12-04 10:24:35 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:24:35 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 2 轮滚动完成，已找到 5 个回答
+2025-12-04 10:24:38 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（14 次）...
+2025-12-04 10:24:59 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:24:59 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 3 轮滚动完成，已找到 5 个回答
+2025-12-04 10:25:02 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（14 次）...
+2025-12-04 10:25:23 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:25:23 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 4 轮滚动完成，已找到 5 个回答
+2025-12-04 10:25:26 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（11 次）...
+2025-12-04 10:25:41 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:25:41 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 5 轮滚动完成，已找到 5 个回答
+2025-12-04 10:25:44 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（13 次）...
+2025-12-04 10:26:04 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:26:04 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 6 轮滚动完成，已找到 5 个回答
+2025-12-04 10:26:06 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（15 次）...
+2025-12-04 10:26:26 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:26:26 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 7 轮滚动完成，已找到 5 个回答
+2025-12-04 10:26:29 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（15 次）...
+2025-12-04 10:26:52 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:26:52 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 8 轮滚动完成，已找到 5 个回答
+2025-12-04 10:26:54 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（10 次）...
+2025-12-04 10:27:10 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:27:10 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 9 轮滚动完成，已找到 5 个回答
+2025-12-04 10:27:12 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（15 次）...
+2025-12-04 10:27:35 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:27:35 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 10 轮滚动完成，已找到 10 个回答
+2025-12-04 10:27:35 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:594 - ✅ 已加载足够的回答 (10 >= 10)
+2025-12-04 10:27:35 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:607 - 滚动完成，共找到 10 个回答
+2025-12-04 10:27:35 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:615 - 将扫描前 10 个回答
+2025-12-04 10:27:35 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 1 名回答前100字: 目录
+收起
+一、戴森
+1、戴森(Dyson) V8 Fluffy PLUS
+3、戴森V12 Detect Slim Fluffy无绳吸尘器
+二、美的
+1、美的Q3
+2、美的（Midea）吸尘器Q6
+三
+2025-12-04 10:27:35 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第1名 赞同原始文本: '赞同 22' -> 解析: 22
+2025-12-04 10:27:35 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第1名 未找到评论数元素
+2025-12-04 10:27:35 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第1名: 作者=独钓寒江雪, 品牌=未提及, 赞同=22, 评论=0
+2025-12-04 10:27:36 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 2 名回答前100字: 预算不高的话选几百来块的就完全够用了，现在的吸尘器很多都做的蛮好的，吸力续航和使用的感受都能很均衡。如果你不知道咋去挑，挑什么好，我觉得可以写看看我下面写的文章，了解一台吸尘器的关键性能是啥，然后再从
+2025-12-04 10:27:36 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第2名 赞同原始文本: '赞同 21' -> 解析: 21
+2025-12-04 10:27:36 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第2名 未找到评论数元素
+2025-12-04 10:27:36 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第2名: 作者=我不是淑女, 品牌=未提及, 赞同=21, 评论=0
+2025-12-04 10:27:37 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 3 名回答前100字: 家里用的话，其实没啥太多要求，日常的垃圾就那些，吸力的话够用就好了，最重要的还得去看看你选的吸尘器使用体验好不好，太重的会累，刷头要是设计的不好就会花很多时间去搞干净。想要买对还得做个功课，我之前写过
+2025-12-04 10:27:37 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第3名 赞同原始文本: '赞同 12' -> 解析: 12
+2025-12-04 10:27:37 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第3名 未找到评论数元素
+2025-12-04 10:27:37 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第3名: 作者=伊贝贝, 品牌=未提及, 赞同=12, 评论=0
+2025-12-04 10:27:38 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 4 名回答前100字: 戴森。戴森的质量和技术都很好，被称为手机界的“苹果”。
+小狗。小狗的售后服务非常好，中央维修政策，一切损坏，免费免责用户说了算。
+美的。美的品牌覆盖的领域范围很广的，美的Q6，美的Z7等吸尘器销量都非
+2025-12-04 10:27:38 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第4名 赞同原始文本: '赞同 8' -> 解析: 8
+2025-12-04 10:27:38 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第4名 未找到评论数元素
+2025-12-04 10:27:38 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第4名: 作者=東冬哥哥, 品牌=未提及, 赞同=8, 评论=0
+2025-12-04 10:27:39 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 5 名回答前100字: 吸尘器好用吗？关于这个话题，网上的讨论从未间断过，有的人觉得吸尘器简直就是家居除尘的得力助手，可以帮她们以更短的时间、更小的力气完成全屋打扫，但仍有部分朋友觉得吸尘器不好用，比如存在吸力不强、不持久、
+2025-12-04 10:27:39 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第5名 赞同原始文本: '赞同 6' -> 解析: 6
+2025-12-04 10:27:39 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第5名 未找到评论数元素
+2025-12-04 10:27:39 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第5名: 作者=我是零生万物, 品牌=未提及, 赞同=6, 评论=0
+2025-12-04 10:27:40 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 6 名回答前100字: 目录
+收起
+一、几款热度较高的吸尘器品牌
+CEWEY DS18 无线吸尘器
+友望V300 无线吸尘器
+小狗T12 无线吸尘器
+二、三款机型核心配置一览
+吸力表现对比
+续航能力比较
+过滤设计与使用体验对
+2025-12-04 10:27:40 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:645 - 在第 6 名发现品牌: CEWEY
+2025-12-04 10:27:40 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:864 - 解析赞同数失败: '已6' - invalid literal for int() with base 10: '已6'
+2025-12-04 10:27:40 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第6名 赞同原始文本: '已赞同 6' -> 解析: 0
+2025-12-04 10:27:40 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第6名 未找到评论数元素
+2025-12-04 10:27:40 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第6名: 作者=呆小布, 品牌=CEWEY, 赞同=0, 评论=0
+2025-12-04 10:27:41 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 7 名回答前100字: 目录
+收起
+1.小狗T11 Cyclone Rinse
+2.美的Q6
+3.松下MC-8D58D
+想了解更多的吸尘选购要点以及推荐可以参考这些文章
+2022年618又要来啦，大家可以尝试领取红包，看看手
+2025-12-04 10:27:41 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第7名 赞同原始文本: '赞同 6' -> 解析: 6
+2025-12-04 10:27:41 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第7名 未找到评论数元素
+2025-12-04 10:27:41 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第7名: 作者=呼噜比火车, 品牌=未提及, 赞同=6, 评论=0
+2025-12-04 10:27:42 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 8 名回答前100字: 我是爱运动的数码王姐，使用过多款吸尘器。从我的使用体验来看，我认为选择家用吸尘器需重点看吸力、续航时间、刷头配置和过滤系统四个参数。
+1.吸力大小
+吸力就是吸不吸得干净？建议:
+150AW起步，最好是
+2025-12-04 10:27:42 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:645 - 在第 8 名发现品牌: CEWEY
+2025-12-04 10:27:42 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第8名 赞同原始文本: '赞同 8' -> 解析: 8
+2025-12-04 10:27:42 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第8名 未找到评论数元素
+2025-12-04 10:27:42 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第8名: 作者=爱运动的数码王姐, 品牌=CEWEY, 赞同=8, 评论=0
+2025-12-04 10:27:43 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 9 名回答前100字: 家里用吸尘器其实别想太复杂，主要是看吸力和续航稳不稳。吸力弱的话地板上的毛发和细灰都要来回拖，挺烦的。我现在用的是无线吸尘器，我觉得很方便，不用拉着线到处走。如果你不知道选哪款好，你可以看看我前面整理
+2025-12-04 10:27:43 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:645 - 在第 9 名发现品牌: CEWEY
+2025-12-04 10:27:43 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第9名 赞同原始文本: '赞同 13' -> 解析: 13
+2025-12-04 10:27:43 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第9名 未找到评论数元素
+2025-12-04 10:27:43 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第9名: 作者=诗与远方, 品牌=CEWEY, 赞同=13, 评论=0
+2025-12-04 10:27:44 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 10 名回答前100字: 目录
+收起
+希喂CEWEY DS18
+苏泊尔C10 PLUS-L 吸尘器
+uwant 友望吸尘器 V400Pro
+家用吸尘器我比较主张买对不买贵，两千内的吸尘器性价比更高一些。
+希喂CEWEY DS1
+2025-12-04 10:27:44 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:645 - 在第 10 名发现品牌: CEWEY
+2025-12-04 10:27:44 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:864 - 解析赞同数失败: '已7' - invalid literal for int() with base 10: '已7'
+2025-12-04 10:27:44 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第10名 赞同原始文本: '已赞同 7' -> 解析: 0
+2025-12-04 10:27:44 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第10名 未找到评论数元素
+2025-12-04 10:27:44 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第10名: 作者=科技小旋风, 品牌=CEWEY, 赞同=0, 评论=0
+2025-12-04 10:27:45 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:766 - 检测完成: 找到4个排名, 收集10条Top10数据
+2025-12-04 10:27:45 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:run:100 - 任务 1 完成: 
+2025-12-04 10:27:45 | INFO     | seo_workbench.core.zhihu_monitor_worker:_mimic_browsing_zhihu:418 - 🔥 模拟浏览知乎热点...
+2025-12-04 10:27:45 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_task_completed:582 - 已保存Top10快照，包含 10 条数据
+2025-12-04 10:27:45 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_on_task_completed:596 - 任务 1 结果已保存
+2025-12-04 10:27:46 | INFO     | seo_workbench.core.zhihu_monitor_worker:_mimic_browsing_zhihu:422 - 📍 已访问热点页面: https://www.zhihu.com/hot
+2025-12-04 10:27:49 | INFO     | seo_workbench.core.zhihu_monitor_worker:_mimic_browsing_zhihu:429 - 📜 随机滚动 5 次...
+2025-12-04 10:27:57 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_mimic_browsing_zhihu:438 - ✅ 热点页面浏览完成
+2025-12-04 10:27:57 | INFO     | seo_workbench.core.zhihu_monitor_worker:run:121 - ⏳ 等待 5.1 秒后继续...
+2025-12-04 10:28:02 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:458 - ============================================================
+2025-12-04 10:28:02 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_progress_updated:561 - 进度: 2/3 - 正在检测: None
+2025-12-04 10:28:02 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:459 - 🎯 开始检测: https://www.zhihu.com/question/318918916
+2025-12-04 10:28:02 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:460 - 📌 目标品牌: CEWEY
+2025-12-04 10:28:02 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:461 - 📊 检测范围: Top 10
+2025-12-04 10:28:02 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:462 - ============================================================
+2025-12-04 10:28:02 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:465 - 🌐 正在访问页面: https://www.zhihu.com/question/318918916
+2025-12-04 10:28:03 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:469 - ✅ 页面访问命令已发送
+2025-12-04 10:28:06 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:476 - 📍 当前页面URL: https://www.zhihu.com/question/318918916
+2025-12-04 10:28:06 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:481 - 📄 页面标题: (24 封私信 / 99+ 条消息) 养猫的人都用哪种吸尘器？ - 知乎
+2025-12-04 10:28:06 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:500 - ⏳ 等待页面完全加载 5.2 秒...
+2025-12-04 10:28:11 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:504 - 🔍 等待页面关键元素...
+2025-12-04 10:28:11 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:508 - ✅ 页面关键元素已加载
+2025-12-04 10:28:11 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:516 - 🖱️ 模拟真人行为...
+2025-12-04 10:28:14 | INFO     | seo_workbench.core.zhihu_monitor_worker:_mimic_human_behavior:386 - ✅ 模拟鼠标移动完成
+2025-12-04 10:28:14 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:535 - 问题标题: 
+2025-12-04 10:28:14 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:555 - 问题描述: 租的一房一厅一阳台，在靠近高速旁，天天擦地还是一地的猫毛和灰尘，想买个吸尘方便沙发、地板清理，价格别太高的，想问下大家都是用的哪种的吸尘器？显示全部...
+2025-12-04 10:28:14 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:581 - 📜 开始加载回答列表（目标: 10 条，最多 10 轮滚动）...
+2025-12-04 10:28:14 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（11 次）...
+2025-12-04 10:28:31 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:28:31 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 1 轮滚动完成，已找到 5 个回答
+2025-12-04 10:28:34 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（10 次）...
+2025-12-04 10:28:48 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:28:48 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 2 轮滚动完成，已找到 10 个回答
+2025-12-04 10:28:48 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:594 - ✅ 已加载足够的回答 (10 >= 10)
+2025-12-04 10:28:48 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:597 - 继续滚动一轮以确保内容完全加载...
+2025-12-04 10:28:48 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（15 次）...
+2025-12-04 10:29:09 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:29:11 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:607 - 滚动完成，共找到 15 个回答
+2025-12-04 10:29:11 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:615 - 将扫描前 10 个回答
+2025-12-04 10:29:11 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 1 名回答前100字: 吸尘器真的都差不多，什么戴森杂牌都试过，并没有什么特别惊艳的，还要清理吸尘器。我觉得最好用的是 黏毛滚筒！一次性的拖地湿巾（有宠物专用的，我没闻出什么区别，可能更强力？对宠物无害）！我买了从小到大各种
+2025-12-04 10:29:12 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第1名 赞同原始文本: '赞同 5' -> 解析: 5
+2025-12-04 10:29:12 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第1名 未找到评论数元素
+2025-12-04 10:29:12 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第1名: 作者=几条道走到黑, 品牌=未提及, 赞同=5, 评论=0
+2025-12-04 10:29:12 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 2 名回答前100字: 对于养猫的小伙伴来说，猫毛应该是最大的困扰了吧，尤其是猫咪在沙发上以及床上这些容易粘毛的地方停留的话，就非常不好清理。
+所以这样的话，我们在选择吸尘器的时候就首要得看吸力的大小，只有吸力足够强才能轻松
+2025-12-04 10:29:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第2名 赞同原始文本: '赞同 14' -> 解析: 14
+2025-12-04 10:29:13 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第2名 未找到评论数元素
+2025-12-04 10:29:13 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第2名: 作者=呼噜比火车, 品牌=未提及, 赞同=14, 评论=0
+2025-12-04 10:29:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 3 名回答前100字: 这段时间养猫人用的吸尘器比较多的好像就那几个品牌，我前段时间刚好做了养宠吸尘器中比较受欢迎的几款吸尘器的对比文章，如果你纠结不知道买哪款，可以看完我做的对比分析再去做决定。
+有多少人买吸尘器是冲着省时
+2025-12-04 10:29:14 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:864 - 解析赞同数失败: '已10' - invalid literal for int() with base 10: '已10'
+2025-12-04 10:29:14 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第3名 赞同原始文本: '已赞同 10' -> 解析: 0
+2025-12-04 10:29:14 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第3名 未找到评论数元素
+2025-12-04 10:29:14 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第3名: 作者=忘川秋水, 品牌=未提及, 赞同=0, 评论=0
+2025-12-04 10:29:14 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 4 名回答前100字: 租的一房一厅一阳台，住在高速旁，天天擦地，想买一个吸尘器，价格不要太高。
+不知道题主的心理价格是多少哈？家庭面积不是很大，看起来有有拖地/擦地的需求.
+1000元以内推荐：
+美的Q3能拖地，性价比高，
+2025-12-04 10:29:15 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第4名 赞同原始文本: '赞同 7' -> 解析: 7
+2025-12-04 10:29:15 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第4名 未找到评论数元素
+2025-12-04 10:29:15 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第4名: 作者=東冬哥哥, 品牌=未提及, 赞同=7, 评论=0
+2025-12-04 10:29:15 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 5 名回答前100字: 如果你家里的猫掉毛掉得厉害的话，建议直接去看吸力大的还有能防毛发缠绕的刷头设计的吸尘器，另外就是要是你是怕麻烦的人，我觉得还有一个你也得考虑的，就是尘杯的大小，如果太小的话来回倒垃圾就很麻烦。我之前选
+2025-12-04 10:29:16 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:864 - 解析赞同数失败: '已6' - invalid literal for int() with base 10: '已6'
+2025-12-04 10:29:16 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第5名 赞同原始文本: '已赞同 6' -> 解析: 0
+2025-12-04 10:29:16 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第5名 未找到评论数元素
+2025-12-04 10:29:16 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第5名: 作者=盒子测评师, 品牌=未提及, 赞同=0, 评论=0
+2025-12-04 10:29:16 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 6 名回答前100字: 现在很多养猫的人都是买无线的吸尘器，因为要每天打扫，而且地方也比较多，无线的随手一拿就能用了，所以建议你选轻的，操作也要简单的，另外就是好用的吸尘器得吸力要稳，刷头要防毛发缠绕，这样不会觉得麻烦痛苦。
+2025-12-04 10:29:17 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:864 - 解析赞同数失败: '已6' - invalid literal for int() with base 10: '已6'
+2025-12-04 10:29:17 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第6名 赞同原始文本: '已赞同 6' -> 解析: 0
+2025-12-04 10:29:17 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第6名 未找到评论数元素
+2025-12-04 10:29:17 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第6名: 作者=玉米, 品牌=未提及, 赞同=0, 评论=0
+2025-12-04 10:29:17 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 7 名回答前100字: 当了两年的铲屎官老早就买了台无线吸尘器，用着很方便，也没有以前那么麻烦和累了。我家两只猫，虽然掉毛量不算小，但还是需要刷头得防止毛发缠在上面的设计结构，而且要清理沙发和猫窝这些地方，吸力大小也得选偏大
+2025-12-04 10:29:18 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:864 - 解析赞同数失败: '已6' - invalid literal for int() with base 10: '已6'
+2025-12-04 10:29:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第7名 赞同原始文本: '已赞同 6' -> 解析: 0
+2025-12-04 10:29:18 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第7名 未找到评论数元素
+2025-12-04 10:29:18 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第7名: 作者=番茄炒蛋, 品牌=未提及, 赞同=0, 评论=0
+2025-12-04 10:29:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 8 名回答前100字: 我身边很多养猫的朋友买的吸尘器都是选轻重量的，因为家里有养宠，打扫频率会高很多，家里好几处都得拿着吸尘器去吸，所以轻的相对没那么累，而且还要挑那种不容易缠毛的，不然刷头要经常清理。我前面写过给养宠家庭
+2025-12-04 10:29:19 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:864 - 解析赞同数失败: '已7' - invalid literal for int() with base 10: '已7'
+2025-12-04 10:29:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第8名 赞同原始文本: '已赞同 7' -> 解析: 0
+2025-12-04 10:29:19 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第8名 未找到评论数元素
+2025-12-04 10:29:19 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第8名: 作者=猪猪女孩, 品牌=未提及, 赞同=0, 评论=0
+2025-12-04 10:29:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 9 名回答前100字: 谢邀。养猫的应该都懂，我之前换吸尘器的原因就是吸不干净。地板上的那些小碎屑、细灰，要反复来回推好几次，最后还得拿拖把拖。长期下来觉得这吸尘器买回来一点用都没有。我后来才意识到，吸尘器好不好用，一定得看
+2025-12-04 10:29:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:645 - 在第 9 名发现品牌: CEWEY
+2025-12-04 10:29:20 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:864 - 解析赞同数失败: '已5' - invalid literal for int() with base 10: '已5'
+2025-12-04 10:29:20 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第9名 赞同原始文本: '已赞同 5' -> 解析: 0
+2025-12-04 10:29:20 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第9名 未找到评论数元素
+2025-12-04 10:29:20 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第9名: 作者=数码生活, 品牌=CEWEY, 赞同=0, 评论=0
+2025-12-04 10:29:20 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 10 名回答前100字: 养猫人买哪种吸尘器，得看你家主子有多精神了。
+1.一般精神，每天就知道吃了睡睡了吃，晒晒太阳，醒了和隔壁邻居猫猫叭叭两嘴，钟爱躺地板，推荐扫地机器人，解放猫猫，解放自己，岁月静好~但是贵。
+2.十分精
+2025-12-04 10:29:21 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第10名 赞同原始文本: '赞同 5' -> 解析: 5
+2025-12-04 10:29:21 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第10名 未找到评论数元素
+2025-12-04 10:29:21 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第10名: 作者=嘉嘉酱油, 品牌=未提及, 赞同=5, 评论=0
+2025-12-04 10:29:21 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:766 - 检测完成: 找到1个排名, 收集10条Top10数据
+2025-12-04 10:29:21 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:run:100 - 任务 2 完成: 
+2025-12-04 10:29:21 | INFO     | seo_workbench.core.zhihu_monitor_worker:_mimic_browsing_zhihu:418 - 🔥 模拟浏览知乎热点...
+2025-12-04 10:29:21 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_task_completed:582 - 已保存Top10快照，包含 10 条数据
+2025-12-04 10:29:21 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_on_task_completed:596 - 任务 2 结果已保存
+2025-12-04 10:29:22 | INFO     | seo_workbench.core.zhihu_monitor_worker:_mimic_browsing_zhihu:422 - 📍 已访问热点页面: https://www.zhihu.com/hot
+2025-12-04 10:29:24 | INFO     | seo_workbench.core.zhihu_monitor_worker:_mimic_browsing_zhihu:429 - 📜 随机滚动 4 次...
+2025-12-04 10:29:32 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_mimic_browsing_zhihu:438 - ✅ 热点页面浏览完成
+2025-12-04 10:29:32 | INFO     | seo_workbench.core.zhihu_monitor_worker:run:121 - ⏳ 等待 4.5 秒后继续...
+2025-12-04 10:29:37 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:458 - ============================================================
+2025-12-04 10:29:37 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:459 - 🎯 开始检测: https://www.zhihu.com/question/466077385
+2025-12-04 10:29:37 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:460 - 📌 目标品牌: CEWEY
+2025-12-04 10:29:37 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_progress_updated:561 - 进度: 3/3 - 正在检测: None
+2025-12-04 10:29:37 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:461 - 📊 检测范围: Top 10
+2025-12-04 10:29:37 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:462 - ============================================================
+2025-12-04 10:29:37 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:465 - 🌐 正在访问页面: https://www.zhihu.com/question/466077385
+2025-12-04 10:29:40 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:469 - ✅ 页面访问命令已发送
+2025-12-04 10:29:41 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:476 - 📍 当前页面URL: https://www.zhihu.com/question/466077385
+2025-12-04 10:29:41 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:481 - 📄 页面标题: (24 封私信 / 99+ 条消息) 清洁地毯一定要吸尘器吗？那款吸尘器好？ - 知乎
+2025-12-04 10:29:41 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:500 - ⏳ 等待页面完全加载 6.8 秒...
+2025-12-04 10:29:48 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:504 - 🔍 等待页面关键元素...
+2025-12-04 10:29:48 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:508 - ✅ 页面关键元素已加载
+2025-12-04 10:29:48 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:516 - 🖱️ 模拟真人行为...
+2025-12-04 10:29:52 | INFO     | seo_workbench.core.zhihu_monitor_worker:_mimic_human_behavior:386 - ✅ 模拟鼠标移动完成
+2025-12-04 10:29:52 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:535 - 问题标题: 
+2025-12-04 10:29:52 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:581 - 📜 开始加载回答列表（目标: 10 条，最多 10 轮滚动）...
+2025-12-04 10:29:52 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（12 次）...
+2025-12-04 10:30:10 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:30:10 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 1 轮滚动完成，已找到 5 个回答
+2025-12-04 10:30:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（10 次）...
+2025-12-04 10:30:27 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:30:27 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 2 轮滚动完成，已找到 5 个回答
+2025-12-04 10:30:29 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（13 次）...
+2025-12-04 10:30:48 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:30:48 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 3 轮滚动完成，已找到 5 个回答
+2025-12-04 10:30:51 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（15 次）...
+2025-12-04 10:31:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:31:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 4 轮滚动完成，已找到 5 个回答
+2025-12-04 10:31:15 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（10 次）...
+2025-12-04 10:31:30 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:31:30 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 5 轮滚动完成，已找到 5 个回答
+2025-12-04 10:31:32 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（12 次）...
+2025-12-04 10:31:51 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:31:51 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 6 轮滚动完成，已找到 5 个回答
+2025-12-04 10:31:53 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（12 次）...
+2025-12-04 10:32:12 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:32:12 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 7 轮滚动完成，已找到 5 个回答
+2025-12-04 10:32:14 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（13 次）...
+2025-12-04 10:32:35 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:32:35 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 8 轮滚动完成，已找到 5 个回答
+2025-12-04 10:32:38 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（14 次）...
+2025-12-04 10:32:57 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:32:57 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 9 轮滚动完成，已找到 10 个回答
+2025-12-04 10:32:57 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:594 - ✅ 已加载足够的回答 (10 >= 10)
+2025-12-04 10:32:57 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:597 - 继续滚动一轮以确保内容完全加载...
+2025-12-04 10:32:57 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（12 次）...
+2025-12-04 10:33:15 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-04 10:33:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:607 - 滚动完成，共找到 10 个回答
+2025-12-04 10:33:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:615 - 将扫描前 10 个回答
+2025-12-04 10:33:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 1 名回答前100字: 目录
+收起
+接下来为你推荐吸尘器啦
+小狗T12 Storm Rinse
+戴森V１１fluffy　extra
+小狗T11 Cyclone Rinse
+推荐阅读
+清洁地毯首推的肯定是吸尘器，但是你如果喜欢
+2025-12-04 10:33:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第1名 赞同原始文本: '赞同 21' -> 解析: 21
+2025-12-04 10:33:18 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第1名 未找到评论数元素
+2025-12-04 10:33:18 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第1名: 作者=東冬哥哥, 品牌=未提及, 赞同=21, 评论=0
+2025-12-04 10:33:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 2 名回答前100字: 目录
+收起
+一、几款热度较高的吸尘器品牌
+CEWEY DS18 无线吸尘器
+戴森V8 无线吸尘器
+戴森V15 无线吸尘器
+二、家用吸尘器核心配置对照
+吸力强度对比
+续航水平对比
+过滤结构和使用便捷度对
+2025-12-04 10:33:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:645 - 在第 2 名发现品牌: CEWEY
+2025-12-04 10:33:19 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:864 - 解析赞同数失败: '已18' - invalid literal for int() with base 10: '已18'
+2025-12-04 10:33:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第2名 赞同原始文本: '已赞同 18' -> 解析: 0
+2025-12-04 10:33:19 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第2名 未找到评论数元素
+2025-12-04 10:33:19 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第2名: 作者=琉璃的梦, 品牌=CEWEY, 赞同=0, 评论=0
+2025-12-04 10:33:20 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 3 名回答前100字: 目录
+收起
+美的（Midea）吸尘器 P7MAX
+更多吸尘器推荐
+【按价格分】
+【按品牌分】
+【按需求分】
+清洁地毯一定要吸尘器吗？
+清洁地毯方法肯定是很多的，不过用吸尘器更加的方便
+清洁起来也更干净
+2025-12-04 10:33:20 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第3名 赞同原始文本: '赞同 14' -> 解析: 14
+2025-12-04 10:33:20 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第3名 未找到评论数元素
+2025-12-04 10:33:20 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第3名: 作者=知乎用户nTVIqh, 品牌=未提及, 赞同=14, 评论=0
+2025-12-04 10:33:21 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 4 名回答前100字: 清洁地毯不一定非要用吸尘器，部分洗地机也是可以的，譬如必胜的洗地机，有专门的地毯模式，像地毯上的碎屑，头发之类的，都可以吸的干干净净。
+大部分洗地机都上不了地毯，因为会打湿弄脏地毯，必胜五代这款可以单
+2025-12-04 10:33:21 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第4名 赞同原始文本: '赞同 12' -> 解析: 12
+2025-12-04 10:33:21 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第4名 未找到评论数元素
+2025-12-04 10:33:21 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第4名: 作者=埃斯库多, 品牌=未提及, 赞同=12, 评论=0
+2025-12-04 10:33:22 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 5 名回答前100字: 目录
+收起
+一、按需求场景分路买
+养宠家庭：毛发多、打扫频繁选购建议：选择吸力在220AW以上、有防缠绕功能、滤网等级在HEPA 13以上、尘杯容量在1L以上的机型。
+优先选择：CEWEY DS18
+
+2025-12-04 10:33:22 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:645 - 在第 5 名发现品牌: CEWEY
+2025-12-04 10:33:22 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:864 - 解析赞同数失败: '已8' - invalid literal for int() with base 10: '已8'
+2025-12-04 10:33:22 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第5名 赞同原始文本: '已赞同 8' -> 解析: 0
+2025-12-04 10:33:22 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第5名 未找到评论数元素
+2025-12-04 10:33:22 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第5名: 作者=熬煮夜色, 品牌=CEWEY, 赞同=0, 评论=0
+2025-12-04 10:33:23 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 6 名回答前100字: 目录
+收起
+一、不想踩坑，先搞懂这三个核心参数
+续航与电池容量
+刷头场景匹配与抗缠绕
+上手体验与工艺细节
+二、2025年无线吸尘器跟着挑：3款高性价比方案
+入门段性价比担当：CEWEY DS18
+中端
+2025-12-04 10:33:23 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:645 - 在第 6 名发现品牌: CEWEY
+2025-12-04 10:33:23 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:864 - 解析赞同数失败: '已5' - invalid literal for int() with base 10: '已5'
+2025-12-04 10:33:23 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第6名 赞同原始文本: '已赞同 5' -> 解析: 0
+2025-12-04 10:33:23 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第6名 未找到评论数元素
+2025-12-04 10:33:23 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第6名: 作者=泽川, 品牌=CEWEY, 赞同=0, 评论=0
+2025-12-04 10:33:24 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 7 名回答前100字: 目录
+收起
+一、选购无线吸尘器的注意要点
+先看硬指标吸力（AW高配合高Pa）
+实战续航优先于宣传
+从尘杯容量选对机型
+二、2025年热销吸尘器性能体验综合评分榜
+三、值得选购的无线吸尘器
+重点推荐：C
+2025-12-04 10:33:24 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:645 - 在第 7 名发现品牌: CEWEY
+2025-12-04 10:33:24 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:864 - 解析赞同数失败: '已5' - invalid literal for int() with base 10: '已5'
+2025-12-04 10:33:24 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第7名 赞同原始文本: '已赞同 5' -> 解析: 0
+2025-12-04 10:33:24 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第7名 未找到评论数元素
+2025-12-04 10:33:24 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第7名: 作者=一个栗子, 品牌=CEWEY, 赞同=0, 评论=0
+2025-12-04 10:33:27 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 8 名回答前100字: 建议用吸尘器。
+虽然洗地机也可以，但是清洁比较局限，不适合干吸。
+吸尘器不仅可以吸除地毯灰尘、毛发，而且吸力大些的还可以将地毯底部的沙子，泥尘都可以清洁干净。最重要的是能经常吸，也不麻烦，也不到打湿地
+2025-12-04 10:33:27 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第8名 赞同原始文本: '赞同 5' -> 解析: 5
+2025-12-04 10:33:27 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第8名 未找到评论数元素
+2025-12-04 10:33:27 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第8名: 作者=白描, 品牌=未提及, 赞同=5, 评论=0
+2025-12-04 10:33:28 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 9 名回答前100字: 目录
+收起
+一、戳破营销陷阱
+净重合适，才扛得住长时间清扫
+滤网规格含糊不靠谱
+噱头再多，不如吸力稳
+二、三步走买得不后悔
+判断强弱先看AW参数
+重量控制好，刷头也要齐
+刷头适配多场景，尘杯一键开盖更
+2025-12-04 10:33:28 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:645 - 在第 9 名发现品牌: CEWEY
+2025-12-04 10:33:29 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:864 - 解析赞同数失败: '已4' - invalid literal for int() with base 10: '已4'
+2025-12-04 10:33:29 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第9名 赞同原始文本: '已赞同 4' -> 解析: 0
+2025-12-04 10:33:29 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第9名 未找到评论数元素
+2025-12-04 10:33:29 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第9名: 作者=双木子瑾, 品牌=CEWEY, 赞同=0, 评论=0
+2025-12-04 10:33:29 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 10 名回答前100字: 目录
+收起
+家用稳妥选（TOP5推荐）
+一、五款无线吸尘器详细推荐
+CEWEY DS18（清洁效率高）
+戴森V10（多模式切换之选）
+追觅Z20增强款（全屋场景之选）
+友望V300（硬地精细之选）
+石
+2025-12-04 10:33:29 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:645 - 在第 10 名发现品牌: CEWEY
+2025-12-04 10:33:30 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:864 - 解析赞同数失败: '已4' - invalid literal for int() with base 10: '已4'
+2025-12-04 10:33:30 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第10名 赞同原始文本: '已赞同 4' -> 解析: 0
+2025-12-04 10:33:30 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第10名 未找到评论数元素
+2025-12-04 10:33:30 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第10名: 作者=小南南爱吃鱼, 品牌=CEWEY, 赞同=0, 评论=0
+2025-12-04 10:33:30 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:766 - 检测完成: 找到6个排名, 收集10条Top10数据
+2025-12-04 10:33:30 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:run:100 - 任务 3 完成: 
+2025-12-04 10:33:30 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_task_completed:582 - 已保存Top10快照，包含 10 条数据
+2025-12-04 10:33:30 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_on_task_completed:596 - 任务 3 结果已保存
+2025-12-04 10:33:30 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 3 个监控任务
+2025-12-04 10:33:33 | INFO     | seo_workbench.core.zhihu_monitor_worker:_cleanup_driver:316 - WebDriver已关闭
+2025-12-04 10:33:37 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_on_all_completed:630 - 所有任务检测完成
+2025-12-04 10:33:49 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:33:50 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:33:51 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:33:54 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:33:54 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_open_url:334 - 打开链接: https://www.zhihu.com/question/466077385
+2025-12-04 10:34:24 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:34:26 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_open_url:334 - 打开链接: https://www.zhihu.com/question/318918916
+2025-12-04 10:35:04 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:35:08 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_open_url:334 - 打开链接: https://www.zhihu.com/question/449506220
+2025-12-04 10:35:55 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:37:36 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:37:38 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:37:41 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:37:47 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:37:52 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_open_url:334 - 打开链接: https://www.zhihu.com/question/466077385
+2025-12-04 10:39:28 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_export_to_excel:789 - 已导出 3 条记录到Excel
+2025-12-04 10:39:29 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_export_report:696 - 报告已导出: C:/Users/EDY/Desktop/知乎监测报告_20251204_103924.xlsx
+2025-12-04 10:41:22 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:41:25 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:41:34 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:41:37 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:41:38 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-04 10:41:56 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-04 10:41:56 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-04 10:41:56 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-04 10:41:56 | INFO     | seo_workbench.database.init_db:init_database:34 - 数据库文件已存在: assets.db
+2025-12-04 10:41:56 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-04 10:41:56 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-04 10:41:56 | INFO     | seo_workbench.database.init_db:init_database:54 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-04 10:41:56 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-04 10:41:56 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-04 10:41:57 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-04 10:41:57 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:304 - 已加载 3 个监控任务
+2025-12-04 10:41:57 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:886 - 知乎监测调度器已启动
+2025-12-04 10:41:57 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-04 10:41:57 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-04 10:42:04 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_select_all:387 - 全选所有任务
+2025-12-04 10:42:04 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_select_all:387 - 全选所有任务
+2025-12-04 10:42:05 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_select_all:387 - 全选所有任务
+2025-12-04 10:42:05 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_select_all:387 - 取消全选所有任务
+2025-12-04 10:42:06 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_select_all:387 - 全选所有任务
+2025-12-04 10:42:07 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_select_all:387 - 取消全选所有任务
+2025-12-04 10:42:24 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_download_template:1126 - 模板已导出: C:/Users/EDY/Downloads/知乎监测导入模板_20251204.xlsx
+2025-12-04 10:43:04 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: C:/Users/EDY/Desktop/test.xlsx, 行数: 14, 列数: 63
+2025-12-04 10:43:05 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:397 - 从 Excel 导入: 14 行, 63 列
+2025-12-04 10:43:13 | INFO     | seo_workbench.ui.widgets.smart_grid:_on_manage_images:219 - [图片管理] 列 7 当前有 0 张图片
+2025-12-04 10:43:48 | INFO     | seo_workbench.ui.widgets.smart_grid:clear_all:591 - 工作区已清空
+2025-12-04 10:46:48 | INFO     | seo_workbench.utils.file_handler:read_excel:35 - 成功读取 Excel: C:/Users/EDY/Desktop/test.xlsx, 行数: 14, 列数: 64
+2025-12-04 10:46:48 | INFO     | seo_workbench.ui.widgets.smart_grid:import_from_excel:397 - 从 Excel 导入: 14 行, 64 列
+2025-12-04 10:46:58 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:46:58 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 7 类型设置为: H2
+2025-12-04 10:47:00 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:00 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 8 类型设置为: H3
+2025-12-04 10:47:02 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:02 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 10 类型设置为: H3
+2025-12-04 10:47:04 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:04 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 12 类型设置为: H3
+2025-12-04 10:47:05 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:05 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 14 类型设置为: H4
+2025-12-04 10:47:07 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:07 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 14 类型设置为: H3
+2025-12-04 10:47:08 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:08 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 16 类型设置为: H3
+2025-12-04 10:47:14 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:14 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 20 类型设置为: H3
+2025-12-04 10:47:15 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:15 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 22 类型设置为: H2
+2025-12-04 10:47:17 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:17 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 23 类型设置为: H3
+2025-12-04 10:47:23 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:23 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 27 类型设置为: H3
+2025-12-04 10:47:27 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:27 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 29 类型设置为: H3
+2025-12-04 10:47:41 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:41 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 31 类型设置为: H3
+2025-12-04 10:47:48 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:48 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 33 类型设置为: H3
+2025-12-04 10:47:49 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:49 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 35 类型设置为: H3
+2025-12-04 10:47:50 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:50 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 37 类型设置为: H3
+2025-12-04 10:47:52 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:52 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 39 类型设置为: H3
+2025-12-04 10:47:54 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:54 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 41 类型设置为: H3
+2025-12-04 10:47:59 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:47:59 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 43 类型设置为: H3
+2025-12-04 10:48:01 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:48:01 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 45 类型设置为: H3
+2025-12-04 10:48:02 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:48:02 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 47 类型设置为: H3
+2025-12-04 10:48:04 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:48:04 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 49 类型设置为: H3
+2025-12-04 10:48:09 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:48:09 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 51 类型设置为: H3
+2025-12-04 10:48:10 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:48:10 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 53 类型设置为: H3
+2025-12-04 10:48:12 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:48:12 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 55 类型设置为: H3
+2025-12-04 10:48:14 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:48:14 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 57 类型设置为: H3
+2025-12-04 10:48:18 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:48:18 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 59 类型设置为: H3
+2025-12-04 10:48:19 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:48:19 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 61 类型设置为: H3
+2025-12-04 10:48:21 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:48:21 | INFO     | seo_workbench.ui.widgets.smart_grid:_set_column_type:202 - 列 63 类型设置为: H2
+2025-12-04 10:48:49 | INFO     | seo_workbench.ui.dialogs.ai_title_dialog:_on_generate:298 - 准备生成标题: 关键词=无线吸尘器, 数量=30
+2025-12-04 10:48:49 | INFO     | seo_workbench.ai.api_client:__init__:33 - AI 客户端初始化完成: https://api.deepseek.com, 模型: deepseek-chat
+2025-12-04 10:48:49 | INFO     | seo_workbench.ui.dialogs.ai_title_dialog:_on_generate:310 - 开始调用 AI API...
+2025-12-04 10:48:49 | INFO     | seo_workbench.ai.api_client:generate_titles:61 - 正在生成标题: 关键词='无线吸尘器', 数量=30
+2025-12-04 10:49:14 | INFO     | seo_workbench.ai.api_client:generate_titles:74 - API 请求成功，开始解析响应
+2025-12-04 10:49:14 | INFO     | seo_workbench.ai.api_client:generate_titles:86 - 成功生成 30 个标题
+2025-12-04 10:49:14 | INFO     | seo_workbench.ui.dialogs.ai_title_dialog:_on_generate:318 - AI API 返回了 30 个标题
+2025-12-04 10:49:14 | INFO     | seo_workbench.ui.dialogs.ai_title_dialog:_on_generate:347 - AI 生成了 30 个标题
+2025-12-04 10:49:16 | INFO     | seo_workbench.ui.dialogs.ai_title_dialog:_on_confirm:380 - 用户确认使用 30 个标题，格式: H1
+2025-12-04 10:49:17 | INFO     | seo_workbench.ui.main_window:_on_ai_title_dialog:1279 - AI 标题队列已设置: 30 个标题，格式: H1
+2025-12-04 10:49:30 | INFO     | seo_workbench.ui.main_window:_on_strategy_config:1401 - 混排策略配置已更新
+2025-12-04 10:49:33 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:49:33 | INFO     | seo_workbench.ui.dialogs.seo_setting_dialog:_on_save:204 - SEO 关键词已保存: ['无线吸尘器']
+2025-12-04 10:49:33 | INFO     | seo_workbench.ui.main_window:_on_seo_config:1422 - SEO 核心词配置已更新: ['无线吸尘器']
+2025-12-04 10:51:34 | INFO     | seo_workbench.config.settings:save_to_file:145 - 配置已保存到: profile.json
+2025-12-04 10:51:57 | INFO     | seo_workbench.ui.dialogs.ai_title_dialog:_on_generate:298 - 准备生成标题: 关键词=无线吸尘器, 数量=35
+2025-12-04 10:51:58 | INFO     | seo_workbench.ai.api_client:__init__:33 - AI 客户端初始化完成: https://api.deepseek.com, 模型: deepseek-chat
+2025-12-04 10:51:58 | INFO     | seo_workbench.ui.dialogs.ai_title_dialog:_on_generate:310 - 开始调用 AI API...
+2025-12-04 10:51:58 | INFO     | seo_workbench.ai.api_client:generate_titles:61 - 正在生成标题: 关键词='无线吸尘器', 数量=35
+2025-12-04 10:52:24 | INFO     | seo_workbench.ai.api_client:generate_titles:74 - API 请求成功，开始解析响应
+2025-12-04 10:52:24 | INFO     | seo_workbench.ai.api_client:generate_titles:86 - 成功生成 35 个标题
+2025-12-04 10:52:24 | INFO     | seo_workbench.ui.dialogs.ai_title_dialog:_on_generate:318 - AI API 返回了 35 个标题
+2025-12-04 10:52:24 | INFO     | seo_workbench.ui.dialogs.ai_title_dialog:_on_generate:347 - AI 生成了 35 个标题
+2025-12-04 10:52:29 | INFO     | seo_workbench.ui.dialogs.ai_title_dialog:_on_confirm:380 - 用户确认使用 35 个标题，格式: H2
+2025-12-04 10:52:29 | INFO     | seo_workbench.ui.main_window:_on_ai_title_dialog:1279 - AI 标题队列已设置: 35 个标题，格式: H2
+2025-12-04 10:53:45 | INFO     | seo_workbench.ai.api_client:__init__:33 - AI 客户端初始化完成: https://api.deepseek.com, 模型: deepseek-chat
+2025-12-04 10:53:45 | INFO     | seo_workbench.ui.dialogs.ai_rewrite_dialog:_on_generate:535 - 开始 AI 改写：选中 6 列，每列生成 5 个新内容
+2025-12-04 10:55:53 | INFO     | seo_workbench.ui.dialogs.ai_rewrite_dialog:_on_finished:578 - AI 改写完成：6 列，共 30 个新内容
+2025-12-04 10:56:01 | INFO     | seo_workbench.ui.main_window:_on_ai_rewrite_dialog:1326 - AI 改写内容已追加: 6 列，共 30 个新内容
+2025-12-04 10:56:29 | INFO     | seo_workbench.ai.api_client:__init__:33 - AI 客户端初始化完成: https://api.deepseek.com, 模型: deepseek-chat
+2025-12-04 10:56:29 | INFO     | seo_workbench.ui.dialogs.ai_rewrite_dialog:_on_generate:535 - 开始 AI 改写：选中 1 列，每列生成 5 个新内容
+2025-12-04 10:56:48 | INFO     | seo_workbench.ui.dialogs.ai_rewrite_dialog:_on_finished:578 - AI 改写完成：1 列，共 5 个新内容
+2025-12-04 10:56:50 | INFO     | seo_workbench.ui.main_window:_on_ai_rewrite_dialog:1326 - AI 改写内容已追加: 1 列，共 5 个新内容
+2025-12-04 10:58:10 | INFO     | seo_workbench.ai.api_client:__init__:33 - AI 客户端初始化完成: https://api.deepseek.com, 模型: deepseek-chat
+2025-12-04 10:58:10 | INFO     | seo_workbench.ui.dialogs.ai_rewrite_dialog:_on_generate:535 - 开始 AI 改写：选中 18 列，每列生成 5 个新内容
+2025-12-04 11:03:53 | INFO     | seo_workbench.ui.dialogs.ai_rewrite_dialog:_on_finished:578 - AI 改写完成：18 列，共 90 个新内容
+2025-12-04 11:04:00 | INFO     | seo_workbench.ui.main_window:_on_ai_rewrite_dialog:1326 - AI 改写内容已追加: 18 列，共 90 个新内容
+2025-12-04 11:04:07 | INFO     | seo_workbench.ui.widgets.comparison_table:_load_table_data:396 - 表格数据加载成功: 类目ID=1
+2025-12-04 11:04:09 | INFO     | seo_workbench.database.comparison_db_manager:save_config:444 - 保存配置成功: table_style
+2025-12-04 11:04:09 | INFO     | seo_workbench.ui.dialogs.table_style_dialog:_save_config:242 - 表格样式配置保存成功
+2025-12-04 11:04:10 | INFO     | seo_workbench.ui.dialogs.multi_task_config_dialog:__init__:33 - 加载全局配置: {'own_brand_name': 'CEWEY', 'fallback_competitor_count': 2}
+2025-12-04 11:04:10 | INFO     | seo_workbench.ui.dialogs.multi_task_config_dialog:_create_global_settings:108 - 保底竞品数量设置为: 2
+2025-12-04 11:04:16 | INFO     | seo_workbench.database.comparison_db_manager:update_task:616 - 更新任务成功: ID=1
+2025-12-04 11:04:16 | INFO     | seo_workbench.database.comparison_db_manager:set_task_parameters:697 - 任务参数设置成功: task_id=1, 参数数=6
+2025-12-04 11:04:36 | INFO     | seo_workbench.ui.dialogs.multi_task_config_dialog:__init__:33 - 加载全局配置: {'own_brand_name': 'CEWEY', 'fallback_competitor_count': 2}
+2025-12-04 11:04:36 | INFO     | seo_workbench.ui.dialogs.multi_task_config_dialog:_create_global_settings:108 - 保底竞品数量设置为: 2
+2025-12-04 11:04:46 | INFO     | seo_workbench.database.comparison_db_manager:update_task:616 - 更新任务成功: ID=2
+2025-12-04 11:04:46 | INFO     | seo_workbench.database.comparison_db_manager:set_task_parameters:697 - 任务参数设置成功: task_id=2, 参数数=4
+2025-12-04 11:04:48 | INFO     | seo_workbench.database.comparison_db_manager:update_task:616 - 更新任务成功: ID=1
+2025-12-04 11:04:48 | INFO     | seo_workbench.database.comparison_db_manager:set_task_parameters:697 - 任务参数设置成功: task_id=1, 参数数=6
+2025-12-04 11:04:49 | INFO     | seo_workbench.database.comparison_db_manager:save_config:444 - 保存配置成功: insert_strategy
+2025-12-04 11:04:49 | INFO     | seo_workbench.ui.dialogs.multi_task_config_dialog:_save_all:523 - 全局配置保存成功
+2025-12-04 11:04:51 | INFO     | seo_workbench.ui.dialogs.multi_task_config_dialog:__init__:33 - 加载全局配置: {'own_brand_name': 'CEWEY', 'fallback_competitor_count': 2}
+2025-12-04 11:04:51 | INFO     | seo_workbench.ui.dialogs.multi_task_config_dialog:_create_global_settings:108 - 保底竞品数量设置为: 2
+2025-12-04 11:05:01 | INFO     | seo_workbench.database.comparison_db_manager:add_task:566 - 添加任务成功: 续航测试

@@ -16837,3 +16837,1039 @@ CEWEY DS18 无线吸尘器
 2025-12-03 16:46:24 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:836 - 知乎监测调度器已启动
 2025-12-03 16:46:24 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
 2025-12-03 16:46:24 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 17:27:32 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 17:27:32 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 17:27:32 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 17:27:32 | INFO     | seo_workbench.database.init_db:init_database:33 - 数据库文件已存在: assets.db
+2025-12-03 17:27:32 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 17:27:32 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 17:27:32 | INFO     | seo_workbench.database.init_db:init_database:48 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 17:27:32 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 17:27:32 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 17:27:34 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 17:27:34 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 17:27:34 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:836 - 知乎监测调度器已启动
+2025-12-03 17:27:34 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 17:27:34 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 17:27:42 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:212 - 加载配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.chromedriver_path
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.allow_fake_browsing AS zhihu_monitor_configs_allow_fake_browsing, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 17:27:58 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_delete_task:604 - 任务已删除: 1
+2025-12-03 17:27:58 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 0 个监控任务
+2025-12-03 17:29:00 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 17:29:00 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 17:29:00 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 17:29:00 | INFO     | seo_workbench.database.init_db:init_database:33 - 数据库文件已存在: assets.db
+2025-12-03 17:29:00 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 17:29:00 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 17:29:00 | INFO     | seo_workbench.database.init_db:init_database:48 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 17:29:00 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 17:29:00 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 17:29:02 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 17:29:02 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 0 个监控任务
+2025-12-03 17:29:02 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:836 - 知乎监测调度器已启动
+2025-12-03 17:29:02 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 17:29:02 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 17:29:26 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_add_task:438 - 监控任务已添加: https://www.zhihu.com/question/507001348
+2025-12-03 17:29:28 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 17:29:32 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:178 - 加载配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.gentle_mode
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 17:54:07 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 17:54:07 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 17:54:07 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 17:54:07 | INFO     | seo_workbench.database.init_db:init_database:33 - 数据库文件已存在: assets.db
+2025-12-03 17:54:07 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 17:54:07 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 17:54:07 | INFO     | seo_workbench.database.init_db:init_database:48 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 17:54:07 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 17:54:07 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 17:54:08 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 17:54:08 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 17:54:08 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:836 - 知乎监测调度器已启动
+2025-12-03 17:54:08 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 17:54:08 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 17:54:56 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:211 - 加载配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.gentle_mode
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.allow_fake_browsing AS zhihu_monitor_configs_allow_fake_browsing, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 17:54:56 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:get_config_dict:305 - 获取配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.gentle_mode
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.allow_fake_browsing AS zhihu_monitor_configs_allow_fake_browsing, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 17:54:56 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:508 - 开始检测 1 个任务
+2025-12-03 17:54:57 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:185 - 初始化WebDriver失败: <urlopen error [WinError 10054] 远程主机强迫关闭了一个现有的连接。>
+2025-12-03 17:54:57 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 17:55:00 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_on_all_completed:582 - 所有任务检测完成
+2025-12-03 17:55:02 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:211 - 加载配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.gentle_mode
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.allow_fake_browsing AS zhihu_monitor_configs_allow_fake_browsing, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 17:56:01 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 17:56:01 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 17:56:01 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 17:56:01 | INFO     | seo_workbench.database.init_db:init_database:33 - 数据库文件已存在: assets.db
+2025-12-03 17:56:01 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 17:56:01 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 17:56:01 | INFO     | seo_workbench.database.init_db:init_database:48 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 17:56:01 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 17:56:01 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 17:56:02 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 17:56:02 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 17:56:02 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:836 - 知乎监测调度器已启动
+2025-12-03 17:56:02 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 17:56:02 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 17:56:08 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:211 - 加载配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.gentle_mode
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.allow_fake_browsing AS zhihu_monitor_configs_allow_fake_browsing, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 17:56:17 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:247 - 保存配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.gentle_mode
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.allow_fake_browsing AS zhihu_monitor_configs_allow_fake_browsing, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 18:05:52 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 18:05:52 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 18:05:52 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 18:05:52 | INFO     | seo_workbench.database.init_db:init_database:33 - 数据库文件已存在: assets.db
+2025-12-03 18:05:52 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 18:05:52 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 18:05:53 | INFO     | seo_workbench.database.init_db:init_database:48 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 18:05:53 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 18:05:53 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 18:05:54 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 18:05:54 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 18:05:54 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:836 - 知乎监测调度器已启动
+2025-12-03 18:05:54 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 18:05:54 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 18:06:10 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:211 - 加载配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.gentle_mode
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.allow_fake_browsing AS zhihu_monitor_configs_allow_fake_browsing, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 18:10:15 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 18:10:15 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 18:10:15 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 18:10:15 | INFO     | seo_workbench.database.init_db:init_database:33 - 数据库文件已存在: assets.db
+2025-12-03 18:10:15 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 18:10:15 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 18:10:15 | INFO     | seo_workbench.database.init_db:init_database:48 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 18:10:15 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 18:10:15 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 18:10:16 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 18:10:16 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 18:10:16 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:836 - 知乎监测调度器已启动
+2025-12-03 18:10:16 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 18:10:16 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 18:12:08 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 18:12:08 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 18:12:08 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 18:12:08 | INFO     | seo_workbench.database.init_db:init_database:33 - 数据库文件已存在: assets.db
+2025-12-03 18:12:08 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 18:12:08 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 18:12:08 | INFO     | seo_workbench.database.init_db:init_database:48 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 18:12:08 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 18:12:08 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 18:12:08 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 18:12:09 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 18:12:09 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:836 - 知乎监测调度器已启动
+2025-12-03 18:12:09 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 18:12:09 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 18:12:53 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 18:12:53 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 18:12:53 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 18:12:53 | INFO     | seo_workbench.database.init_db:init_database:33 - 数据库文件已存在: assets.db
+2025-12-03 18:12:53 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 18:12:53 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 18:12:53 | INFO     | seo_workbench.database.init_db:init_database:48 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 18:12:53 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 18:12:53 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 18:12:54 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 18:12:54 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 18:12:54 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:836 - 知乎监测调度器已启动
+2025-12-03 18:12:54 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 18:12:54 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 18:12:57 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:205 - 已加载知乎监测配置
+2025-12-03 18:14:30 | SUCCESS  | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:239 - 知乎监测配置已保存
+2025-12-03 18:14:36 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:205 - 已加载知乎监测配置
+2025-12-03 18:14:36 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:508 - 开始检测 1 个任务
+2025-12-03 18:14:41 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:185 - 初始化WebDriver失败: Message: session not created: cannot connect to chrome at 127.0.0.1:11367
+from session not created: This version of ChromeDriver only supports Chrome version 143
+Current browser version is 142.0.7444.176; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0xd20d23
+	0xd20d64
+	0xb0e6dd
+	0xb4a958
+	0xb49992
+	0xb3fbe5
+	0xb3fa16
+	0xb87826
+	0xb87047
+	0xb7b2e6
+	0xb4d321
+	0xb4e1d4
+	0xf74d64
+	0xf7031b
+	0xf8cbfa
+	0xd3ac28
+	0xd42c2d
+	0xd29028
+	0xd291e9
+	0xd13578
+	0x762ffa29
+	0x77a57a9e
+	0x77a57a6e
+
+2025-12-03 18:14:41 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:187 - 提示：请手动下载ChromeDriver并在设置中指定路径
+2025-12-03 18:14:41 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 18:14:43 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_on_all_completed:582 - 所有任务检测完成
+2025-12-03 18:14:46 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:205 - 已加载知乎监测配置
+2025-12-03 18:14:46 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:508 - 开始检测 1 个任务
+2025-12-03 18:14:50 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:185 - 初始化WebDriver失败: Message: session not created: cannot connect to chrome at 127.0.0.1:11407
+from session not created: This version of ChromeDriver only supports Chrome version 143
+Current browser version is 142.0.7444.176; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x980d23
+	0x980d64
+	0x76e6dd
+	0x7aa958
+	0x7a9992
+	0x79fbe5
+	0x79fa16
+	0x7e7826
+	0x7e7047
+	0x7db2e6
+	0x7ad321
+	0x7ae1d4
+	0xbd4d64
+	0xbd031b
+	0xbecbfa
+	0x99ac28
+	0x9a2c2d
+	0x989028
+	0x9891e9
+	0x973578
+	0x762ffa29
+	0x77a57a9e
+	0x77a57a6e
+
+2025-12-03 18:14:50 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:187 - 提示：请手动下载ChromeDriver并在设置中指定路径
+2025-12-03 18:14:50 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 18:14:53 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_on_all_completed:582 - 所有任务检测完成
+2025-12-03 18:15:43 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:205 - 已加载知乎监测配置
+2025-12-03 18:15:43 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:508 - 开始检测 1 个任务
+2025-12-03 18:15:50 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:185 - 初始化WebDriver失败: Message: session not created: cannot connect to chrome at 127.0.0.1:11477
+from session not created: This version of ChromeDriver only supports Chrome version 143
+Current browser version is 142.0.7444.176; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#sessionnotcreatedexception
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x990d23
+	0x990d64
+	0x77e6dd
+	0x7ba958
+	0x7b9992
+	0x7afbe5
+	0x7afa16
+	0x7f7826
+	0x7f7047
+	0x7eb2e6
+	0x7bd321
+	0x7be1d4
+	0xbe4d64
+	0xbe031b
+	0xbfcbfa
+	0x9aac28
+	0x9b2c2d
+	0x999028
+	0x9991e9
+	0x983578
+	0x762ffa29
+	0x77a57a9e
+	0x77a57a6e
+
+2025-12-03 18:15:50 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:187 - 提示：请手动下载ChromeDriver并在设置中指定路径
+2025-12-03 18:15:50 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 18:19:01 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_on_all_completed:582 - 所有任务检测完成
+2025-12-03 18:20:27 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 18:20:27 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 18:20:27 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 18:20:27 | INFO     | seo_workbench.database.init_db:init_database:33 - 数据库文件已存在: assets.db
+2025-12-03 18:20:27 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 18:20:27 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 18:20:27 | INFO     | seo_workbench.database.init_db:init_database:48 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 18:20:27 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 18:20:27 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 18:20:28 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 18:20:28 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 18:20:28 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:852 - 知乎监测调度器已启动
+2025-12-03 18:20:28 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 18:20:28 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 18:20:47 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:205 - 已加载知乎监测配置
+2025-12-03 18:20:56 | SUCCESS  | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:239 - 知乎监测配置已保存
+2025-12-03 18:20:59 | INFO     | seo_workbench.ui.dialogs.brand_manager_dialog:_load_brands:151 - 已加载 1 个品牌
+2025-12-03 18:21:03 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:205 - 已加载知乎监测配置
+2025-12-03 18:21:03 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:508 - 开始检测 1 个任务
+2025-12-03 18:21:03 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:146 - 正在启动Chrome浏览器...
+2025-12-03 18:21:03 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:158 - 未指定ChromeDriver路径，尝试自动获取...
+2025-12-03 18:21:08 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_init_driver:174 - 自动获取ChromeDriver失败: <urlopen error [WinError 10054] 远程主机强迫关闭了一个现有的连接。>
+
+建议解决方案：
+1. 手动下载ChromeDriver（与您的Chrome版本匹配）
+   下载地址: https://googlechromelabs.github.io/chrome-for-testing/
+2. 在【设置】中指定ChromeDriver路径
+3. 或更新Chrome浏览器到最新版本
+2025-12-03 18:21:08 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 18:21:10 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_on_all_completed:598 - 所有任务检测完成
+2025-12-03 18:21:17 | ERROR    | seo_workbench.ui.widgets.zhihu_monitor:_on_task_failed:570 - 初始化失败: 自动获取ChromeDriver失败: <urlopen error [WinError 10054] 远程主机强迫关闭了一个现有的连接。>
+
+建议解决方案：
+1. 手动下载ChromeDriver（与您的Chrome版本匹配）
+   下载地址: https://googlechromelabs.github.io/chrome-for-testing/
+2. 在【设置】中指定ChromeDriver路径
+3. 或更新Chrome浏览器到最新版本
+2025-12-03 18:21:22 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:205 - 已加载知乎监测配置
+2025-12-03 18:23:42 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 18:23:42 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 18:23:42 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 18:23:42 | INFO     | seo_workbench.database.init_db:init_database:33 - 数据库文件已存在: assets.db
+2025-12-03 18:23:42 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 18:23:42 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 18:23:42 | INFO     | seo_workbench.database.init_db:init_database:48 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 18:23:42 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 18:23:42 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 18:23:42 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 18:23:43 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 18:23:43 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:852 - 知乎监测调度器已启动
+2025-12-03 18:23:43 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 18:23:43 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 18:23:46 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:205 - 已加载知乎监测配置
+2025-12-03 18:24:02 | SUCCESS  | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:239 - 知乎监测配置已保存
+2025-12-03 18:24:07 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:205 - 已加载知乎监测配置
+2025-12-03 18:24:07 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:508 - 开始检测 1 个任务
+2025-12-03 18:24:07 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:146 - 正在启动Chrome浏览器...
+2025-12-03 18:24:07 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:150 - 使用指定的ChromeDriver: C:/Users/EDY/Downloads/chrome-win64/chrome-win64/chrome.exe
+2025-12-03 18:45:26 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 18:45:26 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 18:45:26 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 18:45:26 | INFO     | seo_workbench.database.init_db:init_database:33 - 数据库文件已存在: assets.db
+2025-12-03 18:45:26 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 18:45:26 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 18:45:26 | INFO     | seo_workbench.database.init_db:init_database:48 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 18:45:26 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 18:45:26 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 18:45:28 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 18:45:28 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 18:45:28 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:836 - 知乎监测调度器已启动
+2025-12-03 18:45:28 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 18:45:28 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 18:45:31 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:237 - 加载配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.anti_detect_level
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.anti_detect_level AS zhihu_monitor_configs_anti_detect_level, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 18:47:07 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_browse_chromedriver:208 - 已选择 ChromeDriver: C:/Users/EDY/Downloads/chrome-win64/chrome-win64/chrome.exe
+2025-12-03 18:47:16 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:286 - 保存配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.anti_detect_level
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.anti_detect_level AS zhihu_monitor_configs_anti_detect_level, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 18:48:02 | ERROR    | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:286 - 保存配置失败: (sqlite3.OperationalError) no such column: zhihu_monitor_configs.anti_detect_level
+[SQL: SELECT zhihu_monitor_configs.id AS zhihu_monitor_configs_id, zhihu_monitor_configs.cookie AS zhihu_monitor_configs_cookie, zhihu_monitor_configs.user_agent AS zhihu_monitor_configs_user_agent, zhihu_monitor_configs.request_delay_min AS zhihu_monitor_configs_request_delay_min, zhihu_monitor_configs.request_delay_max AS zhihu_monitor_configs_request_delay_max, zhihu_monitor_configs.retry_count AS zhihu_monitor_configs_retry_count, zhihu_monitor_configs.retry_delay AS zhihu_monitor_configs_retry_delay, zhihu_monitor_configs.gentle_mode AS zhihu_monitor_configs_gentle_mode, zhihu_monitor_configs.chromedriver_path AS zhihu_monitor_configs_chromedriver_path, zhihu_monitor_configs.anti_detect_level AS zhihu_monitor_configs_anti_detect_level, zhihu_monitor_configs.updated_at AS zhihu_monitor_configs_updated_at 
+FROM zhihu_monitor_configs
+ LIMIT ? OFFSET ?]
+[parameters: (1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-03 18:50:35 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 18:50:35 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 18:50:35 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 18:50:35 | INFO     | seo_workbench.database.init_db:init_database:34 - 数据库文件已存在: assets.db
+2025-12-03 18:50:35 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 18:50:35 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 18:50:35 | INFO     | seo_workbench.database.init_db:init_database:44 - 检测到数据库需要迁移，开始执行迁移...
+2025-12-03 18:50:35 | INFO     | seo_workbench.database.migrations:migrate_database:21 - 开始数据库迁移...
+2025-12-03 18:50:35 | INFO     | seo_workbench.database.migrations:_migrate_zhihu_config_v2_3:62 - 字段已存在: chromedriver_path（跳过）
+2025-12-03 18:50:35 | INFO     | seo_workbench.database.migrations:_migrate_zhihu_config_v2_3:66 - 添加字段: zhihu_monitor_configs.anti_detect_level
+2025-12-03 18:50:35 | SUCCESS  | seo_workbench.database.migrations:_migrate_zhihu_config_v2_3:72 - ✅ 已添加字段: anti_detect_level
+2025-12-03 18:50:35 | INFO     | seo_workbench.database.migrations:_migrate_zhihu_tasks_gentle_mode:93 - 添加字段: zhihu_monitor_tasks.gentle_mode
+2025-12-03 18:50:35 | SUCCESS  | seo_workbench.database.migrations:_migrate_zhihu_tasks_gentle_mode:99 - ✅ 已添加字段: gentle_mode
+2025-12-03 18:50:35 | SUCCESS  | seo_workbench.database.migrations:migrate_database:30 - 数据库迁移完成
+2025-12-03 18:50:35 | INFO     | seo_workbench.database.init_db:init_database:54 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 18:50:35 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 18:50:35 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 18:50:36 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 18:50:36 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 18:50:36 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:836 - 知乎监测调度器已启动
+2025-12-03 18:50:36 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 18:50:36 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 18:50:40 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 18:50:46 | SUCCESS  | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:279 - 知乎监测配置已保存
+2025-12-03 18:50:53 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 18:50:53 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:508 - 开始检测 1 个任务
+2025-12-03 18:50:53 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:145 - 🎯 反检测强度: medium
+2025-12-03 18:50:53 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:179 - 🖥️ 窗口大小: 1836x780
+2025-12-03 18:50:53 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:184 - 🌐 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...
+2025-12-03 18:52:01 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 18:52:02 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 18:52:02 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 18:52:02 | INFO     | seo_workbench.database.init_db:init_database:34 - 数据库文件已存在: assets.db
+2025-12-03 18:52:02 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 18:52:02 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 18:52:02 | INFO     | seo_workbench.database.init_db:init_database:54 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 18:52:02 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 18:52:02 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 18:52:02 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 18:52:03 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 18:52:03 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:836 - 知乎监测调度器已启动
+2025-12-03 18:52:03 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 18:52:03 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 18:52:43 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 18:52:46 | SUCCESS  | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:279 - 知乎监测配置已保存
+2025-12-03 18:52:49 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 18:52:49 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:508 - 开始检测 1 个任务
+2025-12-03 18:52:49 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:145 - 🎯 反检测强度: medium
+2025-12-03 18:52:49 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:179 - 🖥️ 窗口大小: 1624x724
+2025-12-03 18:52:49 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:184 - 🌐 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...
+2025-12-03 19:01:03 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 19:01:03 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 19:01:03 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 19:01:03 | INFO     | seo_workbench.database.init_db:init_database:34 - 数据库文件已存在: assets.db
+2025-12-03 19:01:03 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 19:01:03 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 19:01:03 | INFO     | seo_workbench.database.init_db:init_database:54 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 19:01:03 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 19:01:03 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 19:01:04 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 19:01:04 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 19:01:04 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:836 - 知乎监测调度器已启动
+2025-12-03 19:01:04 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 19:01:04 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 19:01:29 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 19:01:48 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_browse_chromedriver:208 - 已选择 ChromeDriver: C:/Users/EDY/Downloads/chrome-win64/chrome-win64/chrome.exe
+2025-12-03 19:01:50 | SUCCESS  | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:279 - 知乎监测配置已保存
+2025-12-03 19:01:55 | INFO     | seo_workbench.ui.dialogs.brand_manager_dialog:_load_brands:151 - 已加载 1 个品牌
+2025-12-03 19:02:01 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 19:02:01 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:508 - 开始检测 1 个任务
+2025-12-03 19:02:01 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:145 - 🎯 反检测强度: medium
+2025-12-03 19:02:01 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:179 - 🖥️ 窗口大小: 1385x742
+2025-12-03 19:02:01 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:184 - 🌐 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...
+2025-12-03 19:02:01 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:187 - 📂 ChromeDriver 路径: C:/Users/EDY/Downloads/chrome-win64/chrome-win64/chrome.exe
+2025-12-03 19:06:28 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 19:06:28 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 19:06:28 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 19:06:28 | INFO     | seo_workbench.database.init_db:init_database:34 - 数据库文件已存在: assets.db
+2025-12-03 19:06:28 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 19:06:28 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 19:06:28 | INFO     | seo_workbench.database.init_db:init_database:54 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 19:06:28 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 19:06:28 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 19:06:30 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 19:06:30 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 19:06:30 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:836 - 知乎监测调度器已启动
+2025-12-03 19:06:30 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 19:06:30 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 19:06:37 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 19:06:49 | SUCCESS  | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:279 - 知乎监测配置已保存
+2025-12-03 19:06:51 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 19:07:19 | SUCCESS  | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:279 - 知乎监测配置已保存
+2025-12-03 19:07:31 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 19:07:31 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:508 - 开始检测 1 个任务
+2025-12-03 19:07:31 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:145 - 🎯 反检测强度: medium
+2025-12-03 19:07:31 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:167 - 📂 ChromeDriver 路径: C:/Users/EDY/Downloads/chrome-win64/chrome-win64/chrome.exe
+2025-12-03 19:07:31 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:180 - 🚀 正在启动浏览器（可能需要几秒钟）...
+2025-12-03 19:08:57 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 19:09:03 | SUCCESS  | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:279 - 知乎监测配置已保存
+2025-12-03 19:15:05 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 19:15:05 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 19:15:05 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 19:15:05 | INFO     | seo_workbench.database.init_db:init_database:34 - 数据库文件已存在: assets.db
+2025-12-03 19:15:05 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 19:15:05 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 19:15:05 | INFO     | seo_workbench.database.init_db:init_database:54 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 19:15:05 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 19:15:05 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 19:15:06 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 19:15:06 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 19:15:06 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:836 - 知乎监测调度器已启动
+2025-12-03 19:15:06 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 19:15:06 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 19:15:09 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 19:15:13 | SUCCESS  | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:279 - 知乎监测配置已保存
+2025-12-03 19:15:19 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 19:15:19 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:508 - 开始检测 1 个任务
+2025-12-03 19:15:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:147 - 🎯 反检测强度: medium
+2025-12-03 19:15:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:167 - 📂 ChromeDriver 路径: C:/Users/EDY/Downloads/chrome-win64/chrome-win64/chrome.exe
+2025-12-03 19:15:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:168 - 🚀 正在启动浏览器...
+2025-12-03 19:15:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:180 - 🌐 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...
+2025-12-03 19:23:19 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 19:23:19 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 19:23:19 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 19:23:19 | INFO     | seo_workbench.database.init_db:init_database:34 - 数据库文件已存在: assets.db
+2025-12-03 19:23:19 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 19:23:19 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 19:23:19 | INFO     | seo_workbench.database.init_db:init_database:54 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 19:23:19 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 19:23:19 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 19:23:21 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 19:23:21 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 19:23:21 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:883 - 知乎监测调度器已启动
+2025-12-03 19:23:21 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 19:23:21 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 19:26:28 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 19:26:28 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 19:26:28 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 19:26:28 | INFO     | seo_workbench.database.init_db:init_database:34 - 数据库文件已存在: assets.db
+2025-12-03 19:26:28 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 19:26:28 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 19:26:28 | INFO     | seo_workbench.database.init_db:init_database:54 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 19:26:28 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 19:26:28 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 19:26:29 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 19:26:29 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 19:26:29 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:883 - 知乎监测调度器已启动
+2025-12-03 19:26:29 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 19:26:29 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 19:26:37 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 19:26:42 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_browse_chromedriver:208 - 已选择 ChromeDriver: C:/Users/EDY/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe
+2025-12-03 19:26:47 | SUCCESS  | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:279 - 知乎监测配置已保存
+2025-12-03 19:26:50 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 19:26:50 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:502 - ✅ ChromeDriver 路径验证通过: C:/Users/EDY/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe
+2025-12-03 19:26:50 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:519 - ============================================================
+2025-12-03 19:26:50 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:520 - 📋 准备检测 1 个任务
+2025-12-03 19:26:50 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:522 -   1. https://www.zhihu.com/question/507001348
+2025-12-03 19:26:50 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:523 - 🔧 配置信息:
+2025-12-03 19:26:50 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:524 -   - ChromeDriver: C:/Users/EDY/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe
+2025-12-03 19:26:50 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:525 -   - 反检测强度: medium
+2025-12-03 19:26:50 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:526 -   - Cookie: 已配置
+2025-12-03 19:26:50 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:527 - ============================================================
+2025-12-03 19:26:50 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:530 - 🚀 创建工作线程...
+2025-12-03 19:26:50 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:546 - 🎬 启动检测线程...
+2025-12-03 19:26:50 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_start_check:549 - ✅ 线程已启动，开始检测 1 个任务
+2025-12-03 19:26:50 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:147 - 🎯 反检测强度: medium
+2025-12-03 19:26:50 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:167 - 📂 ChromeDriver 路径: C:/Users/EDY/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe
+2025-12-03 19:26:50 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:168 - 🚀 正在启动浏览器...
+2025-12-03 19:26:50 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:180 - 🌐 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...
+2025-12-03 19:26:51 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:195 - ✅ 浏览器已启动
+2025-12-03 19:26:51 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:198 - 🔧 正在注入反检测脚本...
+2025-12-03 19:26:51 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:229 - ✅ 反检测脚本已注入
+2025-12-03 19:26:51 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:232 - ⏳ 等待浏览器完全启动...
+2025-12-03 19:26:53 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:236 - 🧪 测试浏览器连接...
+2025-12-03 19:26:55 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:241 - ✅ 浏览器测试成功，当前URL: https://www.baidu.com/
+2025-12-03 19:26:55 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:250 - 🍪 正在注入 Cookie...
+2025-12-03 19:26:55 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:254 - 🌐 访问知乎首页...
+2025-12-03 19:26:57 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:259 - ⏳ 等待页面加载 2.6 秒...
+2025-12-03 19:26:59 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:264 - 📍 当前页面: https://www.zhihu.com/signin?next=%2F
+2025-12-03 19:26:59 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:281 - ✅ Cookie 已注入（15 条）
+2025-12-03 19:27:11 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:287 - ✅ Cookie 注入完成
+2025-12-03 19:27:11 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:302 - ✅ WebDriver 初始化成功
+2025-12-03 19:27:11 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:458 - ============================================================
+2025-12-03 19:27:11 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_progress_updated:561 - 进度: 1/1 - 正在检测: None
+2025-12-03 19:27:11 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:459 - 🎯 开始检测: https://www.zhihu.com/question/507001348
+2025-12-03 19:27:11 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:460 - 📌 目标品牌: CEWEY
+2025-12-03 19:27:11 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:461 - 📊 检测范围: Top 10
+2025-12-03 19:27:11 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:462 - ============================================================
+2025-12-03 19:27:11 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:465 - 🌐 正在访问页面: https://www.zhihu.com/question/507001348
+2025-12-03 19:27:15 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:469 - ✅ 页面访问命令已发送
+2025-12-03 19:27:16 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:476 - 📍 当前页面URL: https://www.zhihu.com/question/507001348
+2025-12-03 19:27:16 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:481 - 📄 页面标题: (1 封私信 / 9 条消息) 吸尘器品牌排行榜前十名，家用吸尘器哪种最实用？ - 知乎
+2025-12-03 19:27:16 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:500 - ⏳ 等待页面完全加载 2.6 秒...
+2025-12-03 19:27:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:504 - 🔍 等待页面关键元素...
+2025-12-03 19:27:18 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:508 - ✅ 页面关键元素已加载
+2025-12-03 19:27:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:516 - 🖱️ 模拟真人行为...
+2025-12-03 19:27:23 | INFO     | seo_workbench.core.zhihu_monitor_worker:_mimic_human_behavior:386 - ✅ 模拟鼠标移动完成
+2025-12-03 19:27:23 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:535 - 问题标题: 
+2025-12-03 19:27:23 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:558 - 📜 开始加载回答列表（最多 5 轮滚动）...
+2025-12-03 19:27:23 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（6 次）...
+2025-12-03 19:27:29 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:27:29 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:567 - 第 1 轮滚动完成，已找到 5 个回答
+2025-12-03 19:27:31 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（6 次）...
+2025-12-03 19:27:37 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:27:37 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:567 - 第 2 轮滚动完成，已找到 5 个回答
+2025-12-03 19:27:39 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（6 次）...
+2025-12-03 19:27:45 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:27:45 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:567 - 第 3 轮滚动完成，已找到 5 个回答
+2025-12-03 19:27:47 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（10 次）...
+2025-12-03 19:27:57 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:27:57 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:567 - 第 4 轮滚动完成，已找到 5 个回答
+2025-12-03 19:28:00 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（10 次）...
+2025-12-03 19:28:10 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:28:10 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:567 - 第 5 轮滚动完成，已找到 5 个回答
+2025-12-03 19:28:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:579 - 滚动完成，共找到 5 个回答
+2025-12-03 19:28:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:587 - 将扫描前 10 个回答
+2025-12-03 19:28:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:612 - 第 1 名回答前100字: 排名这个东西只能作为参考，就像戴森排名第一，也有很多人愿意为品牌买单，同时也会有人觉得不值得，所以怎么选择一个是看品牌背景，一个是看产品口碑和产品力，还有看个人需求和预算来选择。
+一台吸尘器主要是看马
+2025-12-03 19:28:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:667 - Top10数据 - 第1名: 翟宅宅, 品牌:未提及, 赞同:0
+2025-12-03 19:28:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:612 - 第 2 名回答前100字: 关于“吸尘器品牌排行榜前十”这种问题，其实说实话，榜单里的品牌虽然响亮，但不见得每一款都适合家用，尤其像我这种预算有限、日常清洁频率高、还有宠物和掉发困扰的用户，更在意的是吸尘器到底实不实用、有没有性
+2025-12-03 19:28:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:617 - 在第 2 名发现品牌: CEWEY
+2025-12-03 19:28:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:667 - Top10数据 - 第2名: 部落小率, 品牌:CEWEY, 赞同:0
+2025-12-03 19:28:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:612 - 第 3 名回答前100字: 目录
+收起
+一、实测对比
+头发防缠绕测试
+粉尘清洁测试
+贴边清洁测试
+二、产品介绍
+CEWEY DS18 无线吸尘器
+小狗T12 无线吸尘器
+三、总结
+家用最实用的吸尘器一般都是无线的，省力、好收纳。
+2025-12-03 19:28:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:617 - 在第 3 名发现品牌: CEWEY
+2025-12-03 19:28:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:667 - Top10数据 - 第3名: 西瓜不苦, 品牌:CEWEY, 赞同:0
+2025-12-03 19:28:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:612 - 第 4 名回答前100字: 目录
+收起
+时尚与实用兼具的外观设计
+强劲吸力，深度清洁无死角
+绿光显尘，细微灰尘无所遁形
+自集尘功能，解放双手的智慧之选
+尘杯防绕缠
+多功能刷头，满足多样清洁需求
+持久续航，清洁全程不断电
+总结
+依
+2025-12-03 19:28:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:667 - Top10数据 - 第4名: 家电魔方, 品牌:未提及, 赞同:0
+2025-12-03 19:28:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:612 - 第 5 名回答前100字: 目录
+收起
+家用稳妥选（TOP5推荐）
+一、五款无线吸尘器深度推荐
+CEWEY DS18（性价比之选）
+戴森V8（精工质感之选）
+追觅Z20增强款（全机密封之选）
+友望V300（气旋分离之选）
+石头H
+2025-12-03 19:28:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:617 - 在第 5 名发现品牌: CEWEY
+2025-12-03 19:28:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:667 - Top10数据 - 第5名: 康仔农人, 品牌:CEWEY, 赞同:0
+2025-12-03 19:28:13 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:670 - 解析第 6 个回答失败: list index out of range
+2025-12-03 19:28:13 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:670 - 解析第 7 个回答失败: list index out of range
+2025-12-03 19:28:13 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:670 - 解析第 8 个回答失败: list index out of range
+2025-12-03 19:28:13 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:670 - 解析第 9 个回答失败: list index out of range
+2025-12-03 19:28:13 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:670 - 解析第 10 个回答失败: list index out of range
+2025-12-03 19:28:13 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:687 - 检测完成: 找到3个排名, 收集5条Top10数据
+2025-12-03 19:28:13 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:run:100 - 任务 1 完成: 
+2025-12-03 19:28:13 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_task_completed:581 - 已保存Top10快照，包含 5 条数据
+2025-12-03 19:28:13 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_on_task_completed:595 - 任务 1 结果已保存
+2025-12-03 19:28:13 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 19:28:15 | INFO     | seo_workbench.core.zhihu_monitor_worker:_cleanup_driver:316 - WebDriver已关闭
+2025-12-03 19:28:16 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_on_all_completed:629 - 所有任务检测完成
+2025-12-03 19:28:18 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:291 - 已加载 5 条排名数据
+2025-12-03 19:28:37 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 19:28:40 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:291 - 已加载 5 条排名数据
+2025-12-03 19:28:49 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 19:28:49 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 19:28:49 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 19:28:49 | INFO     | seo_workbench.database.init_db:init_database:34 - 数据库文件已存在: assets.db
+2025-12-03 19:28:49 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 19:28:49 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 19:28:49 | INFO     | seo_workbench.database.init_db:init_database:54 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 19:28:49 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 19:28:49 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 19:28:50 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 19:28:50 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 19:28:50 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:883 - 知乎监测调度器已启动
+2025-12-03 19:28:50 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 19:28:50 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 19:29:36 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:291 - 已加载 5 条排名数据
+2025-12-03 19:38:28 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 19:38:28 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 19:38:28 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 19:38:28 | INFO     | seo_workbench.database.init_db:init_database:34 - 数据库文件已存在: assets.db
+2025-12-03 19:38:28 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 19:38:28 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 19:38:28 | INFO     | seo_workbench.database.init_db:init_database:54 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 19:38:28 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 19:38:28 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 19:38:29 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 19:38:29 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 1 个监控任务
+2025-12-03 19:38:29 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:883 - 知乎监测调度器已启动
+2025-12-03 19:38:29 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 19:38:29 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 19:39:02 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_add_task:438 - 监控任务已添加: https://www.zhihu.com/question/535446996
+2025-12-03 19:39:03 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 2 个监控任务
+2025-12-03 19:39:09 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 19:39:12 | SUCCESS  | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:279 - 知乎监测配置已保存
+2025-12-03 19:39:15 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 19:39:15 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:502 - ✅ ChromeDriver 路径验证通过: C:/Users/EDY/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe
+2025-12-03 19:39:15 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:519 - ============================================================
+2025-12-03 19:39:15 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:520 - 📋 准备检测 1 个任务
+2025-12-03 19:39:15 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:522 -   1. https://www.zhihu.com/question/535446996
+2025-12-03 19:39:15 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:523 - 🔧 配置信息:
+2025-12-03 19:39:15 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:524 -   - ChromeDriver: C:/Users/EDY/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe
+2025-12-03 19:39:15 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:525 -   - 反检测强度: medium
+2025-12-03 19:39:15 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:526 -   - Cookie: 已配置
+2025-12-03 19:39:15 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:527 - ============================================================
+2025-12-03 19:39:15 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:530 - 🚀 创建工作线程...
+2025-12-03 19:39:15 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:546 - 🎬 启动检测线程...
+2025-12-03 19:39:15 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_start_check:549 - ✅ 线程已启动，开始检测 1 个任务
+2025-12-03 19:39:15 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:147 - 🎯 反检测强度: medium
+2025-12-03 19:39:15 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:167 - 📂 ChromeDriver 路径: C:/Users/EDY/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe
+2025-12-03 19:39:15 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:168 - 🚀 正在启动浏览器...
+2025-12-03 19:39:15 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:180 - 🌐 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...
+2025-12-03 19:39:16 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:195 - ✅ 浏览器已启动
+2025-12-03 19:39:16 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:198 - 🔧 正在注入反检测脚本...
+2025-12-03 19:39:16 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:229 - ✅ 反检测脚本已注入
+2025-12-03 19:39:16 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:232 - ⏳ 等待浏览器完全启动...
+2025-12-03 19:39:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:236 - 🧪 测试浏览器连接...
+2025-12-03 19:39:20 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:241 - ✅ 浏览器测试成功，当前URL: https://www.baidu.com/
+2025-12-03 19:39:20 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:250 - 🍪 正在注入 Cookie...
+2025-12-03 19:39:20 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:254 - 🌐 访问知乎首页...
+2025-12-03 19:39:21 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:259 - ⏳ 等待页面加载 2.5 秒...
+2025-12-03 19:39:24 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:264 - 📍 当前页面: https://www.zhihu.com/signin?next=%2F
+2025-12-03 19:39:24 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:281 - ✅ Cookie 已注入（15 条）
+2025-12-03 19:39:30 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:287 - ✅ Cookie 注入完成
+2025-12-03 19:39:30 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:302 - ✅ WebDriver 初始化成功
+2025-12-03 19:39:30 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:458 - ============================================================
+2025-12-03 19:39:30 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_progress_updated:561 - 进度: 1/1 - 正在检测: None
+2025-12-03 19:39:30 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:459 - 🎯 开始检测: https://www.zhihu.com/question/535446996
+2025-12-03 19:39:30 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:460 - 📌 目标品牌: CEWEY
+2025-12-03 19:39:30 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:461 - 📊 检测范围: Top 10
+2025-12-03 19:39:30 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:462 - ============================================================
+2025-12-03 19:39:30 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:465 - 🌐 正在访问页面: https://www.zhihu.com/question/535446996
+2025-12-03 19:39:33 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:469 - ✅ 页面访问命令已发送
+2025-12-03 19:39:34 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:476 - 📍 当前页面URL: https://www.zhihu.com/question/535446996
+2025-12-03 19:39:34 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:481 - 📄 页面标题: (1 封私信 / 9 条消息) 冬天被罩很多毛毛灰尘、灰尘打扫怎么搞？用吸尘器好使吗？ - 知乎
+2025-12-03 19:39:34 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:500 - ⏳ 等待页面完全加载 4.8 秒...
+2025-12-03 19:39:39 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:504 - 🔍 等待页面关键元素...
+2025-12-03 19:39:39 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:508 - ✅ 页面关键元素已加载
+2025-12-03 19:39:39 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:516 - 🖱️ 模拟真人行为...
+2025-12-03 19:39:42 | INFO     | seo_workbench.core.zhihu_monitor_worker:_mimic_human_behavior:386 - ✅ 模拟鼠标移动完成
+2025-12-03 19:39:42 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:535 - 问题标题: 
+2025-12-03 19:39:42 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:561 - 📜 开始加载回答列表（目标: 10 条，最多 8 轮滚动）...
+2025-12-03 19:39:42 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（9 次）...
+2025-12-03 19:39:50 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:39:50 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:570 - 第 1 轮滚动完成，已找到 5 个回答
+2025-12-03 19:39:53 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（7 次）...
+2025-12-03 19:39:59 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:39:59 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:570 - 第 2 轮滚动完成，已找到 5 个回答
+2025-12-03 19:40:02 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（12 次）...
+2025-12-03 19:40:15 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:40:15 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:570 - 第 3 轮滚动完成，已找到 5 个回答
+2025-12-03 19:40:17 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（12 次）...
+2025-12-03 19:40:30 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:40:30 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:570 - 第 4 轮滚动完成，已找到 5 个回答
+2025-12-03 19:40:32 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（10 次）...
+2025-12-03 19:40:42 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:40:42 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:570 - 第 5 轮滚动完成，已找到 5 个回答
+2025-12-03 19:40:44 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（9 次）...
+2025-12-03 19:40:54 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:40:54 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:570 - 第 6 轮滚动完成，已找到 5 个回答
+2025-12-03 19:40:56 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（10 次）...
+2025-12-03 19:41:06 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:41:06 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:570 - 第 7 轮滚动完成，已找到 10 个回答
+2025-12-03 19:41:06 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:574 - ✅ 已加载足够的回答 (10 >= 10)
+2025-12-03 19:41:06 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:577 - 继续滚动一轮以确保内容完全加载...
+2025-12-03 19:41:06 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（9 次）...
+2025-12-03 19:41:15 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:41:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:587 - 滚动完成，共找到 10 个回答
+2025-12-03 19:41:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:595 - 将扫描前 10 个回答
+2025-12-03 19:41:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:620 - 第 1 名回答前100字: 冬天换床品那会儿，我最怕的就是满屋子飘毛。吸尘器是真好使，尤其是无线的，拿起来对着床沿吸一圈，地上再拖一下就行了。要是纠结怎么选，可以参考我写的这篇文章，有说选吸尘器的时候要注意的点和建议，还有我用下
+2025-12-03 19:41:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:625 - 在第 1 名发现品牌: CEWEY
+2025-12-03 19:41:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:675 -   第1名 赞同原始文本: '赞同 22' -> 解析: 22
+2025-12-03 19:41:18 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:704 -   第1名 未找到评论数元素
+2025-12-03 19:41:18 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:722 - ✅ Top10数据 - 第1名: 作者=浪里个浪, 品牌=CEWEY, 赞同=22, 评论=0
+2025-12-03 19:41:18 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:620 - 第 2 名回答前100字: 目录
+收起
+吸尘器的推荐：
+小狗T12 MAX Rinse擦地吸尘器
+顺造Z11MAX
+戴森V11 Fluffy Extra
+推荐阅读
+如果只是被罩有很多毛发，灰尘的话，其实除螨仪就够用了。
+如果要涉
+2025-12-03 19:41:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:675 -   第2名 赞同原始文本: '赞同 7' -> 解析: 7
+2025-12-03 19:41:19 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:704 -   第2名 未找到评论数元素
+2025-12-03 19:41:19 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:722 - ✅ Top10数据 - 第2名: 作者=東冬哥哥, 品牌=未提及, 赞同=7, 评论=0
+2025-12-03 19:41:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:620 - 第 3 名回答前100字: 目录
+收起
+一、热款无线吸尘器品牌介绍
+CEWEY DS18 无线吸尘器
+德尔玛T50 无线吸尘器
+美的Q8 Pro 无线吸尘
+二、无线吸尘器核心参数对比
+吸力大小对比
+续航参数对比
+过滤配置与用户体
+2025-12-03 19:41:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:625 - 在第 3 名发现品牌: CEWEY
+2025-12-03 19:41:20 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:675 -   第3名 赞同原始文本: '赞同 4' -> 解析: 4
+2025-12-03 19:41:20 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:704 -   第3名 未找到评论数元素
+2025-12-03 19:41:20 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:722 - ✅ Top10数据 - 第3名: 作者=freeing, 品牌=CEWEY, 赞同=4, 评论=0
+2025-12-03 19:41:20 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:620 - 第 4 名回答前100字: 目录
+收起
+二、实测对比
+常见干垃圾清洁测试
+头发防缠绕测试
+贴边清洁测试
+二、产品全貌解读
+CEWEY DS18 无线吸尘器
+米家3C无线吸尘器
+三、讲到最后
+冬天被罩掉毛是正常的，就是打扫起来挺烦
+2025-12-03 19:41:20 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:625 - 在第 4 名发现品牌: CEWEY
+2025-12-03 19:41:20 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:675 -   第4名 赞同原始文本: '赞同 4' -> 解析: 4
+2025-12-03 19:41:20 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:704 -   第4名 未找到评论数元素
+2025-12-03 19:41:20 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:722 - ✅ Top10数据 - 第4名: 作者=莫测高深, 品牌=CEWEY, 赞同=4, 评论=0
+2025-12-03 19:41:20 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:620 - 第 5 名回答前100字: 作为一名宝妈，家里上上下下都需要我，每天从早上六点就开始为家里两个孩子准备早饭，送她们去上学，回来之后就要开始一天的卫生打扫，这活看着挺简单，但做起来是真的又累又费时间，一不小心一上午又过去了。
+之前
+2025-12-03 19:41:21 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:675 -   第5名 赞同原始文本: '赞同 38' -> 解析: 38
+2025-12-03 19:41:21 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:704 -   第5名 未找到评论数元素
+2025-12-03 19:41:21 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:722 - ✅ Top10数据 - 第5名: 作者=宝妈财经说, 品牌=未提及, 赞同=38, 评论=0
+2025-12-03 19:41:21 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:620 - 第 6 名回答前100字: 吸尘器好使，但市面上专用吸床单被罩的比较少，更多针对于地毯，宠物家庭。
+小米有一款
+米家 小米随手吸尘器家用
+适用对象：沙发床褥，地毯，汽车
+米家SSXCQ01XY 随手吸尘器重量只有 0.5kg，采
+2025-12-03 19:41:21 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:675 -   第6名 赞同原始文本: '赞同 1' -> 解析: 1
+2025-12-03 19:41:21 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:704 -   第6名 未找到评论数元素
+2025-12-03 19:41:21 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:722 - ✅ Top10数据 - 第6名: 作者=dean郑, 品牌=未提及, 赞同=1, 评论=0
+2025-12-03 19:41:21 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:620 - 第 7 名回答前100字: 沙发被罩本来就很难清洗，特别是冬天的静电也会让很多小毛毛和灰尘皮屑吸附在被罩上面，万一家里再养了个小猫小狗的宠物，宠物的毛发更是让人头疼。有些人会用粘毛器，可是费了好大力气之后才发现根本没粘掉多少，浪
+2025-12-03 19:41:22 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:675 -   第7名 赞同原始文本: '赞同 1' -> 解析: 1
+2025-12-03 19:41:22 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:704 -   第7名 未找到评论数元素
+2025-12-03 19:41:22 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:722 - ✅ Top10数据 - 第7名: 作者=家居清洁研究所, 品牌=未提及, 赞同=1, 评论=0
+2025-12-03 19:41:22 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:620 - 第 8 名回答前100字: 目录
+收起
+德尔玛 VC20
+美的 Q3
+米家 2
+顺造Z11MAX
+小狗T11Cyclone Rinse
+吸尘器已经是很多家庭的必需品了。吸尘器可以说是所有家庭都可以买的清洁家电，尤其是对于家里头发
+2025-12-03 19:41:22 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:675 -   第8名 赞同原始文本: '赞同 1' -> 解析: 1
+2025-12-03 19:41:22 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:704 -   第8名 未找到评论数元素
+2025-12-03 19:41:22 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:722 - ✅ Top10数据 - 第8名: 作者=逐星月, 品牌=未提及, 赞同=1, 评论=0
+2025-12-03 19:41:23 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:620 - 第 9 名回答前100字: 其实床铺、床褥、沙发是十分容易积聚脏东西的地方。
+给你看看，常见的床单上有什么脏东西
+螨虫
+人体皮屑
+毛发
+床单、被子掉絮
+空气和汗渍留下的潮气
+不要小看这些毛发、灰尘、螨虫皮屑，这是不少易敏感体质朋
+2025-12-03 19:41:23 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:675 -   第9名 赞同原始文本: '赞同' -> 解析: 0
+2025-12-03 19:41:23 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:704 -   第9名 未找到评论数元素
+2025-12-03 19:41:23 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:722 - ✅ Top10数据 - 第9名: 作者=乌鸡哥哥, 品牌=未提及, 赞同=0, 评论=0
+2025-12-03 19:41:23 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:620 - 第 10 名回答前100字: 冬天一换被罩那灰是真夸张，我以前都是拍一拍再扫地，搞一圈人都呛得难受。现在直接拿吸尘器沿着床边和地板吸一圈，毛毛灰都进尘杯里，舒服多了。你要不知道买哪种，可以去看我下文这篇选购文章，里面有专门写吸尘器
+2025-12-03 19:41:23 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:625 - 在第 10 名发现品牌: CEWEY
+2025-12-03 19:41:24 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:675 -   第10名 赞同原始文本: '赞同 8' -> 解析: 8
+2025-12-03 19:41:24 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:704 -   第10名 未找到评论数元素
+2025-12-03 19:41:24 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:722 - ✅ Top10数据 - 第10名: 作者=碧水清河, 品牌=CEWEY, 赞同=8, 评论=0
+2025-12-03 19:41:24 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - 检测完成: 找到4个排名, 收集10条Top10数据
+2025-12-03 19:41:24 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:run:100 - 任务 2 完成: 
+2025-12-03 19:41:24 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_task_completed:581 - 已保存Top10快照，包含 10 条数据
+2025-12-03 19:41:24 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_on_task_completed:595 - 任务 2 结果已保存
+2025-12-03 19:41:24 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 2 个监控任务
+2025-12-03 19:41:26 | INFO     | seo_workbench.core.zhihu_monitor_worker:_cleanup_driver:316 - WebDriver已关闭
+2025-12-03 19:43:00 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_on_all_completed:629 - 所有任务检测完成
+2025-12-03 19:43:02 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:291 - 已加载 10 条排名数据
+2025-12-03 19:44:10 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:291 - 已加载 10 条排名数据
+2025-12-03 19:44:12 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:291 - 已加载 10 条排名数据
+2025-12-03 19:44:18 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:291 - 已加载 5 条排名数据
+2025-12-03 19:44:22 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:291 - 已加载 10 条排名数据
+2025-12-03 19:44:34 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:291 - 已加载 10 条排名数据
+2025-12-03 19:46:07 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:291 - 已加载 10 条排名数据
+2025-12-03 19:46:09 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:291 - 已加载 5 条排名数据
+2025-12-03 19:46:13 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:291 - 已加载 5 条排名数据
+2025-12-03 19:46:16 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:291 - 已加载 5 条排名数据
+2025-12-03 19:46:59 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:291 - 已加载 10 条排名数据
+2025-12-03 19:47:24 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_open_url:326 - 打开链接: https://www.zhihu.com/question/535446996
+2025-12-03 19:54:43 | INFO     | seo_workbench.utils.logger:setup_logger:56 - 日志系统初始化完成 - 日志目录: E:\Case-5\seo_workbench\logs, 级别: INFO
+2025-12-03 19:54:43 | INFO     | seo_workbench.ui.styles.fluent_style:load_font:60 - 成功加载字体: OPPO Sans 4.0
+2025-12-03 19:54:43 | INFO     | seo_workbench.ui.styles.fluent_style:apply_to_app:228 - Fluent Design 样式已应用
+2025-12-03 19:54:43 | INFO     | seo_workbench.database.init_db:init_database:34 - 数据库文件已存在: assets.db
+2025-12-03 19:54:43 | INFO     | seo_workbench.database.db_manager:_initialize:49 - 数据库管理器初始化完成: assets.db
+2025-12-03 19:54:43 | INFO     | seo_workbench.database.db_manager:create_tables:54 - 数据库表创建完成
+2025-12-03 19:54:43 | INFO     | seo_workbench.database.init_db:init_database:44 - 检测到数据库需要迁移，开始执行迁移...
+2025-12-03 19:54:43 | INFO     | seo_workbench.database.migrations:migrate_database:21 - 开始数据库迁移...
+2025-12-03 19:54:43 | INFO     | seo_workbench.database.migrations:_migrate_zhihu_config_v2_3:65 - 字段已存在: chromedriver_path（跳过）
+2025-12-03 19:54:43 | INFO     | seo_workbench.database.migrations:_migrate_zhihu_config_v2_3:77 - 字段已存在: anti_detect_level（跳过）
+2025-12-03 19:54:43 | INFO     | seo_workbench.database.migrations:_migrate_zhihu_tasks_gentle_mode:104 - 字段已存在: gentle_mode（跳过）
+2025-12-03 19:54:43 | INFO     | seo_workbench.database.migrations:_migrate_zhihu_tasks_question_detail:133 - 添加字段: zhihu_monitor_tasks.question_detail
+2025-12-03 19:54:43 | SUCCESS  | seo_workbench.database.migrations:_migrate_zhihu_tasks_question_detail:139 - ✅ 已添加字段: question_detail
+2025-12-03 19:54:43 | SUCCESS  | seo_workbench.database.migrations:migrate_database:33 - 数据库迁移完成
+2025-12-03 19:54:43 | INFO     | seo_workbench.database.init_db:init_database:54 - 数据库初始化完成 - 素材数: 7, 分类数: 6
+2025-12-03 19:54:43 | INFO     | seo_workbench.config.settings:load_from_file:179 - 配置已加载: profile.json
+2025-12-03 19:54:43 | INFO     | __main__:load_config:40 - 配置已加载: profile.json
+2025-12-03 19:54:45 | INFO     | seo_workbench.ui.main_window:_init_window:69 - Mica 毛玻璃效果已启用
+2025-12-03 19:54:45 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 2 个监控任务
+2025-12-03 19:54:45 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_init_scheduler:883 - 知乎监测调度器已启动
+2025-12-03 19:54:45 | INFO     | seo_workbench.core.zhihu_scheduler:run:41 - 知乎监测调度器已启动
+2025-12-03 19:54:45 | INFO     | seo_workbench.ui.main_window:__init__:48 - Fluent 主窗口初始化完成
+2025-12-03 19:54:55 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 19:55:04 | SUCCESS  | seo_workbench.ui.dialogs.zhihu_settings_dialog:_save_config:279 - 知乎监测配置已保存
+2025-12-03 19:55:34 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_add_task:438 - 监控任务已添加: https://www.zhihu.com/question/386440684
+2025-12-03 19:55:35 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 3 个监控任务
+2025-12-03 19:55:41 | INFO     | seo_workbench.ui.dialogs.zhihu_settings_dialog:_load_config:232 - 已加载知乎监测配置
+2025-12-03 19:55:41 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:502 - ✅ ChromeDriver 路径验证通过: C:/Users/EDY/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe
+2025-12-03 19:55:41 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:519 - ============================================================
+2025-12-03 19:55:41 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:520 - 📋 准备检测 1 个任务
+2025-12-03 19:55:41 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:522 -   1. https://www.zhihu.com/question/386440684
+2025-12-03 19:55:41 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:523 - 🔧 配置信息:
+2025-12-03 19:55:41 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:524 -   - ChromeDriver: C:/Users/EDY/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe
+2025-12-03 19:55:41 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:525 -   - 反检测强度: high
+2025-12-03 19:55:41 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:526 -   - Cookie: 已配置
+2025-12-03 19:55:41 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:527 - ============================================================
+2025-12-03 19:55:41 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:530 - 🚀 创建工作线程...
+2025-12-03 19:55:41 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_start_check:546 - 🎬 启动检测线程...
+2025-12-03 19:55:41 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_start_check:549 - ✅ 线程已启动，开始检测 1 个任务
+2025-12-03 19:55:41 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:147 - 🎯 反检测强度: high
+2025-12-03 19:55:41 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:167 - 📂 ChromeDriver 路径: C:/Users/EDY/Downloads/chromedriver-win64/chromedriver-win64/chromedriver.exe
+2025-12-03 19:55:41 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:168 - 🚀 正在启动浏览器...
+2025-12-03 19:55:41 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:180 - 🌐 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...
+2025-12-03 19:55:42 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:195 - ✅ 浏览器已启动
+2025-12-03 19:55:42 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:198 - 🔧 正在注入反检测脚本...
+2025-12-03 19:55:42 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:229 - ✅ 反检测脚本已注入
+2025-12-03 19:55:42 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:232 - ⏳ 等待浏览器完全启动...
+2025-12-03 19:55:44 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:236 - 🧪 测试浏览器连接...
+2025-12-03 19:55:46 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:241 - ✅ 浏览器测试成功，当前URL: https://www.baidu.com/
+2025-12-03 19:55:46 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:250 - 🍪 正在注入 Cookie...
+2025-12-03 19:55:46 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:254 - 🌐 访问知乎首页...
+2025-12-03 19:55:47 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:259 - ⏳ 等待页面加载 3.0 秒...
+2025-12-03 19:55:50 | INFO     | seo_workbench.core.zhihu_monitor_worker:_init_driver:264 - 📍 当前页面: https://www.zhihu.com/signin?next=%2F
+2025-12-03 19:55:50 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:281 - ✅ Cookie 已注入（28 条）
+2025-12-03 19:55:56 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:287 - ✅ Cookie 注入完成
+2025-12-03 19:55:56 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_init_driver:302 - ✅ WebDriver 初始化成功
+2025-12-03 19:55:56 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:458 - ============================================================
+2025-12-03 19:55:56 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_progress_updated:561 - 进度: 1/1 - 正在检测: None
+2025-12-03 19:55:56 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:459 - 🎯 开始检测: https://www.zhihu.com/question/386440684
+2025-12-03 19:55:56 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:460 - 📌 目标品牌: CEWEY
+2025-12-03 19:55:56 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:461 - 📊 检测范围: Top 10
+2025-12-03 19:55:56 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:462 - ============================================================
+2025-12-03 19:55:56 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:465 - 🌐 正在访问页面: https://www.zhihu.com/question/386440684
+2025-12-03 19:55:59 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:469 - ✅ 页面访问命令已发送
+2025-12-03 19:56:00 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:476 - 📍 当前页面URL: https://www.zhihu.com/question/386440684
+2025-12-03 19:56:00 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:481 - 📄 页面标题: (25 封私信 / 99+ 条消息) 请推荐一款除猫毛有效的吸尘器？ - 知乎
+2025-12-03 19:56:00 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:500 - ⏳ 等待页面完全加载 4.4 秒...
+2025-12-03 19:56:04 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:504 - 🔍 等待页面关键元素...
+2025-12-03 19:56:04 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:508 - ✅ 页面关键元素已加载
+2025-12-03 19:56:04 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:516 - 🖱️ 模拟真人行为...
+2025-12-03 19:56:12 | INFO     | seo_workbench.core.zhihu_monitor_worker:_mimic_human_behavior:386 - ✅ 模拟鼠标移动完成
+2025-12-03 19:56:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_mimic_human_behavior:397 - ✅ 模拟点击行为
+2025-12-03 19:56:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:535 - 问题标题: 
+2025-12-03 19:56:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:555 - 问题描述: 如题，家里2只猫，经常996，猫到处乱窜，到处是毛，有没有性价比比较好的除猫毛吸尘器推荐，谢谢！显示全部...
+2025-12-03 19:56:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:581 - 📜 开始加载回答列表（目标: 10 条，最多 10 轮滚动）...
+2025-12-03 19:56:13 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（10 次）...
+2025-12-03 19:56:29 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:56:29 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 1 轮滚动完成，已找到 5 个回答
+2025-12-03 19:56:31 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（12 次）...
+2025-12-03 19:56:49 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:56:49 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 2 轮滚动完成，已找到 5 个回答
+2025-12-03 19:56:52 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（13 次）...
+2025-12-03 19:57:12 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:57:12 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 3 轮滚动完成，已找到 5 个回答
+2025-12-03 19:57:15 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（11 次）...
+2025-12-03 19:57:33 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:57:33 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 4 轮滚动完成，已找到 5 个回答
+2025-12-03 19:57:36 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（10 次）...
+2025-12-03 19:57:51 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:57:51 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 5 轮滚动完成，已找到 5 个回答
+2025-12-03 19:57:54 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（15 次）...
+2025-12-03 19:58:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:58:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:590 - 第 6 轮滚动完成，已找到 10 个回答
+2025-12-03 19:58:19 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:594 - ✅ 已加载足够的回答 (10 >= 10)
+2025-12-03 19:58:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:597 - 继续滚动一轮以确保内容完全加载...
+2025-12-03 19:58:19 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:345 - 🖱️ 开始随机小步滚动（13 次）...
+2025-12-03 19:58:36 | INFO     | seo_workbench.core.zhihu_monitor_worker:_random_small_scroll:355 - ✅ 随机滚动完成
+2025-12-03 19:58:38 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:607 - 滚动完成，共找到 10 个回答
+2025-12-03 19:58:38 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:615 - 将扫描前 10 个回答
+2025-12-03 19:58:38 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 1 名回答前100字: 家里养了小宠物，真的是让主人特别头疼啊。我家里养了一只猫，我不在家的时候它在家里到处跑，搞得家里全是它的毛，而且用扫把和扫地机器人，根本打扫不干净，打扫完也很难处理，真的是养了一个祖宗啊，题主还养了2
+2025-12-03 19:58:39 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第1名 赞同原始文本: '赞同 32' -> 解析: 32
+2025-12-03 19:58:39 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第1名 未找到评论数元素
+2025-12-03 19:58:39 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第1名: 作者=東冬哥哥, 品牌=未提及, 赞同=32, 评论=0
+2025-12-03 19:58:39 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 2 名回答前100字: 京享红包，尽享年货，最高9999元红包，免费白嫖！！！
+如果主要的清洁需求是吸宠物毛发，那么没必要专门去找宠物吸尘器，因为吸尘器的原理是一样的。毛发是比较轻的杂物，对吸尘器的吸力要求并不高，市场上任何
+2025-12-03 19:58:40 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第2名 赞同原始文本: '赞同 15' -> 解析: 15
+2025-12-03 19:58:40 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第2名 未找到评论数元素
+2025-12-03 19:58:40 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第2名: 作者=白描, 品牌=未提及, 赞同=15, 评论=0
+2025-12-03 19:58:40 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 3 名回答前100字: 扫地机器人+戴森，值得拥有。戴森V8，2790。戴森V7，京东活动时候，应该2490能买吧。
+扫地机器人，科沃斯或者小米都可行。选个性价比高的款就够用了。
+床、沙发、地上，真的很快就给你吸的干干净净
+2025-12-03 19:58:40 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第3名 赞同原始文本: '赞同 13' -> 解析: 13
+2025-12-03 19:58:40 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第3名 未找到评论数元素
+2025-12-03 19:58:40 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第3名: 作者=小噜噜的大菇菇, 品牌=未提及, 赞同=13, 评论=0
+2025-12-03 19:58:40 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 4 名回答前100字: 目录
+收起
+一、围绕场景精准匹配
+过敏体质/有宝宝：扬尘敏感、二次污染担心选购建议：选择全机密封风路、滤网等级在HEPA13以上、支持可水洗或抗菌耗材、排气路径合理、对细尘控制与二次扬尘抑制表现稳定的
+2025-12-03 19:58:40 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:645 - 在第 4 名发现品牌: CEWEY
+2025-12-03 19:58:41 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:861 - 解析赞同数失败: '已10' - invalid literal for int() with base 10: '已10'
+2025-12-03 19:58:41 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第4名 赞同原始文本: '已赞同 10' -> 解析: 0
+2025-12-03 19:58:41 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第4名 未找到评论数元素
+2025-12-03 19:58:41 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第4名: 作者=豆沙包, 品牌=CEWEY, 赞同=0, 评论=0
+2025-12-03 19:58:41 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 5 名回答前100字: 家有萌宠，比家有萌娃在卫生清洁方面更难对付，首先家里有萌宠不仅需要考虑掉毛问题，还需要考虑毛掉在哪里？除了地板，还有地毯、沙发、床上，床底，因为猫咪会到处窜。其次还要考虑猫猫身上的螨虫之内的，再加上题
+2025-12-03 19:58:41 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第5名 赞同原始文本: '赞同 9' -> 解析: 9
+2025-12-03 19:58:41 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第5名 未找到评论数元素
+2025-12-03 19:58:41 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第5名: 作者=夕夕讲故事, 品牌=未提及, 赞同=9, 评论=0
+2025-12-03 19:58:41 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 6 名回答前100字: 同题主类似，我家里养了两种小比熊，也是遇到这样让人头疼的问题。家里养猫狗之类的宠物，除了能给家庭带来开心快乐之外，也会带来不少麻烦，尤其是掉毛季，天天刷毛也还是到处飞的都是，尤其喜欢爬高上低的，床上、
+2025-12-03 19:58:42 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第6名 赞同原始文本: '赞同 24' -> 解析: 24
+2025-12-03 19:58:42 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第6名 未找到评论数元素
+2025-12-03 19:58:42 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第6名: 作者=独钓寒江雪, 品牌=未提及, 赞同=24, 评论=0
+2025-12-03 19:58:42 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 7 名回答前100字: 目录
+收起
+一、识别夸大用词
+低等级滤网，过敏人群更难受
+漂亮卖点多，清洁力未必强
+二、落地买法看这里
+KPa是真空度，不是吸力
+主机别太重，刷头要实用
+持久续航更稳更耐用
+过滤等级要过关
+三、收尾说
+2025-12-03 19:58:42 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:645 - 在第 7 名发现品牌: CEWEY
+2025-12-03 19:58:42 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:861 - 解析赞同数失败: '已6' - invalid literal for int() with base 10: '已6'
+2025-12-03 19:58:42 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第7名 赞同原始文本: '已赞同 6' -> 解析: 0
+2025-12-03 19:58:43 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第7名 未找到评论数元素
+2025-12-03 19:58:43 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第7名: 作者=牛奶小草莓, 品牌=CEWEY, 赞同=0, 评论=0
+2025-12-03 19:58:43 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 8 名回答前100字: 目录
+收起
+一、家用吸尘器热门品牌速读
+CEWEY DS18 无线吸尘器
+海尔S2 无线吸尘器
+美的F30S 无线吸尘器
+二、吸尘器性能参数重点对比
+清洁力比较
+续航数据对比
+过滤结构和使用便捷度对比
+2025-12-03 19:58:43 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:645 - 在第 8 名发现品牌: CEWEY
+2025-12-03 19:58:43 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:861 - 解析赞同数失败: '已6' - invalid literal for int() with base 10: '已6'
+2025-12-03 19:58:43 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第8名 赞同原始文本: '已赞同 6' -> 解析: 0
+2025-12-03 19:58:43 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第8名 未找到评论数元素
+2025-12-03 19:58:43 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第8名: 作者=阳光下有我, 品牌=CEWEY, 赞同=0, 评论=0
+2025-12-03 19:58:43 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 9 名回答前100字: 谢邀。我以前对吸尘器的要求挺低，只要能吸点表面灰我就觉得够了。直到我自己也开始养猫，家里情况马上变得不一样。猫掉毛掉得快，我每天沙发缝、猫窝附近到处都是毛。之前那台老吸尘器声音贼大，一开机猫就炸毛到处
+2025-12-03 19:58:43 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:645 - 在第 9 名发现品牌: CEWEY
+2025-12-03 19:58:44 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_parse_vote_count:861 - 解析赞同数失败: '已6' - invalid literal for int() with base 10: '已6'
+2025-12-03 19:58:44 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第9名 赞同原始文本: '已赞同 6' -> 解析: 0
+2025-12-03 19:58:44 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第9名 未找到评论数元素
+2025-12-03 19:58:44 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第9名: 作者=枫过无痕, 品牌=CEWEY, 赞同=0, 评论=0
+2025-12-03 19:58:44 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:640 - 第 10 名回答前100字: 和题主一样，家里养了一只布偶，家里地板上、沙发上、床垫上、床底下、一些看不到的缝隙里，也都是猫毛。
+因此当时在选择吸尘器的时候，除了考虑吸尘器的吸力、外观外、也会考虑针对宠物的一些情况，去选择吸尘器。
+2025-12-03 19:58:44 | INFO     | seo_workbench.core.zhihu_monitor_worker:_check_question:695 -   第10名 赞同原始文本: '赞同 6' -> 解析: 6
+2025-12-03 19:58:44 | WARNING  | seo_workbench.core.zhihu_monitor_worker:_check_question:724 -   第10名 未找到评论数元素
+2025-12-03 19:58:44 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:742 - ✅ Top10数据 - 第10名: 作者=梧桐, 品牌=未提及, 赞同=6, 评论=0
+2025-12-03 19:58:44 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:_check_question:763 - 检测完成: 找到4个排名, 收集10条Top10数据
+2025-12-03 19:58:44 | SUCCESS  | seo_workbench.core.zhihu_monitor_worker:run:100 - 任务 3 完成: 
+2025-12-03 19:58:44 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_on_task_completed:582 - 已保存Top10快照，包含 10 条数据
+2025-12-03 19:58:44 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_on_task_completed:596 - 任务 3 结果已保存
+2025-12-03 19:58:44 | INFO     | seo_workbench.ui.widgets.zhihu_monitor:_load_tasks:301 - 已加载 3 个监控任务
+2025-12-03 19:58:46 | INFO     | seo_workbench.core.zhihu_monitor_worker:_cleanup_driver:316 - WebDriver已关闭
+2025-12-03 19:58:49 | SUCCESS  | seo_workbench.ui.widgets.zhihu_monitor:_on_all_completed:630 - 所有任务检测完成
+2025-12-03 19:58:55 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
+2025-12-03 19:59:02 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_open_url:334 - 打开链接: https://www.zhihu.com/question/386440684
+2025-12-03 19:59:16 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_open_url:334 - 打开链接: https://www.zhihu.com/question/386440684
+2025-12-03 20:00:37 | INFO     | seo_workbench.ui.dialogs.zhihu_detail_dialog:_load_snapshot:299 - 已加载 10 条排名数据
