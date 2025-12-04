@@ -1,0 +1,68 @@
+2025-12-04 17:36:39 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_check_question:486 - ❌ 访问页面失败: Message: invalid argument
+  (Session info: chrome=143.0.7499.41)
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff619ec8255
+	0x7ff619ec82b0
+	0x7ff619ca1465
+	0x7ff619c8df88
+	0x7ff619c8c3d4
+	0x7ff619c8c9f2
+	0x7ff619ca5950
+	0x7ff619d4bad4
+	0x7ff619d21fda
+	0x7ff619d4ac97
+	0x7ff619ceac29
+	0x7ff619ceba93
+	0x7ff61a1dfff0
+	0x7ff61a1da930
+	0x7ff61a1f9096
+	0x7ff619ee5754
+	0x7ff619eee6fc
+	0x7ff619ed1974
+	0x7ff619ed1b25
+	0x7ff619eb7852
+	0x7ff919d97034
+	0x7ff91b602651
+
+2025-12-04 17:36:39 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_check_question:488 - Traceback (most recent call last):
+  File "e:\Case-5\seo_workbench\core\zhihu_monitor_worker.py", line 468, in _check_question
+    self.driver.get(url)
+    ~~~~~~~~~~~~~~~^^^^^
+  File "C:\Python313\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 356, in get
+    self.execute(Command.GET, {"url": url})
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\site-packages\selenium\webdriver\remote\webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Python313\Lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.InvalidArgumentException: Message: invalid argument
+  (Session info: chrome=143.0.7499.41)
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff619ec8255
+	0x7ff619ec82b0
+	0x7ff619ca1465
+	0x7ff619c8df88
+	0x7ff619c8c3d4
+	0x7ff619c8c9f2
+	0x7ff619ca5950
+	0x7ff619d4bad4
+	0x7ff619d21fda
+	0x7ff619d4ac97
+	0x7ff619ceac29
+	0x7ff619ceba93
+	0x7ff61a1dfff0
+	0x7ff61a1da930
+	0x7ff61a1f9096
+	0x7ff619ee5754
+	0x7ff619eee6fc
+	0x7ff619ed1974
+	0x7ff619ed1b25
+	0x7ff619eb7852
+	0x7ff919d97034
+	0x7ff91b602651
+
+
+2025-12-04 17:36:39 | ERROR    | seo_workbench.ui.widgets.zhihu_monitor:_on_task_failed:617 - 任务 6 失败: 检测失败，未获取到数据

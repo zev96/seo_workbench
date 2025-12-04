@@ -85,9 +85,22 @@ class ZhihuMonitorWorker(QThread):
                     break
                 
                 task_id = task['id']
-                url = task['url']
-                target_brand = task['target_brand']
+                url = task.get('url', '')
+                target_brand = task.get('target_brand', '')
                 check_range = task.get('check_range', 20)
+                
+                # 验证任务数据
+                logger.info(f"📋 任务 {task_id} 数据: URL={repr(url)}, 品牌={repr(target_brand)}, 范围={check_range}")
+                
+                if not url:
+                    logger.error(f"❌ 任务 {task_id} URL 为空")
+                    self.task_failed.emit(task_id, "URL 为空")
+                    continue
+                
+                if not target_brand:
+                    logger.error(f"❌ 任务 {task_id} 目标品牌为空")
+                    self.task_failed.emit(task_id, "目标品牌为空")
+                    continue
                 
                 self.progress_updated.emit(index + 1, total, f"正在检测: {task.get('title', url)}")
                 
@@ -328,19 +341,19 @@ class ZhihuMonitorWorker(QThread):
         """
         anti_detect_level = self.config.get('anti_detect_level', 'medium')
         
-        # 根据反检测强度调整参数
+        # 根据反检测强度调整参数（已优化延迟时间）
         if anti_detect_level == 'low':
             actual_scrolls = random.randint(3, 6)
             scroll_range = (300, 600)
-            wait_range = (0.3, 0.8)
+            wait_range = (0.2, 0.5)
         elif anti_detect_level == 'high':
             actual_scrolls = random.randint(10, 15)
             scroll_range = (150, 400)
-            wait_range = (1.0, 2.0)
+            wait_range = (0.5, 1.0)
         else:  # medium
             actual_scrolls = random.randint(6, 12)
             scroll_range = (200, 800)
-            wait_range = (0.6, 1.4)
+            wait_range = (0.3, 0.8)
         
         logger.info(f"🖱️ 开始随机小步滚动（{actual_scrolls} 次）...")
         
@@ -363,13 +376,13 @@ class ZhihuMonitorWorker(QThread):
         anti_detect_level = self.config.get('anti_detect_level', 'medium')
         
         try:
-            # 页面加载后随机停顿
+            # 页面加载后随机停顿（已优化延迟时间）
             if anti_detect_level == 'low':
-                time.sleep(random.uniform(0.8, 1.5))
+                time.sleep(random.uniform(0.5, 1.0))
             elif anti_detect_level == 'high':
-                time.sleep(random.uniform(2.5, 5.0))
+                time.sleep(random.uniform(1.0, 2.0))
             else:  # medium
-                time.sleep(random.uniform(1.2, 3.0))
+                time.sleep(random.uniform(0.7, 1.5))
             
             # 随机鼠标移动轨迹（模拟用户扫视页面）
             if anti_detect_level != 'low':
@@ -461,6 +474,24 @@ class ZhihuMonitorWorker(QThread):
             logger.info(f"📊 检测范围: Top {check_range}")
             logger.info("="*60)
             
+            # ✅ URL 验证和修复
+            if not url or not isinstance(url, str):
+                logger.error(f"❌ URL 无效: {url}")
+                return None
+            
+            # 去除首尾空格
+            url = url.strip()
+            
+            # 确保 URL 有正确的协议前缀
+            if not url.startswith(('http://', 'https://')):
+                logger.warning(f"⚠️ URL 缺少协议前缀，自动添加 https://")
+                url = 'https://' + url
+            
+            # 验证 URL 格式
+            if not url.startswith('https://www.zhihu.com/question/'):
+                logger.error(f"❌ URL 格式错误，必须是知乎问题链接: {url}")
+                return None
+            
             # 访问页面
             logger.info(f"🌐 正在访问页面: {url}")
             
@@ -488,14 +519,14 @@ class ZhihuMonitorWorker(QThread):
                 logger.error(traceback.format_exc())
                 return None
             
-            # ✅ 增加随机等待时间（2-6秒，避免固定节奏）
+            # ✅ 增加随机等待时间（已优化为更短的延迟）
             anti_detect_level = self.config.get('anti_detect_level', 'medium')
             if anti_detect_level == 'low':
-                wait_time = random.uniform(1.5, 3.0)
+                wait_time = random.uniform(0.8, 1.5)
             elif anti_detect_level == 'high':
-                wait_time = random.uniform(4.0, 7.0)
+                wait_time = random.uniform(1.5, 2.5)
             else:  # medium
-                wait_time = random.uniform(2.0, 5.0)
+                wait_time = random.uniform(1.0, 2.0)
             
             logger.info(f"⏳ 等待页面完全加载 {wait_time:.1f} 秒...")
             time.sleep(wait_time)
@@ -566,45 +597,77 @@ class ZhihuMonitorWorker(QThread):
             except Exception as e:
                 logger.warning(f"提取浏览数据失败: {e}")
             
-            # ✅ 提取回答列表 - 使用随机小步滚动替代直接 scrollTo 底部
-            # 根据反检测强度调整参数
-            # ⚠️ 增加滚动次数以确保能加载至少10条回答
-            if anti_detect_level == 'low':
-                max_scroll_rounds = 5  # 增加（原3）
-            elif anti_detect_level == 'high':
-                max_scroll_rounds = 10  # 增加（原6）
-            else:  # medium
-                max_scroll_rounds = 8  # 增加（原5）
+            # ✅ 【优化】提取回答列表 - 目标驱动循环 + DOM瘦身策略
+            min_answers_needed = max(10, check_range)  # 确保至少加载10条（Top10快照需要）
+            max_attempts = 20  # 最大尝试次数（防止死循环）
+            logger.info(f"📜 【优化加载】目标: {min_answers_needed} 条回答，最多尝试 {max_attempts} 次")
             
-            # 确保至少滚动到能看到 check_range 或 10 条（取较大值）
-            min_answers_needed = max(10, check_range)
-            logger.info(f"📜 开始加载回答列表（目标: {min_answers_needed} 条，最多 {max_scroll_rounds} 轮滚动）...")
+            # 获取当前已有的回答数量
+            answers = self.driver.find_elements(By.CLASS_NAME, 'List-item')
+            current_count = len(answers)
+            logger.info(f"初始状态: {current_count} 条回答")
             
-            # 使用随机小步滚动（模拟真人浏览）
-            for scroll_round in range(max_scroll_rounds):
-                # 随机小步滚动（增加每轮滚动次数）
-                self._random_small_scroll(max_scrolls=12)  # 增加（原8）
+            attempt = 0
+            no_new_answers_count = 0  # 连续无新回答的次数
+            
+            # 目标驱动循环：while len(answers) < target_count
+            while current_count < min_answers_needed and attempt < max_attempts:
+                attempt += 1
+                logger.info(f"🔄 第 {attempt} 次尝试加载（当前 {current_count}/{min_answers_needed}）")
                 
-                # 检查是否已加载足够的回答
-                answers = self.driver.find_elements(By.CLASS_NAME, 'List-item')
-                logger.info(f"第 {scroll_round + 1} 轮滚动完成，已找到 {len(answers)} 个回答")
+                # 1. 执行DOM瘦身（每次循环都压缩所有新旧元素，防止页面卡顿）
+                self._collapse_all_answers_css()
                 
-                # 如果已经有足够的回答，继续滚动一轮确保内容完全加载
-                if len(answers) >= min_answers_needed:
-                    logger.success(f"✅ 已加载足够的回答 ({len(answers)} >= {min_answers_needed})")
-                    # 再滚动一轮确保内容完全渲染
-                    if scroll_round < max_scroll_rounds - 1:
-                        logger.info("继续滚动一轮以确保内容完全加载...")
-                        self._random_small_scroll(max_scrolls=6)
-                        time.sleep(random.uniform(2.0, 3.0))
-                    break
+                # 2. 【核心】触底回弹三步序列（激活知乎懒加载的关键动作）
+                try:
+                    # 第一步：猛冲到底部
+                    self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                    
+                    # 第二步：随机停顿 0.5-1.5 秒（让网页感知到触底）
+                    pause_time = random.uniform(0.5, 1.5)
+                    logger.debug(f"触底停顿 {pause_time:.2f} 秒...")
+                    time.sleep(pause_time)
+                    
+                    # 第三步：随机向上回滚 250-450 像素（模拟用户往回拉查看内容）
+                    scroll_back = random.randint(250, 450)
+                    self.driver.execute_script(f"window.scrollBy(0, -{scroll_back});")
+                    logger.debug(f"向上回滚 {scroll_back} 像素（触发懒加载）")
+                except Exception as e:
+                    logger.warning(f"触底回弹动作失败: {e}")
                 
-                # 等待新内容加载
-                time.sleep(random.uniform(2.0, 3.5))
+                # 3. 智能等待新回答加载（使用WebDriverWait监听数量变化）
+                has_new_answers = self._wait_for_new_answers(current_count, timeout=3.0)
+                
+                if has_new_answers:
+                    # 有新回答，更新计数
+                    answers = self.driver.find_elements(By.CLASS_NAME, 'List-item')
+                    new_count = len(answers)
+                    logger.success(f"✅ 新增 {new_count - current_count} 条回答 ({current_count} -> {new_count})")
+                    current_count = new_count
+                    no_new_answers_count = 0  # 重置计数器
+                    
+                    # 短暂延迟（模拟真人，但已优化至0.5-1.0秒）
+                    time.sleep(random.uniform(0.5, 1.0))
+                else:
+                    # 未检测到新回答
+                    no_new_answers_count += 1
+                    logger.warning(f"⚠️ 未检测到新回答（连续 {no_new_answers_count} 次）")
+                    
+                    # 如果连续3次都没有新回答，判定为已到底
+                    if no_new_answers_count >= 3:
+                        logger.warning(f"📌 连续3次无新回答，判定为已到底（当前 {current_count} 条）")
+                        break
+                    
+                    # 尝试额外滚动一次
+                    try:
+                        self.driver.execute_script("window.scrollBy(0, 500);")
+                        time.sleep(random.uniform(0.5, 1.0))
+                    except:
+                        pass
             
             # 最终回答数量
             answers = self.driver.find_elements(By.CLASS_NAME, 'List-item')
-            logger.info(f"滚动完成，共找到 {len(answers)} 个回答")
+            logger.info(f"📊 加载完成，共 {len(answers)} 条回答（目标: {min_answers_needed}，尝试: {attempt} 次）")
             
             # 扫描前N个回答，并收集Top10详细信息
             found_ranks = []
@@ -619,18 +682,19 @@ class ZhihuMonitorWorker(QThread):
                     answer_elem = answers[rank - 1]
                     
                     # 提取回答内容 - 尝试多种选择器
+                    # 【优化】使用 textContent 替代 text，防止CSS隐藏后无法读取
                     content_text = ""
                     try:
                         content_elem = answer_elem.find_element(By.CLASS_NAME, 'RichContent-inner')
-                        content_text = content_elem.text
+                        content_text = content_elem.get_attribute('textContent') or ""
                     except:
                         try:
                             # 备用选择器
                             content_elem = answer_elem.find_element(By.CSS_SELECTOR, '.RichText')
-                            content_text = content_elem.text
+                            content_text = content_elem.get_attribute('textContent') or ""
                         except:
                             # 最后尝试获取整个回答的文本
-                            content_text = answer_elem.text
+                            content_text = answer_elem.get_attribute('textContent') or ""
                     
                     if not content_text:
                         logger.warning(f"第 {rank} 个回答内容为空")
@@ -905,6 +969,64 @@ class ZhihuMonitorWorker(QThread):
             logger.warning(f"解析评论数失败: '{comment_text}' - {e}")
             return 0
     
+    def _collapse_all_answers_css(self):
+        """
+        【增强版】DOM瘦身策略：强制折叠所有回答 + 防止页面塌陷
+        
+        核心优化：
+        1. 压缩所有 .List-item 和 .RichContent 高度为 50px
+        2. 给 document.body 添加 padding-bottom: 3000px（防止页面过矮无法滚动）
+        3. 每次循环都执行，处理新旧所有元素，确保页面始终保持轻量
+        """
+        try:
+            collapse_script = """
+            // 压缩所有回答项高度
+            const items = document.querySelectorAll('.List-item');
+            items.forEach(item => {
+                item.style.height = '50px';
+                item.style.overflow = 'hidden';
+            });
+            
+            // 压缩回答内容区域
+            const richContents = document.querySelectorAll('.RichContent');
+            richContents.forEach(rc => {
+                rc.style.height = '50px';
+                rc.style.overflow = 'hidden';
+            });
+            
+            // 关键：给body加底部padding，防止页面塌陷（覆盖赋值，不累加）
+            document.body.style.paddingBottom = '3000px';
+            """
+            self.driver.execute_script(collapse_script)
+            logger.debug(f"✓ DOM瘦身完成，已折叠 {len(self.driver.find_elements(By.CLASS_NAME, 'List-item'))} 个回答 + body padding")
+        except Exception as e:
+            logger.debug(f"DOM瘦身失败（不影响主流程）: {e}")
+    
+    def _wait_for_new_answers(self, previous_count: int, timeout: float = 5.0) -> bool:
+        """
+        智能等待：监听回答数量增加
+        
+        使用 WebDriverWait 轮询检查 .List-item 数量是否增加，
+        一旦增加立即返回，避免固定延迟浪费时间
+        
+        Args:
+            previous_count: 之前的回答数量
+            timeout: 超时时间（秒）
+            
+        Returns:
+            是否有新回答加载（True=有新回答, False=超时无新回答）
+        """
+        try:
+            WebDriverWait(self.driver, timeout).until(
+                lambda d: len(d.find_elements(By.CLASS_NAME, 'List-item')) > previous_count
+            )
+            new_count = len(self.driver.find_elements(By.CLASS_NAME, 'List-item'))
+            logger.debug(f"✓ 检测到新回答加载: {previous_count} -> {new_count}")
+            return True
+        except TimeoutException:
+            logger.debug(f"⏱ 等待超时，未检测到新回答（可能已到底）")
+            return False
+    
     def _collapse_answer(self, answer_elem):
         """
         收起回答内容（优化滚动性能）
@@ -1135,6 +1257,64 @@ class ZhihuDetailedWorker(QThread):
             except:
                 pass
     
+    def _collapse_all_answers_css(self):
+        """
+        【增强版】DOM瘦身策略：强制折叠所有回答 + 防止页面塌陷
+        
+        核心优化：
+        1. 压缩所有 .List-item 和 .RichContent 高度为 50px
+        2. 给 document.body 添加 padding-bottom: 3000px（防止页面过矮无法滚动）
+        3. 每次循环都执行，处理新旧所有元素，确保页面始终保持轻量
+        """
+        try:
+            collapse_script = """
+            // 压缩所有回答项高度
+            const items = document.querySelectorAll('.List-item');
+            items.forEach(item => {
+                item.style.height = '50px';
+                item.style.overflow = 'hidden';
+            });
+            
+            // 压缩回答内容区域
+            const richContents = document.querySelectorAll('.RichContent');
+            richContents.forEach(rc => {
+                rc.style.height = '50px';
+                rc.style.overflow = 'hidden';
+            });
+            
+            // 关键：给body加底部padding，防止页面塌陷（覆盖赋值，不累加）
+            document.body.style.paddingBottom = '3000px';
+            """
+            self.driver.execute_script(collapse_script)
+            logger.debug(f"✓ [详情] DOM瘦身完成，已折叠 {len(self.driver.find_elements(By.CLASS_NAME, 'List-item'))} 个回答 + body padding")
+        except Exception as e:
+            logger.debug(f"[详情] DOM瘦身失败（不影响主流程）: {e}")
+    
+    def _wait_for_new_answers(self, previous_count: int, timeout: float = 5.0) -> bool:
+        """
+        智能等待：监听回答数量增加
+        
+        使用 WebDriverWait 轮询检查 .List-item 数量是否增加，
+        一旦增加立即返回，避免固定延迟浪费时间
+        
+        Args:
+            previous_count: 之前的回答数量
+            timeout: 超时时间（秒）
+            
+        Returns:
+            是否有新回答加载（True=有新回答, False=超时无新回答）
+        """
+        try:
+            WebDriverWait(self.driver, timeout).until(
+                lambda d: len(d.find_elements(By.CLASS_NAME, 'List-item')) > previous_count
+            )
+            new_count = len(self.driver.find_elements(By.CLASS_NAME, 'List-item'))
+            logger.debug(f"✓ [详情] 检测到新回答加载: {previous_count} -> {new_count}")
+            return True
+        except TimeoutException:
+            logger.debug(f"⏱ [详情] 等待超时，未检测到新回答（可能已到底）")
+            return False
+    
     def _scan_question_detail(self) -> Optional[Dict]:
         """
         扫描问题详情（全量Top 10分析）
@@ -1145,8 +1325,27 @@ class ZhihuDetailedWorker(QThread):
         try:
             logger.info(f"开始详细扫描: {self.url}")
             
+            # ✅ URL 验证和修复
+            url = self.url
+            if not url or not isinstance(url, str):
+                logger.error(f"❌ URL 无效: {url}")
+                return None
+            
+            # 去除首尾空格
+            url = url.strip()
+            
+            # 确保 URL 有正确的协议前缀
+            if not url.startswith(('http://', 'https://')):
+                logger.warning(f"⚠️ [详情] URL 缺少协议前缀，自动添加 https://")
+                url = 'https://' + url
+            
+            # 验证 URL 格式
+            if not url.startswith('https://www.zhihu.com/question/'):
+                logger.error(f"❌ [详情] URL 格式错误，必须是知乎问题链接: {url}")
+                return None
+            
             # 访问页面
-            self.driver.get(self.url)
+            self.driver.get(url)
             
             # 等待页面加载
             wait = WebDriverWait(self.driver, 10)
@@ -1188,23 +1387,67 @@ class ZhihuDetailedWorker(QThread):
             except Exception as e:
                 logger.warning(f"提取浏览数据失败: {e}")
             
-            # ✅ 滚动加载至少10条回答
-            logger.info("📜 滚动加载回答列表（确保至少10条）...")
-            for scroll_round in range(6):  # 最多滚动6轮
-                # 滚动
-                self.driver.execute_script("window.scrollBy(0, 800);")
-                time.sleep(1.5)
+            # ✅ 【优化】滚动加载至少10条回答 - 目标驱动循环 + DOM瘦身
+            min_answers_needed = 10  # 详情扫描固定需要Top10
+            max_attempts = 20
+            logger.info(f"📜 【优化加载】目标: {min_answers_needed} 条回答，最多尝试 {max_attempts} 次")
+            
+            # 获取当前已有的回答数量
+            answers = self.driver.find_elements(By.CLASS_NAME, 'List-item')
+            current_count = len(answers)
+            logger.info(f"初始状态: {current_count} 条回答")
+            
+            attempt = 0
+            no_new_answers_count = 0
+            
+            # 目标驱动循环
+            while current_count < min_answers_needed and attempt < max_attempts:
+                attempt += 1
+                logger.info(f"🔄 [详情] 第 {attempt} 次尝试加载（当前 {current_count}/{min_answers_needed}）")
                 
-                # 检查回答数量
-                answers = self.driver.find_elements(By.CLASS_NAME, 'List-item')
-                logger.info(f"滚动 {scroll_round + 1} 轮，已加载 {len(answers)} 条回答")
+                # 1. 执行DOM瘦身（每次循环都压缩所有新旧元素，防止页面卡顿）
+                self._collapse_all_answers_css()
                 
-                if len(answers) >= 10:
-                    logger.success(f"✅ 已加载足够回答 ({len(answers)} >= 10)")
-                    # 再滚动一轮确保元素完全渲染
-                    self.driver.execute_script("window.scrollBy(0, 400);")
-                    time.sleep(1)
-                    break
+                # 2. 【核心】触底回弹三步序列（激活知乎懒加载的关键动作）
+                try:
+                    # 第一步：猛冲到底部
+                    self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                    
+                    # 第二步：随机停顿 0.5-1.5 秒（让网页感知到触底）
+                    pause_time = random.uniform(0.5, 1.5)
+                    logger.debug(f"[详情] 触底停顿 {pause_time:.2f} 秒...")
+                    time.sleep(pause_time)
+                    
+                    # 第三步：随机向上回滚 250-450 像素（模拟用户往回拉查看内容）
+                    scroll_back = random.randint(250, 450)
+                    self.driver.execute_script(f"window.scrollBy(0, -{scroll_back});")
+                    logger.debug(f"[详情] 向上回滚 {scroll_back} 像素（触发懒加载）")
+                except Exception as e:
+                    logger.warning(f"[详情] 触底回弹动作失败: {e}")
+                
+                # 3. 智能等待
+                has_new_answers = self._wait_for_new_answers(current_count, timeout=3.0)
+                
+                if has_new_answers:
+                    answers = self.driver.find_elements(By.CLASS_NAME, 'List-item')
+                    new_count = len(answers)
+                    logger.success(f"✅ [详情] 新增 {new_count - current_count} 条回答 ({current_count} -> {new_count})")
+                    current_count = new_count
+                    no_new_answers_count = 0
+                    time.sleep(random.uniform(0.5, 1.0))
+                else:
+                    no_new_answers_count += 1
+                    logger.warning(f"⚠️ [详情] 未检测到新回答（连续 {no_new_answers_count} 次）")
+                    
+                    if no_new_answers_count >= 3:
+                        logger.warning(f"📌 [详情] 连续3次无新回答，判定为已到底（当前 {current_count} 条）")
+                        break
+                    
+                    try:
+                        self.driver.execute_script("window.scrollBy(0, 500);")
+                        time.sleep(random.uniform(0.5, 1.0))
+                    except:
+                        pass
             
             # 提取Top 10回答详情
             answers = self.driver.find_elements(By.CLASS_NAME, 'List-item')
@@ -1235,16 +1478,17 @@ class ZhihuDetailedWorker(QThread):
                             pass
                     
                     # 提取回答内容
+                    # 【优化】使用 textContent 替代 text，防止CSS隐藏后无法读取
                     content_text = ""
                     try:
                         content_elem = answer_elem.find_element(By.CLASS_NAME, 'RichContent-inner')
-                        content_text = content_elem.text
+                        content_text = content_elem.get_attribute('textContent') or ""
                     except:
                         try:
                             content_elem = answer_elem.find_element(By.CSS_SELECTOR, '.RichText')
-                            content_text = content_elem.text
+                            content_text = content_elem.get_attribute('textContent') or ""
                         except:
-                            content_text = answer_elem.text
+                            content_text = answer_elem.get_attribute('textContent') or ""
                     
                     # 提取赞同数 - 尝试多种选择器
                     vote_count = 0
