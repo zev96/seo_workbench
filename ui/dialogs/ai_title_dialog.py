@@ -1,10 +1,11 @@
 """
 AI 标题生成对话框
 """
-from typing import List, Optional
+from typing import List, Optional, Dict
 from PyQt6.QtWidgets import (
     QDialog, QVBoxLayout, QHBoxLayout, QFormLayout, 
-    QLabel, QPlainTextEdit, QWidget
+    QLabel, QPlainTextEdit, QWidget, QTableWidget, QTableWidgetItem,
+    QHeaderView, QAbstractItemView
 )
 from PyQt6.QtCore import Qt
 from qfluentwidgets import (
@@ -30,34 +31,58 @@ class AITitleDialog(QDialog):
         
     def _init_ui(self):
         """初始化界面"""
-        self.setWindowTitle("AI 标题生成")
-        self.setMinimumSize(700, 600)
+        self.setWindowTitle("AI 标题生成（批量模式）")
+        self.setMinimumSize(800, 700)
         
         layout = QVBoxLayout(self)
         layout.setSpacing(15)
+        
+        # === 关键词表格区 ===
+        keywords_label = QLabel("批量关键词设置（每个关键词独立调用API）:")
+        keywords_label.setStyleSheet("font-weight: bold;")
+        layout.addWidget(keywords_label)
+        
+        # 关键词表格
+        self.keywords_table = QTableWidget()
+        self.keywords_table.setColumnCount(2)
+        self.keywords_table.setHorizontalHeaderLabels(["关键词", "生成数量"])
+        self.keywords_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeMode.Stretch)
+        self.keywords_table.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Fixed)
+        self.keywords_table.setColumnWidth(1, 150)  # 增加宽度以完整显示SpinBox
+        self.keywords_table.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+        self.keywords_table.setFixedHeight(200)
+        
+        # 添加默认的3行示例
+        self._add_keyword_row("吸尘器", 30)
+        self._add_keyword_row("洗地机", 30)
+        self._add_keyword_row("扫地机器人", 30)
+        
+        layout.addWidget(self.keywords_table)
+        
+        # 表格操作按钮
+        table_btn_layout = QHBoxLayout()
+        table_btn_layout.addStretch()
+        
+        self.add_row_btn = PushButton(FIF.ADD, "添加行")
+        self.add_row_btn.clicked.connect(self._on_add_row)
+        table_btn_layout.addWidget(self.add_row_btn)
+        
+        self.remove_row_btn = PushButton(FIF.REMOVE, "删除选中行")
+        self.remove_row_btn.clicked.connect(self._on_remove_row)
+        table_btn_layout.addWidget(self.remove_row_btn)
+        
+        layout.addLayout(table_btn_layout)
         
         # === 设置区 ===
         settings_widget = QWidget()
         settings_layout = QFormLayout(settings_widget)
         settings_layout.setSpacing(10)
         
-        # 核心关键词
-        self.keyword_input = LineEdit()
-        self.keyword_input.setPlaceholderText("例如：吸尘器、洗地机、扫地机器人...")
-        self.keyword_input.setClearButtonEnabled(True)
-        settings_layout.addRow("核心关键词:", self.keyword_input)
-        
         # 字数限制
         self.word_limit_spin = SpinBox()
         self.word_limit_spin.setRange(10, 100)
         self.word_limit_spin.setValue(25)
         settings_layout.addRow("字数限制:", self.word_limit_spin)
-        
-        # 生成数量
-        self.count_spin = SpinBox()
-        self.count_spin.setRange(1, 200)
-        self.count_spin.setValue(30)
-        settings_layout.addRow("生成数量:", self.count_spin)
         
         # 格式映射
         self.format_combo = ComboBox()
@@ -109,6 +134,61 @@ class AITitleDialog(QDialog):
         
         layout.addLayout(button_layout)
         
+    def _add_keyword_row(self, keyword: str = "", count: int = 30):
+        """添加一行关键词"""
+        row_position = self.keywords_table.rowCount()
+        self.keywords_table.insertRow(row_position)
+        
+        # 关键词列
+        keyword_item = QTableWidgetItem(keyword)
+        self.keywords_table.setItem(row_position, 0, keyword_item)
+        
+        # 数量列（使用SpinBox）
+        count_spin = SpinBox()
+        count_spin.setRange(1, 200)
+        count_spin.setValue(count)
+        self.keywords_table.setCellWidget(row_position, 1, count_spin)
+    
+    def _on_add_row(self):
+        """添加行"""
+        self._add_keyword_row("", 30)
+    
+    def _on_remove_row(self):
+        """删除选中行"""
+        selected_rows = self.keywords_table.selectionModel().selectedRows()
+        if not selected_rows:
+            MessageBox("提示", "请先选择要删除的行", self).exec()
+            return
+        
+        # 从后往前删除，避免索引变化
+        for index in sorted(selected_rows, reverse=True):
+            self.keywords_table.removeRow(index.row())
+    
+    def _get_keywords_config(self) -> List[Dict[str, any]]:
+        """获取关键词配置列表
+        
+        Returns:
+            [{"keyword": "吸尘器", "count": 30}, ...]
+        """
+        keywords_config = []
+        
+        for row in range(self.keywords_table.rowCount()):
+            keyword_item = self.keywords_table.item(row, 0)
+            count_widget = self.keywords_table.cellWidget(row, 1)
+            
+            if keyword_item and count_widget:
+                keyword = keyword_item.text().strip()
+                count = count_widget.value()
+                
+                # 过滤空关键词
+                if keyword:
+                    keywords_config.append({
+                        "keyword": keyword,
+                        "count": count
+                    })
+        
+        return keywords_config
+    
     def _get_default_prompt(self) -> str:
         """获取默认 Prompt 模板"""
         return """请为关键词"{keyword}"生成 {count} 个 SEO 优化的文章标题。
@@ -275,10 +355,12 @@ x款
 """
     
     def _on_generate(self):
-        """开始生成标题"""
-        keyword = self.keyword_input.text().strip()
-        if not keyword:
-            MessageBox("提示", "请输入核心关键词", self).exec()
+        """开始生成标题（批量模式）"""
+        # 获取关键词配置
+        keywords_config = self._get_keywords_config()
+        
+        if not keywords_config:
+            MessageBox("提示", "请至少添加一个关键词", self).exec()
             return
         
         # 检查 API 配置
@@ -290,61 +372,93 @@ x款
         from PyQt6.QtWidgets import QApplication
         QApplication.setOverrideCursor(Qt.CursorShape.WaitCursor)
         self.generate_btn.setEnabled(False)
-        self.generate_btn.setText("生成中...")
+        self.generate_btn.setText("批量生成中...")
+        
+        # 初始化结果
+        all_titles = []
+        failed_keywords = []
+        
+        # 获取 Prompt 模板
+        prompt_template = self.prompt_edit.toPlainText()
+        ai_client = AIClient(self.config.api_config)
+        
+        total_keywords = len(keywords_config)
         
         try:
-            # 构建 Prompt
-            prompt_template = self.prompt_edit.toPlainText()
-            logger.info(f"准备生成标题: 关键词={keyword}, 数量={self.count_spin.value()}")
-            
-            prompt = prompt_template.format(
-                keyword=keyword,
-                count=self.count_spin.value(),
-                word_limit=self.word_limit_spin.value()
-            )
-            
-            logger.debug(f"Prompt 已构建，长度: {len(prompt)}")
-            
-            # 调用 AI API
-            ai_client = AIClient(self.config.api_config)
-            logger.info("开始调用 AI API...")
-            
-            titles = ai_client.generate_titles(
-                keyword=keyword,
-                count=self.count_spin.value(),
-                custom_prompt=prompt
-            )
-            
-            logger.info(f"AI API 返回了 {len(titles) if titles else 0} 个标题")
-            
-            if not titles:
-                QApplication.restoreOverrideCursor()
-                self.generate_btn.setEnabled(True)
-                self.generate_btn.setText("开始生成")
-                MessageBox("生成失败", "AI 未返回任何标题，请检查网络或 API 配置", self).exec()
-                return
-            
-            # 显示结果
-            self.generated_titles = titles
-            self.result_edit.setPlainText("\n".join(titles))
-            self.confirm_btn.setEnabled(True)
+            # 遍历每个关键词
+            for idx, config in enumerate(keywords_config):
+                keyword = config["keyword"]
+                count = config["count"]
+                
+                # 更新按钮文本显示进度
+                progress_text = f"生成中 ({idx + 1}/{total_keywords}): {keyword}..."
+                self.generate_btn.setText(progress_text)
+                logger.info(f"正在处理关键词 {idx + 1}/{total_keywords}: {keyword}, 数量={count}")
+                
+                try:
+                    # 构建 Prompt
+                    prompt = prompt_template.format(
+                        keyword=keyword,
+                        count=count,
+                        word_limit=self.word_limit_spin.value()
+                    )
+                    
+                    # 调用 AI API
+                    titles = ai_client.generate_titles(
+                        keyword=keyword,
+                        count=count,
+                        custom_prompt=prompt
+                    )
+                    
+                    if titles:
+                        all_titles.extend(titles)
+                        logger.info(f"✓ 关键词 '{keyword}' 成功生成 {len(titles)} 个标题")
+                    else:
+                        failed_keywords.append(f"{keyword}（未返回标题）")
+                        logger.warning(f"✗ 关键词 '{keyword}' 未返回任何标题")
+                
+                except Exception as e:
+                    failed_keywords.append(f"{keyword}（{str(e)}）")
+                    logger.error(f"✗ 关键词 '{keyword}' 生成失败: {e}")
             
             # 恢复状态
             QApplication.restoreOverrideCursor()
             self.generate_btn.setEnabled(True)
             self.generate_btn.setText("开始生成")
             
-            InfoBar.success(
-                title='生成完成',
-                content=f'成功生成 {len(titles)} 个标题',
-                orient=Qt.Orientation.Horizontal,
-                isClosable=False,
-                position=InfoBarPosition.BOTTOM_RIGHT,
-                duration=2000,
-                parent=self
-            )
-            
-            logger.info(f"AI 生成了 {len(titles)} 个标题")
+            # 显示结果
+            if all_titles:
+                self.generated_titles = all_titles
+                self.result_edit.setPlainText("\n".join(all_titles))
+                self.confirm_btn.setEnabled(True)
+                
+                # 成功提示
+                success_msg = f'成功生成 {len(all_titles)} 个标题'
+                if failed_keywords:
+                    success_msg += f'\n失败 {len(failed_keywords)} 个关键词'
+                
+                InfoBar.success(
+                    title='批量生成完成',
+                    content=success_msg,
+                    orient=Qt.Orientation.Horizontal,
+                    isClosable=True,
+                    position=InfoBarPosition.BOTTOM_RIGHT,
+                    duration=3000,
+                    parent=self
+                )
+                
+                logger.info(f"批量生成完成: 总计 {len(all_titles)} 个标题，失败 {len(failed_keywords)} 个关键词")
+                
+                # 如果有失败的，显示详细信息
+                if failed_keywords:
+                    MessageBox(
+                        "部分关键词生成失败", 
+                        f"以下关键词生成失败：\n\n" + "\n".join(failed_keywords) + "\n\n已保留成功生成的标题。",
+                        self
+                    ).exec()
+            else:
+                # 全部失败
+                MessageBox("生成失败", "所有关键词都未能成功生成标题，请检查:\n1. API Key 是否正确\n2. 网络连接是否正常\n3. API 服务是否可用", self).exec()
             
         except Exception as e:
             QApplication.restoreOverrideCursor()
@@ -353,9 +467,9 @@ x款
             
             import traceback
             error_detail = traceback.format_exc()
-            logger.error(f"AI 生成标题失败: {e}\n{error_detail}")
+            logger.error(f"批量生成标题失败: {e}\n{error_detail}")
             
-            MessageBox("生成失败", f"错误: {str(e)}\n\n请检查:\n1. API Key 是否正确\n2. 网络连接是否正常\n3. API 服务是否可用", self).exec()
+            MessageBox("生成失败", f"错误: {str(e)}", self).exec()
     
     def _on_confirm(self):
         """确认并使用"""

@@ -272,6 +272,11 @@ class MainWindow(MSFluentWindow):
         # 获取生成数量
         count = self.toolbar.count_spin.value() if mode == "shuffle" else len(grid_data)
         
+        # 如果使用AI标题模式，确保数量与标题数量一致
+        if len(self.ai_title_queue) > 0 and mode == "shuffle":
+            count = len(self.ai_title_queue)
+            logger.info(f"AI标题模式：强制使用标题数量 {count}")
+        
         # 创建进度对话框
         progress_dialog = ProgressDialog(
             title="正在生成文档",
@@ -748,10 +753,13 @@ class MainWindow(MSFluentWindow):
                 
                 logger.info(f"已生成文档 {generated}/{count}: {filename}")
             
-            # 生成完成后清空标题队列
+            # 生成完成后清空标题队列并解锁数量输入框
             if use_ai_titles:
                 self.ai_title_queue = []
-                logger.info("AI 标题队列已清空")
+                # 🔓 解锁生成数量输入框
+                self.toolbar.count_spin.setEnabled(True)
+                self.toolbar.count_spin.setToolTip("")
+                logger.info("AI 标题队列已清空，生成数量输入框已解锁")
         
         # 生成质量报告
         if quality_report and self.config.quality_generate_report:
@@ -1299,13 +1307,17 @@ class MainWindow(MSFluentWindow):
             # 强制设置生成数量为标题数量
             self.toolbar.count_spin.setValue(len(titles))
             
+            # 🔒 锁定生成数量输入框（AI标题模式）
+            self.toolbar.count_spin.setEnabled(False)
+            self.toolbar.count_spin.setToolTip("AI标题模式下，生成数量已自动锁定")
+            
             # 强制切换到"随机混排"模式
             self.toolbar.mode_combo.setCurrentIndex(1)
             
             from qfluentwidgets import InfoBar, InfoBarPosition
             InfoBar.success(
-                title='标题已就绪',
-                content=f'已加载 {len(titles)} 个标题，请点击"开始生成 Word"',
+                title='✅ AI标题已就绪',
+                content=f'已加载 {len(titles)} 个标题，将自动生成 {len(titles)} 篇文章',
                 orient=Qt.Orientation.Horizontal,
                 isClosable=False,
                 position=InfoBarPosition.BOTTOM_RIGHT,
@@ -1313,7 +1325,7 @@ class MainWindow(MSFluentWindow):
                 parent=self
             )
             
-            logger.info(f"AI 标题队列已设置: {len(titles)} 个标题，格式: {title_format}")
+            logger.info(f"AI 标题队列已设置: {len(titles)} 个标题，格式: {title_format}，生成数量已锁定")
     
     def _on_ai_rewrite_dialog(self):
         """打开 AI 内容改写对话框（支持多列）"""
