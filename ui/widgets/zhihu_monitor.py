@@ -234,7 +234,7 @@ class ZhihuMonitorWidget(QWidget):
         """加载监控任务列表"""
         try:
             tasks = self.db_session.query(ZhihuMonitorTask).order_by(
-                ZhihuMonitorTask.created_at.desc()
+                ZhihuMonitorTask.created_at.asc()
             ).all()
             
             self.table.setRowCount(len(tasks))

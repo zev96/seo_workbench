@@ -669,8 +669,8 @@ class ZhihuMonitorWorker(QThread):
                     # 如果连续3次都没有新回答，判定为已到底
                     if no_new_answers_count >= 3:
                         logger.warning(f"📌 连续3次无新回答，判定为已到底（当前 {current_count} 条）")
-                        break
-                    
+                    break
+                
                     # 尝试额外滚动一次
                     try:
                         self.driver.execute_script("window.scrollBy(0, 500);")
@@ -1508,7 +1508,7 @@ class ZhihuDetailedWorker(QThread):
                     
                     if no_new_answers_count >= 3:
                         logger.warning(f"📌 [详情] 连续3次无新回答，判定为已到底（当前 {current_count} 条）")
-                        break
+                    break
                     
                     try:
                         self.driver.execute_script("window.scrollBy(0, 500);")
