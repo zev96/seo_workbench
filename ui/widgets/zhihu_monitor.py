@@ -250,12 +250,13 @@ class ZhihuMonitorWidget(QWidget):
                 checkbox_layout.setContentsMargins(0, 0, 0, 0)
                 self.table.setCellWidget(row, 0, checkbox_widget)
                 
-                # 第1列：问题标题（可点击）
-                title = task.question_title or task.question_url
-                title_item = QTableWidgetItem(title)
-                title_item.setToolTip(task.question_url)
-                title_item.setData(Qt.ItemDataRole.UserRole, task.question_url)
-                self.table.setItem(row, 1, title_item)
+                # 第1列：问题链接（始终显示URL，标题作为 tooltip）
+                url_item = QTableWidgetItem(task.question_url)
+                # 如果有标题，设置为 tooltip；否则显示 URL 作为 tooltip
+                tooltip_text = task.question_title if task.question_title else task.question_url
+                url_item.setToolTip(tooltip_text)
+                url_item.setData(Qt.ItemDataRole.UserRole, task.question_url)
+                self.table.setItem(row, 1, url_item)
                 
                 # 第2列：目标品牌
                 brand_item = QTableWidgetItem(task.target_brand)

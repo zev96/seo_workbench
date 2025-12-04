@@ -547,40 +547,53 @@ class ZhihuMonitorWorker(QThread):
             logger.info("🖱️ 模拟真人行为...")
             self._mimic_human_behavior()
             
-            # 提取问题标题 - 尝试多种选择器
+            # 【优化】提取问题标题 - 优先使用 Meta 标签（更稳定）
             question_title = ""
-            try:
-                title_elem = self.driver.find_element(By.CLASS_NAME, 'QuestionHeader-title')
-                question_title = title_elem.text.strip()
-            except:
+            # 方案1: Meta 标签（最稳定）
+            question_title = self._get_meta_content('name')  # <meta itemprop="name">
+            if not question_title:
+                question_title = self._get_meta_content('og:title', 'property')  # <meta property="og:title">
+            
+            # 方案2: CSS 选择器（兜底方案）
+            if not question_title:
                 try:
-                    title_elem = self.driver.find_element(By.CSS_SELECTOR, 'h1.QuestionHeader-title')
-                    question_title = title_elem.text.strip()
+                    title_elem = self.driver.find_element(By.CLASS_NAME, 'QuestionHeader-title')
+                    question_title = title_elem.get_attribute('textContent').strip()
                 except:
                     try:
-                        title_elem = self.driver.find_element(By.TAG_NAME, 'h1')
-                        question_title = title_elem.text.strip()
+                        title_elem = self.driver.find_element(By.CSS_SELECTOR, 'h1.QuestionHeader-title')
+                        question_title = title_elem.get_attribute('textContent').strip()
                     except:
-                        question_title = "未知问题"
+                        try:
+                            title_elem = self.driver.find_element(By.TAG_NAME, 'h1')
+                            question_title = title_elem.get_attribute('textContent').strip()
+                        except:
+                            question_title = "未知问题"
             
             logger.info(f"问题标题: {question_title}")
             
-            # 提取问题描述（问题补充说明）
+            # 【优化】提取问题描述 - 优先使用 Meta 标签，使用 textContent 获取隐藏内容
             question_detail = ""
-            try:
-                # 尝试多种选择器
-                detail_elem = self.driver.find_element(By.CLASS_NAME, 'QuestionRichText')
-                question_detail = detail_elem.text.strip()
-            except:
+            # 方案1: Meta 标签
+            question_detail = self._get_meta_content('description')
+            if not question_detail:
+                question_detail = self._get_meta_content('og:description', 'property')
+            
+            # 方案2: CSS 选择器（使用 textContent 获取隐藏内容）
+            if not question_detail:
                 try:
-                    detail_elem = self.driver.find_element(By.CSS_SELECTOR, '.QuestionHeader-detail .RichText')
-                    question_detail = detail_elem.text.strip()
+                    detail_elem = self.driver.find_element(By.CLASS_NAME, 'QuestionRichText')
+                    question_detail = (detail_elem.get_attribute('textContent') or "").strip()
                 except:
                     try:
-                        detail_elem = self.driver.find_element(By.CSS_SELECTOR, 'div[class*="QuestionRichText"]')
-                        question_detail = detail_elem.text.strip()
+                        detail_elem = self.driver.find_element(By.CSS_SELECTOR, '.QuestionHeader-detail .RichText')
+                        question_detail = (detail_elem.get_attribute('textContent') or "").strip()
                     except:
-                        question_detail = ""
+                        try:
+                            detail_elem = self.driver.find_element(By.CSS_SELECTOR, 'div[class*="QuestionRichText"]')
+                            question_detail = (detail_elem.get_attribute('textContent') or "").strip()
+                        except:
+                            question_detail = ""
             
             if question_detail:
                 logger.info(f"问题描述: {question_detail[:100]}...")
@@ -681,19 +694,23 @@ class ZhihuMonitorWorker(QThread):
                 try:
                     answer_elem = answers[rank - 1]
                     
-                    # 提取回答内容 - 尝试多种选择器
-                    # 【优化】使用 textContent 替代 text，防止CSS隐藏后无法读取
+                    # 【优化】过滤无效元素（如广告、推荐等）
+                    try:
+                        answer_elem.find_element(By.CLASS_NAME, 'RichContent')
+                    except:
+                        logger.debug(f"第 {rank} 个元素不包含 RichContent，跳过（可能是广告）")
+                        continue
+                    
+                    # 提取回答内容 - 使用 textContent 获取隐藏内容
                     content_text = ""
                     try:
                         content_elem = answer_elem.find_element(By.CLASS_NAME, 'RichContent-inner')
                         content_text = content_elem.get_attribute('textContent') or ""
                     except:
                         try:
-                            # 备用选择器
                             content_elem = answer_elem.find_element(By.CSS_SELECTOR, '.RichText')
                             content_text = content_elem.get_attribute('textContent') or ""
                         except:
-                            # 最后尝试获取整个回答的文本
                             content_text = answer_elem.get_attribute('textContent') or ""
                     
                     if not content_text:
@@ -708,12 +725,12 @@ class ZhihuMonitorWorker(QThread):
                         found_ranks.append(rank)
                         logger.info(f"在第 {rank} 名发现品牌: {target_brand}")
                     
-                    # 收集Top10详细信息（无论是否匹配品牌都要收集）
+                    # 收集Top10详细信息
                     if rank <= 10 and rank <= len(answers):
                         # 滚动到该元素，确保完全加载
                         try:
                             self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", answer_elem)
-                            time.sleep(0.5)  # 等待元素完全渲染
+                            time.sleep(0.5)
                         except:
                             pass
                         
@@ -721,73 +738,60 @@ class ZhihuMonitorWorker(QThread):
                         author = "未知"
                         try:
                             author_elem = answer_elem.find_element(By.CSS_SELECTOR, '.AuthorInfo-name')
-                            author = author_elem.text.strip()
+                            author = (author_elem.get_attribute('textContent') or "").strip()
                         except:
                             try:
                                 author_elem = answer_elem.find_element(By.CSS_SELECTOR, '.UserLink-link')
-                                author = author_elem.text.strip()
+                                author = (author_elem.get_attribute('textContent') or "").strip()
                             except:
                                 try:
-                                    # 再尝试其他可能的选择器
                                     author_elem = answer_elem.find_element(By.CSS_SELECTOR, '[itemprop="name"]')
-                                    author = author_elem.text.strip()
+                                    author = (author_elem.get_attribute('textContent') or "").strip()
                                 except:
                                     pass
                         
-                        # 提取赞同数 - 尝试多种选择器
+                        # 【优化】提取赞同数 - 使用 XPath + aria-label 优先
                         vote_count = 0
                         vote_text = ""
                         try:
-                            # 方法1: 标准选择器
-                            vote_elem = answer_elem.find_element(By.CSS_SELECTOR, '.VoteButton--up')
-                            vote_text = vote_elem.text.strip()
+                            # 方案1: XPath 查找包含"赞同"的按钮（兼容性最好）
+                            vote_btn = answer_elem.find_element(By.XPATH, ".//button[contains(text(), '赞同') or contains(@aria-label, '赞同')]")
+                            # 优先读取 aria-label（通常包含完整数字）
+                            vote_text = vote_btn.get_attribute('aria-label') or vote_btn.get_attribute('textContent') or ""
+                            vote_text = vote_text.strip()
                         except:
+                            # 方案2: CSS 选择器兜底
                             try:
-                                # 方法2: 按钮文本
-                                vote_elem = answer_elem.find_element(By.CSS_SELECTOR, 'button[aria-label*="赞同"]')
-                                vote_text = vote_elem.text.strip()
+                                vote_btn = answer_elem.find_element(By.CSS_SELECTOR, ".VoteButton--up")
+                                vote_text = (vote_btn.get_attribute('textContent') or "").strip()
                             except:
-                                try:
-                                    # 方法3: 数据属性
-                                    vote_elem = answer_elem.find_element(By.CSS_SELECTOR, '[class*="VoteButton"]')
-                                    vote_text = vote_elem.text.strip()
-                                except:
-                                    pass
+                                pass
                         
                         if vote_text:
                             vote_count = self._parse_vote_count(vote_text)
-                            logger.info(f"  第{rank}名 赞同原始文本: '{vote_text}' -> 解析: {vote_count}")
+                            logger.info(f"  第{rank}名 赞同: '{vote_text}' -> {vote_count}")
                         else:
-                            logger.warning(f"  第{rank}名 未找到赞同数元素")
+                            logger.warning(f"  第{rank}名 未找到赞同数")
                         
-                        # 提取评论数 - 尝试多种选择器
+                        # 【优化】提取评论数 - 使用 XPath + 判断"添加评论"
                         comment_count = 0
                         comment_text = ""
                         try:
-                            # 方法1: 标准选择器
-                            comment_elem = answer_elem.find_element(By.CSS_SELECTOR, '.Button--comment')
-                            comment_text = comment_elem.text.strip()
+                            # XPath 查找包含"评论"的按钮
+                            comment_btn = answer_elem.find_element(By.XPATH, ".//button[contains(text(), '评论') or contains(@aria-label, '评论')]")
+                            comment_text = (comment_btn.get_attribute('textContent') or "").strip()
+                            
+                            # 关键判断：如果是"添加评论"，强制设为 0
+                            if "添加评论" in comment_text:
+                                comment_count = 0
+                                logger.info(f"  第{rank}名 评论: '添加评论' -> 0")
+                            else:
+                                comment_count = self._parse_comment_count(comment_text)
+                                logger.info(f"  第{rank}名 评论: '{comment_text}' -> {comment_count}")
                         except:
-                            try:
-                                # 方法2: 按钮文本
-                                comment_elem = answer_elem.find_element(By.CSS_SELECTOR, 'button[aria-label*="评论"]')
-                                comment_text = comment_elem.text.strip()
-                            except:
-                                try:
-                                    # 方法3: 数据属性
-                                    comment_elem = answer_elem.find_element(By.CSS_SELECTOR, 'button[type="button"]')
-                                    if '条评论' in comment_elem.text or '评论' in comment_elem.text:
-                                        comment_text = comment_elem.text.strip()
-                                except:
-                                    pass
+                            logger.debug(f"  第{rank}名 未找到评论数")
                         
-                        if comment_text:
-                            comment_count = self._parse_comment_count(comment_text)
-                            logger.info(f"  第{rank}名 评论原始文本: '{comment_text}' -> 解析: {comment_count}")
-                        else:
-                            logger.warning(f"  第{rank}名 未找到评论数元素")
-                        
-                        # 品牌归属识别（简化版，只判断目标品牌）
+                        # 品牌归属识别
                         mentioned_brand = target_brand if self._match_brand(content_text, target_brand) else "未提及"
                         
                         # 生成摘要
@@ -805,7 +809,7 @@ class ZhihuMonitorWorker(QThread):
                         
                         logger.success(f"✅ Top10数据 - 第{rank}名: 作者={author}, 品牌={mentioned_brand}, 赞同={vote_count}, 评论={comment_count}")
                     
-                    # 🔧 收起回答（优化滚动性能）
+                    # 收起回答（优化滚动性能）
                     self._collapse_answer(answer_elem)
                         
                 except Exception as e:
@@ -968,6 +972,28 @@ class ZhihuMonitorWorker(QThread):
         except Exception as e:
             logger.warning(f"解析评论数失败: '{comment_text}' - {e}")
             return 0
+    
+    def _get_meta_content(self, prop_name: str, attr_name: str = 'itemprop') -> str:
+        """
+        从 Meta 标签获取内容（比抓取 UI 更稳定）
+        
+        Args:
+            prop_name: 属性值（如 'name', 'description', 'og:title' 等）
+            attr_name: 属性名（默认 'itemprop'，也可以是 'property', 'name' 等）
+            
+        Returns:
+            Meta 标签的 content 内容，失败返回空字符串
+            
+        Example:
+            title = self._get_meta_content('name')  # <meta itemprop="name" content="...">
+            desc = self._get_meta_content('og:description', 'property')  # <meta property="og:description" content="...">
+        """
+        try:
+            elem = self.driver.find_element(By.CSS_SELECTOR, f'meta[{attr_name}="{prop_name}"]')
+            content = elem.get_attribute('content')
+            return content.strip() if content else ""
+        except:
+            return ""
     
     def _collapse_all_answers_css(self):
         """
@@ -1257,6 +1283,24 @@ class ZhihuDetailedWorker(QThread):
             except:
                 pass
     
+    def _get_meta_content(self, prop_name: str, attr_name: str = 'itemprop') -> str:
+        """
+        从 Meta 标签获取内容（比抓取 UI 更稳定）
+        
+        Args:
+            prop_name: 属性值（如 'name', 'description', 'og:title' 等）
+            attr_name: 属性名（默认 'itemprop'，也可以是 'property', 'name' 等）
+            
+        Returns:
+            Meta 标签的 content 内容，失败返回空字符串
+        """
+        try:
+            elem = self.driver.find_element(By.CSS_SELECTOR, f'meta[{attr_name}="{prop_name}"]')
+            content = elem.get_attribute('content')
+            return content.strip() if content else ""
+        except:
+            return ""
+    
     def _collapse_all_answers_css(self):
         """
         【增强版】DOM瘦身策略：强制折叠所有回答 + 防止页面塌陷
@@ -1352,29 +1396,52 @@ class ZhihuDetailedWorker(QThread):
             wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'QuestionHeader-title')))
             time.sleep(2)
             
-            # 提取问题标题
-            title_elem = self.driver.find_element(By.CLASS_NAME, 'QuestionHeader-title')
-            question_title = title_elem.text.strip()
+            # 【优化】提取问题标题 - 优先使用 Meta 标签
+            question_title = ""
+            # 方案1: Meta 标签（最稳定）
+            question_title = self._get_meta_content('name')
+            if not question_title:
+                question_title = self._get_meta_content('og:title', 'property')
             
-            # 提取问题描述（问题补充说明）
-            question_detail = ""
-            try:
-                # 尝试多种选择器
-                detail_elem = self.driver.find_element(By.CLASS_NAME, 'QuestionRichText')
-                question_detail = detail_elem.text.strip()
-            except:
+            # 方案2: CSS 选择器（兜底）
+            if not question_title:
                 try:
-                    detail_elem = self.driver.find_element(By.CSS_SELECTOR, '.QuestionHeader-detail .RichText')
-                    question_detail = detail_elem.text.strip()
+                    title_elem = self.driver.find_element(By.CLASS_NAME, 'QuestionHeader-title')
+                    question_title = (title_elem.get_attribute('textContent') or "").strip()
                 except:
                     try:
-                        detail_elem = self.driver.find_element(By.CSS_SELECTOR, 'div[class*="QuestionRichText"]')
-                        question_detail = detail_elem.text.strip()
+                        title_elem = self.driver.find_element(By.TAG_NAME, 'h1')
+                        question_title = (title_elem.get_attribute('textContent') or "").strip()
                     except:
-                        question_detail = ""
-                        logger.warning("未找到问题描述")
+                        question_title = "未知问题"
             
-            logger.info(f"问题描述: {question_detail[:100] if question_detail else '(无)'}")
+            logger.info(f"[详情] 问题标题: {question_title}")
+            
+            # 【优化】提取问题描述 - 优先 Meta，使用 textContent 获取隐藏内容
+            question_detail = ""
+            # 方案1: Meta 标签
+            question_detail = self._get_meta_content('description')
+            if not question_detail:
+                question_detail = self._get_meta_content('og:description', 'property')
+            
+            # 方案2: CSS 选择器（使用 textContent）
+            if not question_detail:
+                try:
+                    detail_elem = self.driver.find_element(By.CLASS_NAME, 'QuestionRichText')
+                    question_detail = (detail_elem.get_attribute('textContent') or "").strip()
+                except:
+                    try:
+                        detail_elem = self.driver.find_element(By.CSS_SELECTOR, '.QuestionHeader-detail .RichText')
+                        question_detail = (detail_elem.get_attribute('textContent') or "").strip()
+                    except:
+                        try:
+                            detail_elem = self.driver.find_element(By.CSS_SELECTOR, 'div[class*="QuestionRichText"]')
+                            question_detail = (detail_elem.get_attribute('textContent') or "").strip()
+                        except:
+                            question_detail = ""
+                            logger.warning("[详情] 未找到问题描述")
+            
+            logger.info(f"[详情] 问题描述: {question_detail[:100] if question_detail else '(无)'}")
             
             # 提取浏览量和关注数
             total_views = 0
@@ -1458,6 +1525,13 @@ class ZhihuDetailedWorker(QThread):
                 try:
                     answer_elem = answers[rank - 1]
                     
+                    # 【优化】过滤无效元素（如广告、推荐等）
+                    try:
+                        answer_elem.find_element(By.CLASS_NAME, 'RichContent')
+                    except:
+                        logger.debug(f"[详情] 第 {rank} 个元素不包含 RichContent，跳过")
+                        continue
+                    
                     # 滚动到该元素
                     try:
                         self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", answer_elem)
@@ -1469,16 +1543,19 @@ class ZhihuDetailedWorker(QThread):
                     author = "未知"
                     try:
                         author_elem = answer_elem.find_element(By.CSS_SELECTOR, '.AuthorInfo-name')
-                        author = author_elem.text.strip()
+                        author = (author_elem.get_attribute('textContent') or "").strip()
                     except:
                         try:
                             author_elem = answer_elem.find_element(By.CSS_SELECTOR, '.UserLink-link')
-                            author = author_elem.text.strip()
+                            author = (author_elem.get_attribute('textContent') or "").strip()
                         except:
-                            pass
+                            try:
+                                author_elem = answer_elem.find_element(By.CSS_SELECTOR, '[itemprop="name"]')
+                                author = (author_elem.get_attribute('textContent') or "").strip()
+                            except:
+                                pass
                     
-                    # 提取回答内容
-                    # 【优化】使用 textContent 替代 text，防止CSS隐藏后无法读取
+                    # 提取回答内容 - 使用 textContent
                     content_text = ""
                     try:
                         content_elem = answer_elem.find_element(By.CLASS_NAME, 'RichContent-inner')
@@ -1490,43 +1567,45 @@ class ZhihuDetailedWorker(QThread):
                         except:
                             content_text = answer_elem.get_attribute('textContent') or ""
                     
-                    # 提取赞同数 - 尝试多种选择器
+                    # 【优化】提取赞同数 - XPath + aria-label 优先
                     vote_count = 0
                     vote_text = ""
                     try:
-                        vote_elem = answer_elem.find_element(By.CSS_SELECTOR, '.VoteButton--up')
-                        vote_text = vote_elem.text.strip()
+                        # 方案1: XPath 查找包含"赞同"的按钮
+                        vote_btn = answer_elem.find_element(By.XPATH, ".//button[contains(text(), '赞同') or contains(@aria-label, '赞同')]")
+                        vote_text = vote_btn.get_attribute('aria-label') or vote_btn.get_attribute('textContent') or ""
+                        vote_text = vote_text.strip()
                     except:
+                        # 方案2: CSS 选择器兜底
                         try:
-                            vote_elem = answer_elem.find_element(By.CSS_SELECTOR, 'button[aria-label*="赞同"]')
-                            vote_text = vote_elem.text.strip()
+                            vote_btn = answer_elem.find_element(By.CSS_SELECTOR, ".VoteButton--up")
+                            vote_text = (vote_btn.get_attribute('textContent') or "").strip()
                         except:
                             pass
                     
                     if vote_text:
                         vote_count = self._parse_vote_count(vote_text)
-                        logger.info(f"  第{rank}名 赞同: '{vote_text}' -> {vote_count}")
+                        logger.info(f"  [详情] 第{rank}名 赞同: '{vote_text}' -> {vote_count}")
                     else:
-                        logger.warning(f"  第{rank}名 未找到赞同数")
+                        logger.debug(f"  [详情] 第{rank}名 未找到赞同数")
                     
-                    # 提取评论数 - 尝试多种选择器
+                    # 【优化】提取评论数 - XPath + 判断"添加评论"
                     comment_count = 0
                     comment_text = ""
                     try:
-                        comment_elem = answer_elem.find_element(By.CSS_SELECTOR, '.Button--comment')
-                        comment_text = comment_elem.text.strip()
+                        # XPath 查找包含"评论"的按钮
+                        comment_btn = answer_elem.find_element(By.XPATH, ".//button[contains(text(), '评论') or contains(@aria-label, '评论')]")
+                        comment_text = (comment_btn.get_attribute('textContent') or "").strip()
+                        
+                        # 关键判断：如果是"添加评论"，强制设为 0
+                        if "添加评论" in comment_text:
+                            comment_count = 0
+                            logger.info(f"  [详情] 第{rank}名 评论: '添加评论' -> 0")
+                        else:
+                            comment_count = self._parse_comment_count(comment_text)
+                            logger.info(f"  [详情] 第{rank}名 评论: '{comment_text}' -> {comment_count}")
                     except:
-                        try:
-                            comment_elem = answer_elem.find_element(By.CSS_SELECTOR, 'button[aria-label*="评论"]')
-                            comment_text = comment_elem.text.strip()
-                        except:
-                            pass
-                    
-                    if comment_text:
-                        comment_count = self._parse_comment_count(comment_text)
-                        logger.info(f"  第{rank}名 评论: '{comment_text}' -> {comment_count}")
-                    else:
-                        logger.warning(f"  第{rank}名 未找到评论数")
+                        logger.debug(f"  [详情] 第{rank}名 未找到评论数")
                     
                     # 品牌归属识别
                     mentioned_brand = self._identify_brand(content_text)
@@ -1546,13 +1625,13 @@ class ZhihuDetailedWorker(QThread):
                     
                     top10_data.append(answer_data)
                     
-                    logger.success(f"✅ 第{rank}名: 作者={author}, 品牌={mentioned_brand}, 赞同={vote_count}, 评论={comment_count}")
+                    logger.success(f"✅ [详情] 第{rank}名: 作者={author}, 品牌={mentioned_brand}, 赞同={vote_count}, 评论={comment_count}")
                     
-                    # 🔧 收起回答（优化滚动性能）
+                    # 收起回答（优化滚动性能）
                     self._collapse_answer(answer_elem)
                     
                 except Exception as e:
-                    logger.warning(f"解析第 {rank} 个回答失败: {e}")
+                    logger.warning(f"[详情] 解析第 {rank} 个回答失败: {e}")
                     continue
             
             # 构造结果
