@@ -20,7 +20,6 @@ from seo_workbench.ui.main_window import MainWindow
 from seo_workbench.utils.logger import setup_logger, setup_ui_logger
 from seo_workbench.ui.styles import FluentStyle
 
-
 def setup_high_dpi():
     """配置高分屏支持"""
     # 启用高 DPI 缩放

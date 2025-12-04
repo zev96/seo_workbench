@@ -170,6 +170,7 @@ class MainWindow(MSFluentWindow):
         self.strategy_panel.ai_title_clicked.connect(self._on_ai_title_dialog)
         self.strategy_panel.ai_rewrite_clicked.connect(self._on_ai_rewrite_dialog)
         self.strategy_panel.strategy_config_clicked.connect(self._on_strategy_config)
+        self.strategy_panel.numbering_group_clicked.connect(self._on_numbering_group_config)
         self.strategy_panel.seo_config_clicked.connect(self._on_seo_config)
         self.strategy_panel.dedup_config_clicked.connect(self._on_dedup_config)
         
@@ -594,85 +595,121 @@ class MainWindow(MSFluentWindow):
                     logger.info(f"文档 {i+1}: 使用 AI 标题 '{ai_title}' (格式: {self.ai_title_format})")
                 
                 # === 智能序号处理：在混排策略之后，写入Word之前 ===
-                # 为每种序号格式维护独立的计数器
-                style_counters = {}
+                # 按序号分组区间进行独立计数
                 
-                # 处理每一列的内容
-                for col_idx, content in enumerate(processed_row):
-                    if not content or not content.strip():
-                        continue
+                # 1. 创建列到序号分组的映射
+                column_to_numbering_group = {}  # {列索引: 分组索引}
+                
+                if self.config.numbering_groups:
+                    # 使用用户配置的序号分组
+                    for group_idx, group_columns in enumerate(self.config.numbering_groups):
+                        for col in group_columns:
+                            column_to_numbering_group[col] = group_idx
+                    logger.debug(f"使用序号分组配置: {self.config.numbering_groups}")
+                else:
+                    # 如果没有配置序号分组，则使用混排策略作为分组依据（兼容旧逻辑）
+                    for strategy_idx, strategy in enumerate(self.config.shuffling_strategies):
+                        for col in strategy.columns:
+                            column_to_numbering_group[col] = strategy_idx
+                    logger.debug(f"使用混排策略作为序号分组: {column_to_numbering_group}")
+                
+                # 2. 为每个分组维护独立的计数器字典
+                group_counters = {}  # {分组索引: {序号样式: 计数器}}
+                
+                logger.debug(f"序号分组映射: {column_to_numbering_group}")
+                
+                # 处理每一列的内容（包括空列）
+                for col_idx in range(len(processed_row)):
+                    content = processed_row[col_idx] if col_idx < len(processed_row) else ""
                     
-                    col_type = self.config.get_column_type(col_idx)
-                    
-                    if col_type == 'Ignore':
-                        continue
-                    
-                    # === 智能序号处理 ===
-                    # 将内容按换行符分割成多个段落
-                    paragraphs = content.split('\n')
-                    
-                    # 处理该列的每个段落
-                    for para_text in paragraphs:
-                        if not para_text.strip():
-                            continue
+                    # 如果列有内容，处理内容
+                    if content and content.strip():
+                        col_type = self.config.get_column_type(col_idx)
                         
-                        processed_content = para_text
-                        
-                        # === 对所有类型应用智能序号处理 ===
-                        # 先检测是否有序号
-                        cleaned_text, detected_style = SmartNumbering.detect_and_clean(para_text)
-                        
-                        if detected_style:
-                            # 检测到序号：清洗并重新编号
-                            # 为该格式初始化计数器（如果还没有）
-                            if detected_style not in style_counters:
-                                style_counters[detected_style] = 1
-                            
-                            current_number = style_counters[detected_style]
-                            processed_content = SmartNumbering.process_text(
-                                para_text,
-                                current_number,
-                                should_renumber=True
-                            )
-                            logger.info(f"[{col_type}] 重编号: {current_number}, 样式={detected_style}, 原文='{para_text[:40]}', 结果='{processed_content[:40]}'")
-                            
-                            # 递增该格式的计数器
-                            style_counters[detected_style] += 1
+                        if col_type == 'Ignore':
+                            # 忽略该列，跳过内容处理，但仍要检查对比表格
+                            pass
                         else:
-                            # 没有检测到序号：保持原样
-                            processed_content = para_text
-                            logger.debug(f"[{col_type}] 无序号，保持原样: '{para_text[:40]}'")
-                        
-                        # 根据类型添加段落
-                        if col_type == 'H1':
-                            p = doc.add_paragraph(processed_content)
-                            self._apply_heading_style(p, level=1)
-                        elif col_type == 'H2':
-                            p = doc.add_paragraph(processed_content)
-                            self._apply_heading_style(p, level=2)
-                        elif col_type == 'H3':
-                            p = doc.add_paragraph(processed_content)
-                            self._apply_heading_style(p, level=3)
-                        elif col_type == 'H4':
-                            p = doc.add_paragraph(processed_content)
-                            self._apply_heading_style(p, level=4)
-                        elif col_type == 'List':
-                            p = doc.add_paragraph(processed_content, style='List Bullet')
-                            self._apply_body_style(p)
-                        elif col_type == 'Body':
-                            p = doc.add_paragraph(processed_content)
-                            self._apply_body_style(p)
-                        
-                        # 应用加粗关键词
-                        if col_type in ['Body', 'List'] and self.config.bold_keywords:
-                            self._apply_bold_keywords(p, self.config.bold_keywords)
+                            # === 智能序号处理 ===
+                            # 将内容按换行符分割成多个段落
+                            paragraphs = content.split('\n')
+                            
+                            # 处理该列的每个段落
+                            for para_text in paragraphs:
+                                if not para_text.strip():
+                                    continue
+                                
+                                processed_content = para_text
+                                
+                                # === 对所有类型应用智能序号处理 ===
+                                # 先检测是否有序号
+                                cleaned_text, detected_style = SmartNumbering.detect_and_clean(para_text)
+                                
+                                if detected_style:
+                                    # 检测到序号：判断是否需要重新编号
+                                    
+                                    # 确定该列属于哪个序号分组（注意：col_idx是代码索引，从0开始）
+                                    group_idx = column_to_numbering_group.get(col_idx, -1)  # -1 表示不属于任何分组
+                                    
+                                    # 如果不在任何序号分组内，保持原样不重新编号
+                                    if group_idx == -1:
+                                        processed_content = para_text  # 保持原序号
+                                        logger.debug(f"[{col_type}][列{col_idx+1}] 不在序号分组内，保持原样: '{para_text[:40]}'")
+                                    else:
+                                        # 在序号分组内，强制重新编号
+                                        if group_idx not in group_counters:
+                                            group_counters[group_idx] = {}
+                                        current_counters = group_counters[group_idx]
+                                        group_name = f"分组{group_idx+1}"
+                                        
+                                        # 为该格式初始化计数器（如果还没有）
+                                        if detected_style not in current_counters:
+                                            current_counters[detected_style] = 1
+                                        
+                                        current_number = current_counters[detected_style]
+                                        
+                                        # 强制使用计数器值重新生成序号前缀（修复原序号为1时的问题）
+                                        new_prefix = SmartNumbering.generate_prefix(current_number, detected_style)
+                                        processed_content = new_prefix + cleaned_text
+                                        
+                                        logger.info(f"[{col_type}][列{col_idx+1}][{group_name}] 重编号: {current_number}, 样式={detected_style}, 原文='{para_text[:40]}', 结果='{processed_content[:40]}'")
+                                        
+                                        # 递增该组该格式的计数器
+                                        current_counters[detected_style] += 1
+                                else:
+                                    # 没有检测到序号：保持原样
+                                    processed_content = para_text
+                                    logger.debug(f"[{col_type}][列{col_idx}] 无序号，保持原样: '{para_text[:40]}'")
+                                
+                                # 根据类型添加段落
+                                if col_type == 'H1':
+                                    p = doc.add_paragraph(processed_content)
+                                    self._apply_heading_style(p, level=1)
+                                elif col_type == 'H2':
+                                    p = doc.add_paragraph(processed_content)
+                                    self._apply_heading_style(p, level=2)
+                                elif col_type == 'H3':
+                                    p = doc.add_paragraph(processed_content)
+                                    self._apply_heading_style(p, level=3)
+                                elif col_type == 'H4':
+                                    p = doc.add_paragraph(processed_content)
+                                    self._apply_heading_style(p, level=4)
+                                elif col_type == 'List':
+                                    p = doc.add_paragraph(processed_content, style='List Bullet')
+                                    self._apply_body_style(p)
+                                elif col_type == 'Body':
+                                    p = doc.add_paragraph(processed_content)
+                                    self._apply_body_style(p)
+                                
+                                # 应用加粗关键词
+                                if col_type in ['Body', 'List'] and self.config.bold_keywords:
+                                    self._apply_bold_keywords(p, self.config.bold_keywords)
+                            
+                            # 插入该列的图片（如果有）- 在该列所有段落之后
+                            self._insert_column_image(doc, col_idx)
                     
-                    # 插入该列的图片（如果有）- 在该列所有段落之后
-                    self._insert_column_image(doc, col_idx)
-                    
-                    # 检查是否需要插入对比表图片（根据模式使用不同的变量名）
-                    current_row_data = row_data if mode == "row" else processed_row
-                    self._check_and_insert_comparison_table(doc, col_idx, content, current_row_data)
+                    # 立即检查该列的对比表格（无论列是否为空）
+                    self._check_and_insert_comparison_table(doc, col_idx, content, processed_row)
                 
                 # 质量检查和文件名标记
                 title = processed_row[0] if processed_row else f"文档{i + 1}"
@@ -1399,6 +1436,25 @@ class MainWindow(MSFluentWindow):
             )
             
             logger.info("混排策略配置已更新")
+    
+    def _on_numbering_group_config(self):
+        """打开序号分组配置对话框"""
+        from .dialogs.numbering_group_dialog import NumberingGroupDialog
+        from qfluentwidgets import InfoBar, InfoBarPosition
+        
+        dialog = NumberingGroupDialog(self.config, self)
+        if dialog.exec():
+            # 配置已保存
+            logger.info(f"序号分组配置已更新: {self.config.numbering_groups}")
+            InfoBar.success(
+                title='配置已更新',
+                content=f'已保存 {len(self.config.numbering_groups)} 个序号分组',
+                orient=Qt.Orientation.Horizontal,
+                isClosable=False,
+                position=InfoBarPosition.BOTTOM_RIGHT,
+                duration=2000,
+                parent=self
+            )
     
     def _on_seo_config(self):
         """打开 SEO 核心词配置对话框"""

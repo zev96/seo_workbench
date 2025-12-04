@@ -226,6 +226,7 @@ class StrategyPanel(QWidget):
     ai_title_clicked = pyqtSignal()      # AI 标题生成
     ai_rewrite_clicked = pyqtSignal()    # AI 内容改写
     strategy_config_clicked = pyqtSignal()  # 混排策略配置
+    numbering_group_clicked = pyqtSignal()  # 序号分组配置
     seo_config_clicked = pyqtSignal()    # SEO 核心词配置
     dedup_config_clicked = pyqtSignal()  # 历史查重配置
     
@@ -280,7 +281,12 @@ class StrategyPanel(QWidget):
         self.config_strategy_btn.clicked.connect(self.strategy_config_clicked)
         layout.addWidget(self.config_strategy_btn)
         
-        # 8. 历史查重配置
+        # 8. 序号分组设置
+        self.numbering_group_btn = CardButton(FIF.LABEL, "序号分组")
+        self.numbering_group_btn.clicked.connect(self.numbering_group_clicked)
+        layout.addWidget(self.numbering_group_btn)
+        
+        # 9. 历史查重配置
         self.dedup_config_btn = CardButton(FIF.HISTORY, "历史查重")
         self.dedup_config_btn.clicked.connect(self.dedup_config_clicked)
         layout.addWidget(self.dedup_config_btn)
@@ -311,6 +317,7 @@ class StrategyPanel(QWidget):
         self.bold_tool_btn.setEnabled(has_data)
         self.seo_config_btn.setEnabled(has_data)
         self.config_strategy_btn.setEnabled(has_data)
+        self.numbering_group_btn.setEnabled(has_data)
         
         # 不需要数据的按钮（始终可用）
         # self.import_excel_btn - 始终可用

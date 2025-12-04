@@ -90,6 +90,10 @@ class ProfileConfig(BaseModel):
         default_factory=list,
         description="混排策略列表"
     )
+    numbering_groups: List[List[int]] = Field(
+        default_factory=list,
+        description="序号独立计数区间列表，每个子列表代表一个独立计数区间"
+    )
     
     # 生成设置
     strict_unique: bool = Field(default=True, description="严格去重")

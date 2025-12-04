@@ -12,7 +12,6 @@ from loguru import logger
 import os
 import tempfile
 
-
 class ComparisonTableImageGenerator:
     """对比表图片生成器"""
     
@@ -20,7 +19,6 @@ class ComparisonTableImageGenerator:
         """初始化生成器"""
         # 设置中文字体
         self._setup_chinese_font()
-    
     def _setup_chinese_font(self):
         """设置中文字体支持"""
         try:
