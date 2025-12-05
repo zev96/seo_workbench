@@ -67,8 +67,9 @@ def main():
     setThemeColor(QColor("#e5e4e3"))
     
     try:
-        # 显示开屏动画
-        splash = SplashScreen()
+        # 显示开屏动画（使用自定义背景图片）
+        splash_image = r"E:\Case-5\seo_workbench\resources\splash.png"
+        splash = SplashScreen(background_image=splash_image)
         splash.show()
         
         # 初始化数据库和配置
