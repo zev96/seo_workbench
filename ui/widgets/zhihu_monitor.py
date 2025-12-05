@@ -120,6 +120,7 @@ class ZhihuMonitorWidget(QWidget):
         self.db_session = db_session
         self.worker = None
         self.scheduler = None
+        self.last_checked_row = None  # 记录最后一次点击的复选框行号（用于Shift区间选择）
         
         self._init_ui()
         self._load_tasks()
@@ -243,6 +244,9 @@ class ZhihuMonitorWidget(QWidget):
                 # 第0列：复选框（默认不勾选） - 使用 Fluent CheckBox
                 checkbox = CheckBox()
                 checkbox.setProperty('task_id', task.id)
+                checkbox.setProperty('row_index', row)  # 保存行号
+                # 连接点击事件（支持Shift区间选择）
+                checkbox.clicked.connect(lambda checked, r=row: self._on_checkbox_clicked(r, checked))
                 checkbox_widget = QWidget()
                 checkbox_layout = QHBoxLayout(checkbox_widget)
                 checkbox_layout.addWidget(checkbox)
@@ -383,6 +387,39 @@ class ZhihuMonitorWidget(QWidget):
                     checkbox.setChecked(checked)
         
         logger.info(f"{'全选' if checked else '取消全选'}所有任务")
+    
+    def _on_checkbox_clicked(self, row: int, checked: bool):
+        """
+        复选框点击事件处理（支持Shift区间选择）
+        
+        Args:
+            row: 当前点击的行号
+            checked: 当前复选框的状态
+        """
+        from PyQt6.QtWidgets import QApplication
+        
+        # 检查是否按住了Shift键
+        modifiers = QApplication.keyboardModifiers()
+        if modifiers == Qt.KeyboardModifier.ShiftModifier and self.last_checked_row is not None:
+            # Shift + 点击 → 区间选择
+            start_row = min(self.last_checked_row, row)
+            end_row = max(self.last_checked_row, row)
+            
+            logger.info(f"Shift区间选择: 行 {start_row+1} 到 {end_row+1}")
+            
+            # 将区间内的所有复选框设置为相同状态
+            for r in range(start_row, end_row + 1):
+                checkbox_widget = self.table.cellWidget(r, 0)
+                if checkbox_widget:
+                    checkbox = checkbox_widget.findChild(CheckBox)
+                    if checkbox:
+                        # 临时阻止信号，避免递归触发
+                        checkbox.blockSignals(True)
+                        checkbox.setChecked(checked)
+                        checkbox.blockSignals(False)
+        
+        # 更新最后点击的行号
+        self.last_checked_row = row
     
     def _get_selected_task_ids(self) -> list:
         """获取所有勾选的任务ID"""
@@ -670,9 +707,9 @@ class ZhihuMonitorWidget(QWidget):
     def _export_report(self):
         """导出Excel报告"""
         try:
-            # 获取所有任务
+            # 获取所有任务（与主界面显示顺序一致：按创建时间升序）
             tasks = self.db_session.query(ZhihuMonitorTask).order_by(
-                ZhihuMonitorTask.created_at.desc()
+                ZhihuMonitorTask.created_at.asc()
             ).all()
             
             if not tasks:

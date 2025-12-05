@@ -66,3 +66,8 @@ Symbols not available. Dumping unresolved backtrace:
 
 
 2025-12-04 17:36:39 | ERROR    | seo_workbench.ui.widgets.zhihu_monitor:_on_task_failed:617 - 任务 6 失败: 检测失败，未获取到数据
+2025-12-04 21:09:22 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_check_question:863 - 检测异常: name 'min_answers_needed' is not defined
+2025-12-04 21:09:22 | ERROR    | seo_workbench.ui.widgets.zhihu_monitor:_on_task_failed:615 - 任务 1 失败: 检测失败，未获取到数据
+2025-12-04 21:23:06 | ERROR    | seo_workbench.core.zhihu_monitor_worker:_check_question:896 - 检测异常: name 'min_answers_needed' is not defined
+2025-12-04 21:23:06 | ERROR    | seo_workbench.ui.widgets.zhihu_monitor:_on_task_failed:615 - 任务 1 失败: 检测失败，未获取到数据
+2025-12-04 21:25:41 | ERROR    | seo_workbench.core.zhihu_scheduler:run:93 - 调度器异常: This session is in 'prepared' state; no further SQL can be emitted within this transaction.

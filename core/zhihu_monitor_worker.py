@@ -610,10 +610,10 @@ class ZhihuMonitorWorker(QThread):
             except Exception as e:
                 logger.warning(f"提取浏览数据失败: {e}")
             
-            # ✅ 【优化】提取回答列表 - 目标驱动循环 + DOM瘦身策略
-            min_answers_needed = max(10, check_range)  # 确保至少加载10条（Top10快照需要）
-            max_attempts = 20  # 最大尝试次数（防止死循环）
-            logger.info(f"📜 【优化加载】目标: {min_answers_needed} 条回答，最多尝试 {max_attempts} 次")
+            # ✅ 【重构版】渐进式滚动加载 - 解决跳过懒加载触发区的问题
+            min_target = max(10, check_range)  # 强制目标：至少加载10条
+            max_attempts = 30  # 最大尝试次数（防止死循环）
+            logger.info(f"📜 【渐进式加载】目标: {min_target} 条回答，最多尝试 {max_attempts} 次")
             
             # 获取当前已有的回答数量
             answers = self.driver.find_elements(By.CLASS_NAME, 'List-item')
@@ -621,74 +621,123 @@ class ZhihuMonitorWorker(QThread):
             logger.info(f"初始状态: {current_count} 条回答")
             
             attempt = 0
-            no_new_answers_count = 0  # 连续无新回答的次数
+            no_new_count = 0  # 连续无新回答的失败计数器
             
-            # 目标驱动循环：while len(answers) < target_count
-            while current_count < min_answers_needed and attempt < max_attempts:
+            # 渐进式滚动循环：逐步接近底部，避免跳过懒加载触发区
+            while current_count < min_target and no_new_count < 3 and attempt < max_attempts:
                 attempt += 1
-                logger.info(f"🔄 第 {attempt} 次尝试加载（当前 {current_count}/{min_answers_needed}）")
+                logger.info(f"🔄 第 {attempt} 次滚动（当前: {current_count}/{min_target}，失败: {no_new_count}/3）")
                 
-                # 1. 执行DOM瘦身（每次循环都压缩所有新旧元素，防止页面卡顿）
+                # 1. 执行智能DOM瘦身（保留最后5个展开，防止页面卡顿）
                 self._collapse_all_answers_css()
                 
-                # 2. 【核心】触底回弹三步序列（激活知乎懒加载的关键动作）
+                # 2. 【核心改动】渐进式滚动到最后一个回答
                 try:
-                    # 第一步：猛冲到底部
-                    self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                    # 重新获取当前所有回答项（避免使用过期元素）
+                    current_items = self.driver.find_elements(By.CLASS_NAME, 'List-item')
+                    if not current_items:
+                        logger.warning("⚠️ 未找到任何回答元素")
+                        break
                     
-                    # 第二步：随机停顿 0.5-1.5 秒（让网页感知到触底）
-                    pause_time = random.uniform(0.5, 1.5)
-                    logger.debug(f"触底停顿 {pause_time:.2f} 秒...")
-                    time.sleep(pause_time)
+                    # 获取最后一个回答元素
+                    last_item = current_items[-1]
                     
-                    # 第三步：随机向上回滚 250-450 像素（模拟用户往回拉查看内容）
-                    scroll_back = random.randint(250, 450)
-                    self.driver.execute_script(f"window.scrollBy(0, -{scroll_back});")
-                    logger.debug(f"向上回滚 {scroll_back} 像素（触发懒加载）")
+                    # 步骤A: 将最后一个回答滚动到屏幕中间（渐进接近底部）
+                    self.driver.execute_script(
+                        "arguments[0].scrollIntoView({block: 'center', behavior: 'smooth'});", 
+                        last_item
+                    )
+                    logger.debug(f"  → 滚动到第 {len(current_items)} 个回答的中间位置")
+                    time.sleep(random.uniform(0.5, 0.8))
+                    
+                    # 步骤B: 再往下拉 200px（确保触发懒加载触发区）
+                    self.driver.execute_script("window.scrollBy(0, 200);")
+                    logger.debug(f"  → 往下滚动 200px（触发懒加载区域）")
+                    time.sleep(0.4)
+                    
+                    # 步骤C: 真人模拟 - 回拉 100px（模拟用户回看内容）
+                    self.driver.execute_script("window.scrollBy(0, -100);")
+                    logger.debug(f"  → 回拉 100px（真人行为模拟）")
+                    time.sleep(0.3)
+                    
                 except Exception as e:
-                    logger.warning(f"触底回弹动作失败: {e}")
+                    logger.warning(f"⚠️ 滚动操作失败: {e}")
                 
-                # 3. 智能等待新回答加载（使用WebDriverWait监听数量变化）
+                # 3. 智能等待新回答加载（先等待3秒观察）
                 has_new_answers = self._wait_for_new_answers(current_count, timeout=3.0)
                 
                 if has_new_answers:
-                    # 有新回答，更新计数
+                    # ✅ 成功加载新回答
                     answers = self.driver.find_elements(By.CLASS_NAME, 'List-item')
                     new_count = len(answers)
-                    logger.success(f"✅ 新增 {new_count - current_count} 条回答 ({current_count} -> {new_count})")
+                    logger.success(f"✅ 新增 {new_count - current_count} 条回答 ({current_count} → {new_count})")
                     current_count = new_count
-                    no_new_answers_count = 0  # 重置计数器
+                    no_new_count = 0  # 重置失败计数器
                     
-                    # 短暂延迟（模拟真人，但已优化至0.5-1.0秒）
+                    # 短暂延迟（模拟真人浏览节奏）
                     time.sleep(random.uniform(0.5, 1.0))
                 else:
-                    # 未检测到新回答
-                    no_new_answers_count += 1
-                    logger.warning(f"⚠️ 未检测到新回答（连续 {no_new_answers_count} 次）")
+                    # ❌ 未检测到新回答 → 启动"卡顿自救"机制
+                    logger.warning(f"⚠️ 加载停滞，启动卡顿自救机制（收起+回拉+冲底）...")
                     
-                    # 如果连续3次都没有新回答，判定为已到底
-                    if no_new_answers_count >= 3:
-                        logger.warning(f"📌 连续3次无新回答，判定为已到底（当前 {current_count} 条）")
-                    break
-                
-                    # 尝试额外滚动一次
+                    # 【必杀技】模拟用户手动修复卡顿
+                    rescue_success = False
                     try:
-                        self.driver.execute_script("window.scrollBy(0, 500);")
-                        time.sleep(random.uniform(0.5, 1.0))
-                    except:
-                        pass
+                        # 重新获取当前所有回答
+                        current_items = self.driver.find_elements(By.CLASS_NAME, 'List-item')
+                        if current_items:
+                            last_item = current_items[-1]
+                            
+                            # 动作1: 收起最后一个回答（改变页面布局高度）
+                            logger.debug(f"  → 自救动作1: 收起最后一个回答（改变布局）")
+                            self._collapse_answer(last_item)
+                            time.sleep(0.5)
+                            
+                            # 动作2: 向上回滚 600px（离开底部触发区）
+                            logger.debug(f"  → 自救动作2: 向上回滚 600px（离开触发区）")
+                            self.driver.execute_script("window.scrollBy(0, -600);")
+                            time.sleep(0.5)
+                            
+                            # 动作3: 再次猛冲到底部（重新进入触发区）
+                            logger.debug(f"  → 自救动作3: 猛冲到底部（重新触发）")
+                            self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                            time.sleep(0.5)
+                            
+                            # 再给一次机会等待加载（3秒）
+                            if self._wait_for_new_answers(current_count, timeout=5.0):
+                                # 自救成功！
+                                answers = self.driver.find_elements(By.CLASS_NAME, 'List-item')
+                                new_count = len(answers)
+                                logger.success(f"🎉 自救成功！新增 {new_count - current_count} 条回答")
+                                current_count = new_count
+                                no_new_count = 0  # 重置失败计数
+                                rescue_success = True
+                            else:
+                                logger.warning(f"  → 自救失败，未检测到新回答")
+                    except Exception as e:
+                        logger.warning(f"⚠️ 自救动作执行异常: {e}")
+                    
+                    # 如果自救也失败了，增加失败计数
+                    if not rescue_success:
+                        no_new_count += 1
+                        logger.warning(f"⚠️ 本轮加载失败（连续失败: {no_new_count}/3）")
+                        
+                        # 如果连续3次失败，判定为已到底
+                        if no_new_count >= 3:
+                            logger.warning(f"📌 连续3次失败（含自救），判定已加载全部（当前 {current_count} 条）")
+                            break
             
             # 最终回答数量
             answers = self.driver.find_elements(By.CLASS_NAME, 'List-item')
-            logger.info(f"📊 加载完成，共 {len(answers)} 条回答（目标: {min_answers_needed}，尝试: {attempt} 次）")
+            logger.info(f"📊 加载完成，共 {len(answers)} 条回答（目标: {min_target}，尝试: {attempt} 次）")
             
             # 扫描前N个回答，并收集Top10详细信息
             found_ranks = []
             top10_details = []  # 存储Top10详细数据
             
-            # 确保至少处理10个回答（用于Top10数据）
-            scan_count = max(10, min(check_range, len(answers)))
-            logger.info(f"将扫描前 {scan_count} 个回答")
+            # 【修复】确保 scan_count 不超过实际加载的回答数量
+            scan_count = min(check_range, len(answers))
+            logger.info(f"将扫描前 {scan_count} 个回答（实际加载: {len(answers)}，目标范围: {check_range}）")
             
             for rank in range(1, scan_count + 1):
                 try:
@@ -997,34 +1046,43 @@ class ZhihuMonitorWorker(QThread):
     
     def _collapse_all_answers_css(self):
         """
-        【增强版】DOM瘦身策略：强制折叠所有回答 + 防止页面塌陷
+        【智能瘦身版】DOM优化策略：只折叠旧回答，保留最后5个展开
         
         核心优化：
-        1. 压缩所有 .List-item 和 .RichContent 高度为 50px
-        2. 给 document.body 添加 padding-bottom: 3000px（防止页面过矮无法滚动）
-        3. 每次循环都执行，处理新旧所有元素，确保页面始终保持轻量
+        1. 只压缩前面的旧回答（index < total - 5）
+        2. 保留最后5个回答处于展开状态（确保懒加载触发器可见）
+        3. 给 document.body 添加 padding-bottom: 3000px（防止页面塌陷）
         """
         try:
             collapse_script = """
-            // 压缩所有回答项高度
+            // 获取所有回答项
             const items = document.querySelectorAll('.List-item');
-            items.forEach(item => {
-                item.style.height = '50px';
-                item.style.overflow = 'hidden';
-            });
+            const total = items.length;
             
-            // 压缩回答内容区域
-            const richContents = document.querySelectorAll('.RichContent');
-            richContents.forEach(rc => {
-                rc.style.height = '50px';
-                rc.style.overflow = 'hidden';
+            // 只折叠前面的旧回答，保留最后5个展开
+            items.forEach((item, index) => {
+                if (index < total - 5) {
+                    // 折叠旧回答
+                    item.style.height = '50px';
+                    item.style.overflow = 'hidden';
+                    
+                    // 折叠其内部的 RichContent
+                    const richContent = item.querySelector('.RichContent');
+                    if (richContent) {
+                        richContent.style.height = '50px';
+                        richContent.style.overflow = 'hidden';
+                    }
+                }
+                // else: 保留最后5个回答不折叠（展开状态）
             });
             
             // 关键：给body加底部padding，防止页面塌陷（覆盖赋值，不累加）
             document.body.style.paddingBottom = '3000px';
             """
             self.driver.execute_script(collapse_script)
-            logger.debug(f"✓ DOM瘦身完成，已折叠 {len(self.driver.find_elements(By.CLASS_NAME, 'List-item'))} 个回答 + body padding")
+            total_items = len(self.driver.find_elements(By.CLASS_NAME, 'List-item'))
+            collapsed_count = max(0, total_items - 5)
+            logger.debug(f"✓ 智能DOM瘦身完成：折叠 {collapsed_count} 个旧回答，保留最后5个展开（共 {total_items} 个）")
         except Exception as e:
             logger.debug(f"DOM瘦身失败（不影响主流程）: {e}")
     
@@ -1303,34 +1361,43 @@ class ZhihuDetailedWorker(QThread):
     
     def _collapse_all_answers_css(self):
         """
-        【增强版】DOM瘦身策略：强制折叠所有回答 + 防止页面塌陷
+        【智能瘦身版】DOM优化策略：只折叠旧回答，保留最后5个展开
         
         核心优化：
-        1. 压缩所有 .List-item 和 .RichContent 高度为 50px
-        2. 给 document.body 添加 padding-bottom: 3000px（防止页面过矮无法滚动）
-        3. 每次循环都执行，处理新旧所有元素，确保页面始终保持轻量
+        1. 只压缩前面的旧回答（index < total - 5）
+        2. 保留最后5个回答处于展开状态（确保懒加载触发器可见）
+        3. 给 document.body 添加 padding-bottom: 3000px（防止页面塌陷）
         """
         try:
             collapse_script = """
-            // 压缩所有回答项高度
+            // 获取所有回答项
             const items = document.querySelectorAll('.List-item');
-            items.forEach(item => {
-                item.style.height = '50px';
-                item.style.overflow = 'hidden';
-            });
+            const total = items.length;
             
-            // 压缩回答内容区域
-            const richContents = document.querySelectorAll('.RichContent');
-            richContents.forEach(rc => {
-                rc.style.height = '50px';
-                rc.style.overflow = 'hidden';
+            // 只折叠前面的旧回答，保留最后5个展开
+            items.forEach((item, index) => {
+                if (index < total - 5) {
+                    // 折叠旧回答
+                    item.style.height = '50px';
+                    item.style.overflow = 'hidden';
+                    
+                    // 折叠其内部的 RichContent
+                    const richContent = item.querySelector('.RichContent');
+                    if (richContent) {
+                        richContent.style.height = '50px';
+                        richContent.style.overflow = 'hidden';
+                    }
+                }
+                // else: 保留最后5个回答不折叠（展开状态）
             });
             
             // 关键：给body加底部padding，防止页面塌陷（覆盖赋值，不累加）
             document.body.style.paddingBottom = '3000px';
             """
             self.driver.execute_script(collapse_script)
-            logger.debug(f"✓ [详情] DOM瘦身完成，已折叠 {len(self.driver.find_elements(By.CLASS_NAME, 'List-item'))} 个回答 + body padding")
+            total_items = len(self.driver.find_elements(By.CLASS_NAME, 'List-item'))
+            collapsed_count = max(0, total_items - 5)
+            logger.debug(f"✓ [详情] 智能DOM瘦身完成：折叠 {collapsed_count} 个旧回答，保留最后5个展开（共 {total_items} 个）")
         except Exception as e:
             logger.debug(f"[详情] DOM瘦身失败（不影响主流程）: {e}")
     
