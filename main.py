@@ -17,6 +17,7 @@ sys.path.insert(0, str(project_root))
 from seo_workbench.config.settings import ProfileConfig
 from seo_workbench.database.init_db import init_database
 from seo_workbench.ui.main_window import MainWindow
+from seo_workbench.ui.splash_screen import SplashScreen
 from seo_workbench.utils.logger import setup_logger, setup_ui_logger
 from seo_workbench.ui.styles import FluentStyle
 
@@ -66,11 +67,23 @@ def main():
     setThemeColor(QColor("#e5e4e3"))
     
     try:
+        # 显示开屏动画
+        splash = SplashScreen()
+        splash.show()
+        
+        # 初始化数据库和配置
         db_manager = init_database("assets.db")
         config = load_config()
         
+        # 创建主窗口（但先不显示）
         window = MainWindow(config, db_manager)
-        window.show()
+        
+        # 当开屏动画完成时，显示主窗口
+        def show_main_window():
+            window.show()
+            logger.info("应用启动完成")
+        
+        splash.finished.connect(show_main_window)
         
         return app.exec()
         
